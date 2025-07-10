@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Las 40 Vueltas al Sol de Fernando!</title>
-    <!-- Tailwind CSS CDN -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Custom styles */
@@ -19,7 +19,7 @@
             line-height: 1.6;
         }
         .hero-section {
-            background-image: url('https://placehold.co/1200x600/065f46/ffffff?text=Un+Lugar+Maravilloso'); /* Placeholder for mystery */
+            background-image: url('Images/Hero.jpg'); /* Updated: Uses Images/Hero.jpg */
             background-size: cover;
             background-position: center;
             height: 60vh; /* Responsive height */
@@ -186,10 +186,7 @@
 </head>
 <body class="p-0 m-0">
 
-    <!-- Audio Player (Hidden by default, user can control) -->
     <audio id="background-music" loop autoplay>
-        <!-- Replace 'YOUR_AUDIO_FILE.mp3' with a direct URL to your tropical/festive music file -->
-        <!-- Example: <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"> -->
         <source src="" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
@@ -199,7 +196,6 @@
         </button>
     </div>
 
-    <!-- Hero Section - Mystery Intro -->
     <div class="hero-section">
         <div class="hero-overlay">
             <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-white text-shadow-custom">
@@ -214,10 +210,8 @@
         </div>
     </div>
 
-    <!-- Main Content Container - Hidden until revealed -->
     <div id="main-content" class="container-main max-w-4xl mx-auto p-6 md:p-10 hidden">
 
-        <!-- Countdown Section -->
         <section class="card fade-in mb-10" style="animation-delay: 0.2s;">
             <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
                 ¡La Cuenta Atrás Ha Comenzado! ⏳
@@ -245,7 +239,6 @@
             </div>
         </section>
 
-        <!-- Mystery Reveal Section -->
         <section class="card fade-in" style="animation-delay: 0.4s;">
             <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
                 Un Lugar Maravilloso...
@@ -253,14 +246,14 @@
             <p class="text-lg text-gray-800 mb-4">
                 Imagina un rincón del mundo bañado por el sol, donde la arena es tan blanca como el azúcar y las aguas tan cristalinas que te invitan a sumergirte en un sueño. Un lugar donde la naturaleza exuberante se encuentra con la rica historia, ofreciéndote <span class="highlight">templos ancestrales y una cultura milenaria</span> que te envolverá en su magia.
             </p>
-            <img src="https://placehold.co/800x450/065f46/ffffff?text=Playa+deslumbrante" alt="" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
+            <img src="Images/Playa.jpg" alt="" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
             <p class="text-sm text-gray-500 text-center">
                 
             </p>
             <p class="text-lg text-gray-800 mb-4 mt-6">
                 Prepárate para una experiencia que combina la <span class="highlight">serenidad de paisajes vírgenes con la vibrante energía de una fiesta inolvidable</span>. Un destino que te abrazará con su calidez y te dejará recuerdos que durarán toda la vida.
             </p>
-            <img src="https://placehold.co/800x450/047857/ffffff?text=Templos+antiguos+y+cultura" alt="" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
+            <img src="Images/Templo.jpeg" alt="" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
             <p class="text-sm text-gray-500 text-center">
                 
             </p>
@@ -274,7 +267,6 @@
 
         <div class="section-divider"></div>
 
-        <!-- Itinerary Section -->
         <section class="card fade-in" style="animation-delay: 0.6s;">
             <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
                 Nuestro Itinerario en el Paraíso 🗓️
@@ -306,7 +298,6 @@
 
         <div class="section-divider"></div>
 
-        <!-- My Gift Section -->
         <section class="card fade-in" style="animation-delay: 0.8s;">
             <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
                 ¡Mi Regalo para Ti en Koh Rong! 🎁
@@ -335,7 +326,6 @@
 
         <div class="section-divider"></div>
 
-        <!-- Who's Invited Section (Moved up) -->
         <section class="card fade-in" style="animation-delay: 1s;">
             <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
                 Una Tribu, Una Celebración 💖
@@ -376,7 +366,6 @@
 
         <div class="section-divider"></div>
 
-        <!-- How to Get There Section (Moved down) -->
         <section class="card fade-in" style="animation-delay: 1.2s;">
             <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
                 ¿Cómo llegar a tu Paraíso? 🗺️
@@ -402,7 +391,6 @@
 
         <div class="section-divider"></div>
 
-        <!-- Interactive Map / Gallery Section -->
         <section class="card fade-in" style="animation-delay: 1.4s;">
             <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
                 Explora el Paraíso y Más Allá 📸
@@ -411,34 +399,30 @@
                 Un vistazo a la magia que nos espera en Camboya y Koh Rong.
             </p>
             <div class="text-center mb-8">
-                <img src="https://placehold.co/700x400/059669/ffffff?text=Mapa+de+Camboya+y+Koh+Rong" alt="" class="rounded-lg shadow-md inline-block max-w-full h-auto">
+                <img src="Images/Mapa.jpg" alt="" class="rounded-lg shadow-md inline-block max-w-full h-auto">
                 <p class="text-sm text-gray-500 mt-2">
                     
                 </p>
             </div>
             <div class="image-gallery">
                 <div class="gallery-item">
-                    <img src="https://placehold.co/300x200/065f46/ffffff?text=Playas+de+arena+blanca" alt="">
-                    <p>Playas de arena blanca</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/300x200/047857/ffffff?text=Aguas+cristalinas" alt="">
+                    <img src="Images/2.jpg" alt="">
                     <p>Aguas cristalinas</p>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://placehold.co/300x200/059669/ffffff?text=Fiestas+en+la+playa" alt="">
+                    <img src="Images/3.jpg" alt="">
                     <p>Fiestas en la playa al atardecer</p>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://placehold.co/300x200/10b981/ffffff?text=Puestas+de+sol+épicas" alt="">
+                    <img src="Images/4.jpg" alt="">
                     <p>Puestas de sol épicas</p>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://placehold.co/300x200/064e3b/ffffff?text=Ruinas+antiguas" alt="">
+                    <img src="Images/5.jpg" alt="">
                     <p>Misteriosas ruinas antiguas</p>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://placehold.co/300x200/34d399/ffffff?text=Vida+marina" alt="">
+                    <img src="Images/6.jpg" alt="">
                     <p>Exuberante vida marina</p>
                 </div>
             </div>
@@ -446,7 +430,6 @@
 
         <div class="section-divider"></div>
 
-        <!-- RSVP Section -->
         <section id="rsvp-section" class="card fade-in" style="animation-delay: 1.6s;">
             <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
                 ¡Confirma tu Asistencia antes del 15 de julio de 2026! 📬
@@ -482,7 +465,6 @@
                     <input type="text" id="partner_name" name="partner_name" class="form-input" placeholder="Ej: María García">
                 </div>
 
-                <!-- New Question: Join full trip -->
                 <div>
                     <label class="block text-lg font-medium text-gray-700 mb-2">¿Te unirás al viaje completo (27 de noviembre al 12 de diciembre de 2026)?</label>
                     <div class="flex items-center space-x-4">
@@ -497,7 +479,6 @@
                     </div>
                 </div>
 
-                <!-- New Question: Preferred checkout date -->
                 <div>
                     <label for="checkout_date" class="block text-lg font-medium text-gray-700 mb-2">¿Cuál es tu fecha de check-out preferida?</label>
                     <select id="checkout_date" name="checkout_date" class="form-input form-select" required>
@@ -533,7 +514,6 @@
 
         <div class="section-divider"></div>
 
-        <!-- Footer -->
         <footer class="text-center mt-10 p-6 bg-emerald-50 rounded-lg shadow-inner fade-in" style="animation-delay: 1.8s;">
             <p class="text-xl text-gray-800 mb-4">
                 <i class="fas fa-envelope-open-text text-emerald-600 text-2xl mr-2"></i> ¡Te espero con los pies en la arena, música al atardecer y mil razones para brindar!
@@ -545,7 +525,7 @@
                 ¡te espero con los brazos abiertos para celebrar juntos!
             </p>
             <p class="text-lg text-gray-600 mt-6">
-                <i class="fas fa-star text-emerald-600 mr-2"></i> ¡Prepárate para vivir una noche para recordar! <i class="fas fa-star text-emerald-600 ml-2"></i>
+                <i class="fas fa-star text-emerald-600 mr-2"></i> ¡Prepárate para vivir una noche para recordar! ✨
             </p>
         </footer>
 
@@ -620,7 +600,7 @@
             }
 
             partnerYes.addEventListener('change', togglePartnerNameField);
-            partnerNo.addEventListener('change', togglePartnerNameField);
+            partnerNo.addEventListener('change', togglePartnerNoField);
             togglePartnerNameField(); // Set initial state
 
             // Basic form submission handling (for demonstration, no actual backend)
