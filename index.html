@@ -500,7 +500,7 @@
                     <textarea id="message" name="message" rows="4" class="form-input" placeholder="Ej: ¡Qué ganas de celebrar contigo!"></textarea>
                 </div>
                 <div class="text-center">
-                    <button type="submit" name="submit_button" value="Enviar Confirmacion" class="btn-primary w-full md:w-auto">
+                    <button type="submit" class="btn-primary w-full md:w-auto">
                         Enviar Confirmación
                     </button>
                 </div>
@@ -598,18 +598,66 @@
             partnerNo.addEventListener('change', togglePartnerNameField);
             togglePartnerNameField(); // Set initial state
 
-            // Form submission handling: This now allows the form to submit to Formspree
-            document.querySelector('form').addEventListener('submit', function(event) {
-                // Log FormData before submission for debugging (this will appear in your browser's console)
-                // This console.log is for debugging only and can be removed once confirmed working
-                const formData = new FormData(this);
-                for (let [key, value] of formData.entries()) {
-                    console.log(`${key}: ${value}`);
-                }
+            // Form submission handling: This now uses fetch to send data
+            document.querySelector('form').addEventListener('submit', async function(event) {
+                event.preventDefault(); // Prevent default form submission
 
-                // Formspree will handle the redirection and confirmation
-                this.reset(); // Clear the form after submission
-                togglePartnerNameField(); // Reset partner field visibility
+                const form = this;
+                // Manually collect form data
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const withPartner = document.querySelector('input[name="with_partner"]:checked').value;
+                let partnerName = '';
+                if (withPartner === 'yes') { // Only get partner name if 'yes' is selected
+                    partnerName = document.getElementById('partner_name').value;
+                }
+                const fullTrip = document.querySelector('input[name="full_trip"]:checked').value;
+                const checkoutDate = document.getElementById('checkout_date').value;
+                const attendance = document.getElementById('attendance').value;
+                const message = document.getElementById('message').value;
+
+                const formData = {
+                    name: name,
+                    email: email,
+                    with_partner: withPartner,
+                    partner_name: partnerName, // Will be empty string if not applicable or not filled
+                    full_trip: fullTrip,
+                    checkout_date: checkoutDate,
+                    attendance: attendance,
+                    message: message,
+                    _source: "Fernando's Birthday Invitation" // Hidden field value
+                };
+
+                // Log the data being sent for debugging (this will appear in your browser's console)
+                console.log('Datos a enviar:', formData);
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    if (response.ok) {
+                        // Formspree handles redirection to its success page automatically
+                        // No need for local success message here as Formspree redirects
+                    } else {
+                        // Handle errors if Formspree doesn't redirect (e.g., validation errors)
+                        const errorData = await response.json();
+                        console.error('Error al enviar el formulario:', errorData);
+                        // You could display a local error message here if needed
+                        alert('Hubo un error al enviar tu confirmación. Por favor, inténtalo de nuevo.'); // Using alert for critical error feedback
+                    }
+                } catch (error) {
+                    console.error('Error de red al enviar el formulario:', error);
+                    alert('Error de conexión. Por favor, inténtalo de nuevo más tarde.'); // Using alert for critical error feedback
+                } finally {
+                    form.reset(); // Clear the form after submission attempt
+                    togglePartnerNameField(); // Reset partner field visibility
+                }
             });
         });
 
