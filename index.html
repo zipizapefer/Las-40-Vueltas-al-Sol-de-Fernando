@@ -300,10 +300,10 @@
 
         <section class="card fade-in" style="animation-delay: 0.8s;">
             <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
-                ¡Mi Regalo para Ti en Koh Rong! 🎁
+                Tu Única Preocupación: Disfrutar 🎁 <!-- Updated: New title -->
             </h2>
             <p class="text-lg text-gray-800 mb-4">
-                Para que tu experiencia sea completa y mágica, yo me encargo de:
+                Para que solo te enfoques en vivir la magia de Koh Rong y celebrar sin límites, yo me encargo de todo lo demás: <!-- Updated: New introductory phrase -->
             </p>
             <ul class="list-none p-0 text-lg text-gray-800 space-y-4">
                 <li class="flex items-start">
@@ -507,7 +507,7 @@
                     </button>
                 </div>
             </form>
-            <!-- Nota: El mensaje de backend se ha eliminado de aquí -->
+            <!-- La nota sobre el backend ha sido eliminada -->
         </section>
 
         <div class="section-divider"></div>
@@ -589,10 +589,8 @@
             function togglePartnerNameField() {
                 if (partnerYes.checked) {
                     partnerNameField.classList.remove('hidden');
-                    partnerNameInput.setAttribute('required', 'required'); // Make required if 'yes'
                 } else {
                     partnerNameField.classList.add('hidden');
-                    partnerNameInput.removeAttribute('required'); // Remove required if 'no'
                     partnerNameInput.value = ''; // Clear value if hidden
                 }
             }
@@ -603,20 +601,11 @@
 
             // Form submission handling: This now allows the form to submit to Formspree
             document.querySelector('form').addEventListener('submit', function(event) {
-                // IMPORTANT: event.preventDefault() has been removed to allow Formspree submission
-                // The local confirmation message code has also been removed.
-
-                // You can still log data to console for debugging if needed
-                console.log('RSVP Submitted:', {
-                    name: document.getElementById('name').value,
-                    email: document.getElementById('email').value,
-                    withPartner: document.querySelector('input[name="with_partner"]:checked').value === 'yes',
-                    partnerName: document.getElementById('partner_name').value,
-                    fullTrip: document.querySelector('input[name="full_trip"]:checked').value,
-                    checkoutDate: document.getElementById('checkout_date').value,
-                    attendance: document.getElementById('attendance').value,
-                    message: document.getElementById('message').value
-                });
+                // Log FormData before submission for debugging
+                const formData = new FormData(this);
+                for (let [key, value] of formData.entries()) {
+                    console.log(`${key}: ${value}`);
+                }
 
                 // Formspree will handle the redirection and confirmation
                 this.reset(); // Clear the form after submission
