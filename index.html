@@ -300,10 +300,10 @@
 
         <section class="card fade-in" style="animation-delay: 0.8s;">
             <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
-                Tu Única Preocupación: Disfrutar 🎁 <!-- Updated: New title -->
+                Tu Única Preocupación: Disfrutar 🎁
             </h2>
             <p class="text-lg text-gray-800 mb-4">
-                Para que solo te enfoques en vivir la magia de Koh Rong y celebrar sin límites, yo me encargo de todo lo demás: <!-- Updated: New introductory phrase -->
+                Para que solo te enfoques en vivir la magia de Koh Rong y celebrar sin límites, yo me encargo de todo lo demás:
             </p>
             <ul class="list-none p-0 text-lg text-gray-800 space-y-4">
                 <li class="flex items-start">
@@ -439,6 +439,7 @@
             </p>
 
             <form action="https://formspree.io/f/xjkrnavo" method="POST" class="space-y-4">
+                <input type="hidden" name="_source" value="Fernando's Birthday Invitation"> <!-- Added hidden field for source -->
                 <div>
                     <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Tu Nombre Completo:</label>
                     <input type="text" id="name" name="name" class="form-input" placeholder="Ej: Juan Pérez" required>
@@ -502,12 +503,11 @@
                     <textarea id="message" name="message" rows="4" class="form-input" placeholder="Ej: ¡Qué ganas de celebrar contigo!"></textarea>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn-primary w-full md:w-auto">
+                    <button type="submit" name="submit_button" value="Enviar Confirmacion" class="btn-primary w-full md:w-auto"> <!-- Added name and value for submit button -->
                         Enviar Confirmación
                     </button>
                 </div>
             </form>
-            <!-- La nota sobre el backend ha sido eliminada -->
         </section>
 
         <div class="section-divider"></div>
@@ -589,8 +589,11 @@
             function togglePartnerNameField() {
                 if (partnerYes.checked) {
                     partnerNameField.classList.remove('hidden');
+                    // Ensure partnerNameInput is required only if 'yes' is selected
+                    partnerNameInput.setAttribute('required', 'required');
                 } else {
                     partnerNameField.classList.add('hidden');
+                    partnerNameInput.removeAttribute('required'); // Remove required if 'no'
                     partnerNameInput.value = ''; // Clear value if hidden
                 }
             }
@@ -601,7 +604,10 @@
 
             // Form submission handling: This now allows the form to submit to Formspree
             document.querySelector('form').addEventListener('submit', function(event) {
-                // Log FormData before submission for debugging
+                // IMPORTANT: event.preventDefault() has been removed to allow Formspree submission
+                // The local confirmation message code has also been removed.
+
+                // Log FormData before submission for debugging (this will appear in your browser's console)
                 const formData = new FormData(this);
                 for (let [key, value] of formData.entries()) {
                     console.log(`${key}: ${value}`);
