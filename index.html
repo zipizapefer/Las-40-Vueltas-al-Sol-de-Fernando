@@ -438,7 +438,7 @@
                 Para que todo sea perfecto y asegurar tu lugar en esta celebración épica, necesito saber si contaré contigo.
             </p>
 
-            <form action="https://formspree.io/f/xjkrnavo" method="POST" class="space-y-4"> <!-- Updated: Formspree link added -->
+            <form action="https://formspree.io/f/xjkrnavo" method="POST" class="space-y-4">
                 <div>
                     <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Tu Nombre Completo:</label>
                     <input type="text" id="name" name="name" class="form-input" placeholder="Ej: Juan Pérez" required>
@@ -507,9 +507,7 @@
                     </button>
                 </div>
             </form>
-            <p class="text-sm text-gray-500 text-center mt-4">
-                (Nota: Este es un formulario de ejemplo. Para que funcione realmente, necesitarías un backend para procesar las respuestas.)
-            </p>
+            <!-- Nota: El mensaje de backend se ha eliminado de aquí -->
         </section>
 
         <div class="section-divider"></div>
@@ -603,67 +601,25 @@
             partnerNo.addEventListener('change', togglePartnerNameField);
             togglePartnerNameField(); // Set initial state
 
-            // Basic form submission handling (for demonstration, no actual backend)
+            // Form submission handling: This now allows the form to submit to Formspree
             document.querySelector('form').addEventListener('submit', function(event) {
+                // IMPORTANT: event.preventDefault() has been removed to allow Formspree submission
+                // The local confirmation message code has also been removed.
 
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const withPartner = document.querySelector('input[name="with_partner"]:checked').value === 'yes';
-                const partnerName = withPartner ? document.getElementById('partner_name').value : '';
-                const fullTrip = document.querySelector('input[name="full_trip"]:checked').value; // New field
-                const checkoutDate = document.getElementById('checkout_date').value; // New field
-                const attendance = document.getElementById('attendance').value;
-                const message = document.getElementById('message').value;
-
-                let confirmationMessage = '';
-                if (attendance === 'voy') {
-                    confirmationMessage = `¡Gracias, ${name}! ¡Qué alegría que vengas a celebrar!`;
-                    if (withPartner && partnerName) {
-                        confirmationMessage += ` Y bienvenido/a, ${partnerName}.`;
-                    }
-                } else if (attendance === 'mirando') {
-                    confirmationMessage = `¡Entendido, ${name}! Te daré un poco más de tiempo. ¡Espero verte!`;
-                } else if (attendance === 'no_puedo') {
-                    confirmationMessage = `¡Qué pena, ${name}! Te extrañaré, pero brindaré por ti.`;
-                } else {
-                    confirmationMessage = `¡Gracias por tu respuesta, ${name}!`;
-                }
-
-                // Display a custom message instead of alert()
-                const rsvpSection = document.getElementById('rsvp-section');
-                let confirmationDiv = document.getElementById('confirmation-message');
-                if (!confirmationDiv) {
-                    confirmationDiv = document.createElement('div');
-                    confirmationDiv.id = 'confirmation-message';
-                    confirmationDiv.className = 'mt-6 p-4 rounded-lg text-center text-white font-bold transition-all duration-300 ease-in-out transform scale-90 opacity-0';
-                    rsvpSection.appendChild(confirmationDiv);
-                }
-
-                confirmationDiv.textContent = confirmationMessage;
-                confirmationDiv.style.backgroundColor = '#059669'; // Emerald green
-                confirmationDiv.style.opacity = '1';
-                confirmationDiv.style.transform = 'scale(1)';
-
-                // Optional: Hide message after a few seconds
-                setTimeout(() => {
-                    confirmationDiv.style.opacity = '0';
-                    confirmationDiv.style.transform = 'scale(0.9)';
-                    setTimeout(() => confirmationDiv.remove(), 300); // Remove after fade out
-                }, 5000);
-
-                // You would typically send this data to a server here
+                // You can still log data to console for debugging if needed
                 console.log('RSVP Submitted:', {
-                    name: name,
-                    email: email,
-                    attendance: attendance,
-                    withPartner: withPartner,
-                    partnerName: partnerName,
-                    fullTrip: fullTrip, // New field
-                    checkoutDate: checkoutDate, // New field
-                    message: message
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    withPartner: document.querySelector('input[name="with_partner"]:checked').value === 'yes',
+                    partnerName: document.getElementById('partner_name').value,
+                    fullTrip: document.querySelector('input[name="full_trip"]:checked').value,
+                    checkoutDate: document.getElementById('checkout_date').value,
+                    attendance: document.getElementById('attendance').value,
+                    message: document.getElementById('message').value
                 });
 
-                this.reset(); // Clear the form
+                // Formspree will handle the redirection and confirmation
+                this.reset(); // Clear the form after submission
                 togglePartnerNameField(); // Reset partner field visibility
             });
         });
