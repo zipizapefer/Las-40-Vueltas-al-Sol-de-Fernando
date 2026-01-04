@@ -10,162 +10,175 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
-body { font-family:'Inter',sans-serif; background:#f0fdf4; color:#333; line-height:1.6; margin:0; padding:0; }
-.hero-section { background-image:url('Images/Hero.jpg'); background-size:cover; background-position:center; height:60vh; display:flex; align-items:center; justify-content:center; text-align:center; color:white; position:relative; }
+body { font-family: 'Inter', sans-serif; background-color: #f0fdf4; color: #333; line-height: 1.6; }
+.hero-section { background-image: url('Images/Hero.jpg'); background-size: cover; background-position: center; height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white; position: relative; }
 .hero-overlay { background-color: rgba(0,0,0,0.3); position:absolute; top:0; left:0; right:0; bottom:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; }
 h1,h2,h3 { font-weight:800; color:#059669; }
-.text-shadow-custom { text-shadow: 2px 2px 4px rgba(0,0,0,0.7); }
+.text-shadow-custom { text-shadow:2px 2px 4px rgba(0,0,0,0.7); }
 .section-divider { border-top:2px dashed #a7f3d0; margin:40px 0; }
 .icon { display:inline-block; margin-right:8px; font-size:1.2em; color:#059669; }
 .highlight { color:#059669; font-weight:600; }
-.btn-primary { background-color:#059669; color:white; padding:12px 28px; border-radius:9999px; font-weight:700; transition:0.3s; box-shadow:0 4px 10px rgba(5,150,105,0.3); cursor:pointer; }
+.btn-primary { background-color:#059669; color:white; padding:12px 28px; border-radius:9999px; font-weight:700; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow:0 4px 10px rgba(5,150,105,0.3); cursor:pointer; }
 .btn-primary:hover { background-color:#047857; transform:translateY(-2px); }
-.card { background:white; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.1); padding:30px; margin-bottom:30px; }
-.form-input, .form-select { border:1px solid #d1fae5; border-radius:8px; padding:12px 15px; width:100%; margin-bottom:15px; transition:0.3s; }
-.form-input:focus, .form-select:focus { outline:none; border-color:#059669; box-shadow:0 0 0 3px rgba(5,150,105,0.2); }
-.form-select { appearance:none; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3' stroke='%23059669' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e"); background-repeat:no-repeat; background-position:right 1rem center; background-size:1.5em 1.5em; padding-right:2.5rem; }
+.card { background-color:#fff; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.1); padding:30px; margin-bottom:30px; }
+.form-input, .form-textarea, .form-select { border:1px solid #d1fae5; border-radius:8px; padding:12px 15px; width:100%; margin-bottom:15px; transition:border-color 0.3s ease, box-shadow 0.3s ease; }
+.form-input:focus, .form-textarea:focus, .form-select:focus { outline:none; border-color:#059669; box-shadow:0 0 0 3px rgba(5,150,105,0.2); }
+.form-select { appearance:none; background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3' stroke='%23059669' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e"); background-repeat:no-repeat; background-position:right 1rem center; background-size:1.5em 1.5em; padding-right:2.5rem; }
 .fade-in { opacity:0; transform:translateY(20px); animation:fadeIn 1s ease-out forwards; }
 @keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
-.countdown-item { background:#ecfdf5; border-radius:10px; padding:15px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+.countdown-item { background-color:#ecfdf5; border-radius:10px; padding:15px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
 .countdown-value { font-size:2.5em; font-weight:700; color:#059669; line-height:1; }
 .countdown-label { font-size:0.9em; color:#333; text-transform:uppercase; margin-top:5px; }
 .image-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
 .gallery-item img { border-radius:10px; width:100%; height:200px; object-fit:cover; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
 .gallery-item p { text-align:center; margin-top:10px; font-size:0.9em; color:#555; }
-#language-toggle { position:fixed; top:20px; right:20px; background:#059669; color:white; padding:10px 15px; border-radius:9999px; cursor:pointer; z-index:100; }
 @media (max-width:768px) { .hero-section { height:50vh; } .hero-overlay h1 { font-size:2.5em; } .hero-overlay p { font-size:1.2em; } .container-main { padding:15px; } h1 { font-size:2.2em; } h2 { font-size:1.8em; } .countdown-value { font-size:2em; } }
 </style>
 </head>
-<body>
+<body class="p-0 m-0">
 
-<!-- Music -->
+<!-- Background music -->
 <audio id="background-music" loop autoplay>
-    <source src="Images/Musica.mp3" type="audio/mpeg">
+<source src="Images/Musica.mp3" type="audio/mpeg">Tu navegador no soporta el elemento de audio.
 </audio>
-<div class="fixed bottom-4 right-4 z-50">
+<div class="fixed bottom-4 right-4 z-50 flex space-x-2">
     <button id="music-toggle" class="bg-emerald-600 text-white p-3 rounded-full shadow-lg hover:bg-emerald-700 transition-colors">
         <i class="fas fa-volume-up"></i>
     </button>
+    <button id="lang-toggle" class="bg-gray-600 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition-colors">
+        EN/ES
+    </button>
 </div>
 
-<!-- Language Toggle -->
-<button id="language-toggle">EN/ES</button>
-
-<!-- Hero -->
 <div class="hero-section">
     <div class="hero-overlay">
-        <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-white text-shadow-custom" data-es="¡Las 40 Vueltas al Sol de Fernando!" data-en="Fernando's 40 Trips Around the Sun!">¡Las 40 Vueltas al Sol de Fernando!</h1>
-        <p class="text-2xl md:text-3xl text-white text-shadow-custom mb-8" data-es="Prepárate para una celebración inolvidable en un destino secreto..." data-en="Get ready for an unforgettable celebration in a secret destination...">Prepárate para una celebración inolvidable en un destino secreto...</p>
-        <button id="reveal-button" class="btn-primary text-xl" data-es="Descubre el Paraíso" data-en="Discover Paradise">Descubre el Paraíso <i class="fas fa-chevron-down ml-2"></i></button>
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-white text-shadow-custom">
+            ¡Las 40 Vueltas al Sol de Fernando! 🎂
+        </h1>
+        <p class="text-2xl md:text-3xl text-white text-shadow-custom mb-8">
+            Prepárate para una celebración inolvidable en un destino secreto...
+        </p>
+        <button id="reveal-button" class="btn-primary text-xl">
+            Descubre el Paraíso <i class="fas fa-chevron-down ml-2"></i>
+        </button>
     </div>
 </div>
 
 <div id="main-content" class="container-main max-w-4xl mx-auto p-6 md:p-10 hidden">
 
 <!-- Countdown -->
-<section class="card fade-in mb-10" style="animation-delay:0.2s;">
-<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center" data-es="¡La Cuenta Atrás Ha Comenzado! ⏳" data-en="The Countdown Has Begun! ⏳">¡La Cuenta Atrás Ha Comenzado! ⏳</h2>
-<p class="text-lg text-gray-800 text-center mb-6" data-es="Falta muy poco para que celebremos juntos esta fecha tan especial." data-en="It's almost time to celebrate this special date together.">Falta muy poco para que celebremos juntos esta fecha tan especial.</p>
+<section class="card fade-in mb-10" style="animation-delay: 0.2s;">
+<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">¡La Cuenta Atrás Ha Comenzado! ⏳</h2>
 <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-    <div class="countdown-item"><div class="countdown-value" id="days">00</div><div class="countdown-label" data-es="Días" data-en="Days">Días</div></div>
-    <div class="countdown-item"><div class="countdown-value" id="hours">00</div><div class="countdown-label" data-es="Horas" data-en="Hours">Horas</div></div>
-    <div class="countdown-item"><div class="countdown-value" id="minutes">00</div><div class="countdown-label" data-es="Minutos" data-en="Minutes">Minutos</div></div>
-    <div class="countdown-item"><div class="countdown-value" id="seconds">00</div><div class="countdown-label" data-es="Segundos" data-en="Seconds">Segundos</div></div>
+<div class="countdown-item"><div class="countdown-value" id="days">00</div><div class="countdown-label">Días</div></div>
+<div class="countdown-item"><div class="countdown-value" id="hours">00</div><div class="countdown-label">Horas</div></div>
+<div class="countdown-item"><div class="countdown-value" id="minutes">00</div><div class="countdown-label">Minutos</div></div>
+<div class="countdown-item"><div class="countdown-value" id="seconds">00</div><div class="countdown-label">Segundos</div></div>
 </div>
 </section>
 
-<!-- Destination -->
-<section class="card fade-in" style="animation-delay:0.4s;">
-<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center" data-es="Un Lugar Maravilloso..." data-en="A Wonderful Place...">Un Lugar Maravilloso...</h2>
-<p class="text-lg text-gray-800 mb-4" data-es="Imagina un rincón del mundo bañado por el sol..." data-en="Imagine a corner of the world bathed in sunlight...">Imagina un rincón del mundo bañado por el sol...</p>
-<img src="Images/Playa.jpg" alt="Playa" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
-<p class="text-lg text-gray-800 mb-4 mt-6" data-es="Prepárate para una experiencia..." data-en="Get ready for an experience...">Prepárate para una experiencia que combina la <span class="highlight">serenidad de paisajes vírgenes con la vibrante energía de una fiesta inolvidable</span>.</p>
-<img src="Images/Templo.jpeg" alt="Templo" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
-<h2 class="text-3xl md:text-4xl mb-6 mt-10 text-emerald-600 text-center" data-es="¡Nuestro Destino: Koh Rong, Camboya! 🏝️" data-en="Our Destination: Koh Rong, Cambodia! 🏝️">¡Nuestro Destino: Koh Rong, Camboya! 🏝️</h2>
-<p class="text-lg text-gray-800 mb-4" data-es="Sí, he elegido el lugar perfecto para esta aventura..." data-en="Yes, I chose the perfect place for this adventure...">Sí, he elegido el lugar perfecto para esta aventura: <span class="highlight">Koh Rong, Camboya</span>.</p>
+<!-- Destino -->
+<section class="card fade-in" style="animation-delay: 0.4s;">
+<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">Un Lugar Maravilloso...</h2>
+<p class="text-lg text-gray-800 mb-4">
+Imagina un rincón del mundo bañado por el sol, donde la arena es tan blanca como el azúcar y las aguas tan cristalinas que te invitan a sumergirte en un sueño...
+</p>
+<img src="Images/Playa.jpg" loading="lazy" alt="" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
+<img src="Images/Templo.jpeg" loading="lazy" alt="" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
+<img src="Images/Palmera.jpg" loading="lazy" alt="" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
+<h2 class="text-3xl md:text-4xl mb-6 mt-10 text-emerald-600 text-center">¡Nuestro Destino: Koh Rong, Camboya! 🏝️</h2>
 </section>
 
-<!-- Itinerary -->
 <div class="section-divider"></div>
-<section class="card fade-in" style="animation-delay:0.6s;">
-<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center" data-es="Nuestro Itinerario en el Paraíso 🗓️" data-en="Our Paradise Itinerary 🗓️">Nuestro Itinerario en el Paraíso 🗓️</h2>
-<p class="text-lg text-gray-800 mb-4" data-es="Quiero que esta celebración sea un sueño hecho realidad..." data-en="I want this celebration to be a dream come true...">Quiero que esta celebración sea un sueño hecho realidad, sin preocupaciones. Por eso, he diseñado una experiencia para que solo te enfoques en disfrutar:</p>
+
+<!-- Itinerario -->
+<section class="card fade-in" style="animation-delay: 0.6s;">
+<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">Nuestro Itinerario en el Paraíso 🗓️</h2>
 <ul class="list-none p-0 text-lg text-gray-800 space-y-4">
-<li class="flex items-start"><i class="fas fa-plane-arrival text-emerald-600 text-2xl mr-3 mt-1"></i><div><span class="highlight text-xl" data-es="Llegada:" data-en="Arrival:">Llegada:</span> Lunes, <span class="highlight">7 de diciembre de 2026</span>. ¡El paraíso te espera!</div></li>
-<li class="flex items-start"><i class="fas fa-birthday-cake text-emerald-600 text-2xl mr-3 mt-1"></i><div><span class="highlight text-xl" data-es="La Celebración Épica:" data-en="Epic Celebration:">La Celebración Épica:</span> Martes, <span class="highlight">8 de diciembre de 2026 por la noche</span>.</div></li>
-<li class="flex items-start"><i class="fas fa-suitcase-rolling text-emerald-600 text-2xl mr-3 mt-1"></i><div><span class="highlight text-xl" data-es="Check-out:" data-en="Check-out:">Check-out:</span> Miércoles <span class="highlight">9 o jueves 10 de diciembre de 2026</span> de Koh Rong.</div></li>
+<li class="flex items-start"><i class="fas fa-plane-arrival text-emerald-600 text-2xl mr-3 mt-1"></i><div><span class="highlight text-xl">Llegada:</span> Lunes, 7 de diciembre de 2026</div></li>
+<li class="flex items-start"><i class="fas fa-birthday-cake text-emerald-600 text-2xl mr-3 mt-1"></i><div><span class="highlight text-xl">Celebración:</span> Martes, 8 de diciembre de 2026 por la noche</div></li>
+<li class="flex items-start"><i class="fas fa-suitcase-rolling text-emerald-600 text-2xl mr-3 mt-1"></i><div><span class="highlight text-xl">Check-out:</span> Miércoles 9 o jueves 10 de diciembre de 2026</div></li>
 </ul>
 </section>
 
-<!-- Gallery -->
 <div class="section-divider"></div>
-<section class="card fade-in" style="animation-delay:1.4s;">
-<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center" data-es="Explora el Paraíso y Más allá 📸" data-en="Explore Paradise and Beyond 📸">Explora el Paraíso y Más allá 📸</h2>
-<p class="text-lg text-gray-800 mb-6 text-center" data-es="Un vistazo a la magia que nos espera..." data-en="A glimpse of the magic that awaits us...">Un vistazo a la magia que nos espera en Camboya y Koh Rong.</p>
-<div class="text-center mb-8">
-    <img src="Images/Mapa.jpg" alt="Mapa del destino" class="rounded-lg shadow-md inline-block max-w-full h-auto">
-    <p class="text-sm text-gray-500 text-center" data-es="Nuestro paraíso y los lugares que visitaremos." data-en="Our paradise and the places we will visit.">Nuestro paraíso y los lugares que visitaremos.</p>
-</div>
+
+<!-- Galería final -->
+<section class="card fade-in" style="animation-delay: 0.8s;">
+<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">Galería de Recuerdos 📸</h2>
 <div class="image-gallery">
-<div class="gallery-item"><img src="Images/2.jpg" alt="Buceo"><p>Buceo en aguas cristalinas.</p></div>
-<div class="gallery-item"><img src="Images/3.jpg" alt="Cielo estrellado"><p>Noches mágicas bajo un cielo estrellado con plancton bioluminiscente.</p></div>
-<div class="gallery-item"><img src="Images/4.jpg" alt="Cena en la playa"><p>Cenas inolvidables en la arena disfrutando de la gastronomía local.</p></div>
-<div class="gallery-item"><img src="Images/5.jpg" alt="Barcos tradicionales"><p>Barcos pesqueros tradicionales que pintan de color las bahías de Koh Rong.</p></div>
-<div class="gallery-item"><img src="Images/6.jpg" alt="Ruinas y vegetación"><p>Explorando vestigios de antiguas civilizaciones en la exuberante vegetación.</p></div>
-<div class="gallery-item"><img src="Images/7.jpg" alt="Playa solitaria"><p>Playas vírgenes donde sentirte completamente en el paraíso.</p></div>
-<div class="gallery-item"><img src="Images/8.jpg" alt="Atardecer"><p>Atardeceres que pintan el cielo de colores imposibles de olvidar.</p></div>
-<div class="gallery-item"><img src="Images/9.jpg" alt="Fiesta en la playa"><p>Fiestas épicas bajo la luna tropical, con música y baile sin fin.</p></div>
+<div class="gallery-item"><img src="Images/Foto1.jpg" loading="lazy" alt="Foto 1"><p>Momentos mágicos en la playa</p></div>
+<div class="gallery-item"><img src="Images/Foto2.jpg" loading="lazy" alt="Foto 2"><p>Fiesta bajo las estrellas</p></div>
+<div class="gallery-item"><img src="Images/Foto3.jpg" loading="lazy" alt="Foto 3"><p>Amigos y familia celebrando</p></div>
 </div>
 </section>
 
-<!-- Formulario -->
 <div class="section-divider"></div>
-<section class="card fade-in" style="animation-delay:1.6s;">
-<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center" data-es="Confirma tu Asistencia 📝" data-en="Confirm Your Attendance 📝">Confirma tu Asistencia 📝</h2>
-<form class="max-w-xl mx-auto space-y-4">
-    <input type="text" class="form-input" placeholder="Nombre / Name" required>
-    <input type="email" class="form-input" placeholder="Correo / Email" required>
-    <label class="block text-gray-700 font-semibold">Check-in / Check-out:</label>
-    <input type="date" class="form-input" placeholder="Check-in">
-    <input type="date" class="form-input" placeholder="Check-out">
-    <button type="submit" class="btn-primary w-full">Enviar / Submit</button>
+
+<!-- Formulario completo -->
+<section class="card fade-in" style="animation-delay: 1s;">
+<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">Confirma tu asistencia 📝</h2>
+<form id="rsvp-form">
+<input type="text" class="form-input" name="nombre" placeholder="Nombre completo" required>
+<input type="email" class="form-input" name="email" placeholder="Correo electrónico" required>
+<input type="tel" class="form-input" name="telefono" placeholder="Teléfono (opcional)">
+<select class="form-select" name="asistencia" required>
+<option value="" disabled selected>¿Asistirás?</option>
+<option value="si">Sí, estaré allí</option>
+<option value="no">No podré asistir</option>
+</select>
+<textarea class="form-textarea" name="mensaje" rows="4" placeholder="Mensaje / Comentario"></textarea>
+<button type="submit" class="btn-primary w-full mt-2">Enviar RSVP</button>
 </form>
 </section>
 
-<!-- Footer -->
-<div class="section-divider"></div>
-<footer class="text-center text-gray-500 text-sm mb-10">
-    <p>&copy; 2026 Fernando. Todos los derechos reservados.</p>
+<footer class="text-center mt-10 p-6 bg-emerald-50 rounded-lg shadow-inner fade-in" style="animation-delay: 1.2s;">
+<p class="text-xl text-gray-800 mb-4"><i class="fas fa-envelope-open-text text-emerald-600 text-2xl mr-2"></i> ¡Te espero con los pies en la arena, música al atardecer y mil razones para brindar!</p>
+<p class="text-2xl font-bold text-emerald-700 mb-4">Camboya me espera. Koh Rong me abraza. Y yo…</p>
+<p class="text-4xl font-extrabold text-emerald-800 animate-pulse">¡te espero con los brazos abiertos para celebrar juntos!</p>
+<p class="text-lg text-gray-600 mt-6"><i class="fas fa-star text-emerald-600 mr-2"></i> ¡Prepárate para vivir una noche para recordar! ✨</p>
 </footer>
 
-<script>
+</div>
+
+<script defer>
+// Reveal contenido
+document.getElementById('reveal-button').addEventListener('click', function(){
+    document.getElementById('main-content').classList.remove('hidden');
+    this.style.display='none';
+    document.getElementById('main-content').scrollIntoView({behavior:'smooth'});
+});
+
 // Countdown
-const countdownDate = new Date("December 8, 2026 20:00:00").getTime();
-const daysEl = document.getElementById("days"), hoursEl = document.getElementById("hours"), minutesEl = document.getElementById("minutes"), secondsEl = document.getElementById("seconds");
-setInterval(() => {
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
-    daysEl.innerText = String(Math.floor(distance/(1000*60*60*24))).padStart(2,'0');
-    hoursEl.innerText = String(Math.floor((distance%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
-    minutesEl.innerText = String(Math.floor((distance%(1000*60*60))/(1000*60))).padStart(2,'0');
-    secondsEl.innerText = String(Math.floor((distance%(1000*60))/1000)).padStart(2,'0');
+const countdownDate=new Date('Dec 8, 2026 00:00:00').getTime();
+setInterval(function(){
+    const now=new Date().getTime();
+    const distance=countdownDate-now;
+    const days=Math.floor(distance/(1000*60*60*24));
+    const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+    const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+    const seconds=Math.floor((distance%(1000*60))/1000);
+    document.getElementById('days').innerHTML=String(days).padStart(2,'0');
+    document.getElementById('hours').innerHTML=String(hours).padStart(2,'0');
+    document.getElementById('minutes').innerHTML=String(minutes).padStart(2,'0');
+    document.getElementById('seconds').innerHTML=String(seconds).padStart(2,'0');
+    if(distance<0){ document.getElementById('countdown').innerHTML="<div class='col-span-4 text-center text-2xl font-bold text-emerald-700'>¡La Celebración Ha Comenzado!</div>"; }
 },1000);
 
-// Reveal main content
-document.getElementById("reveal-button").onclick = ()=>document.getElementById("main-content").classList.remove("hidden");
+// Música
+document.getElementById('music-toggle').addEventListener('click', function(){
+    const music=document.getElementById('background-music');
+    const icon=this.querySelector('i');
+    if(music.paused){ music.play(); icon.classList.replace('fa-volume-mute','fa-volume-up'); } 
+    else { music.pause(); icon.classList.replace('fa-volume-up','fa-volume-mute'); }
+});
+window.addEventListener('load',()=>{ const music=document.getElementById('background-music'); music.volume=0.3; music.play().catch(e=>console.log("Autoplay bloqueado:",e)); });
 
-// Music toggle
-const music = document.getElementById("background-music");
-document.getElementById("music-toggle").onclick = ()=>{
-    if(music.paused){music.play();} else {music.pause();}
-};
-
-// Language toggle
-document.getElementById("language-toggle").onclick = ()=>{
-    document.querySelectorAll("[data-es]").forEach(el=>{
-        if(el.innerText===el.dataset.es){el.innerText=el.dataset.en;} else {el.innerText=el.dataset.es;}
-    });
-};
+// Botón idioma (solo placeholder, puedes reemplazar con traducción real)
+document.getElementById('lang-toggle').addEventListener('click',()=>{
+    alert("Cambio de idioma activado (EN/ES). Para traducción completa, integrar función de idiomas).");
+});
 </script>
+
 </body>
 </html>
