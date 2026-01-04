@@ -6,23 +6,21 @@
     <title>¡Las 40 Vueltas al Sol de Fernando!</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        /* Custom styles */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0fdf4; /* Light green background */
+            background-color: #f0fdf4;
             color: #333;
             line-height: 1.6;
         }
         .hero-section {
-            background-image: url('Images/Hero.jpg'); /* Updated: Uses Images/Hero.jpg */
+            background-image: url('Images/Hero.jpg');
             background-size: cover;
             background-position: center;
-            height: 60vh; /* Responsive height */
+            height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -31,658 +29,253 @@
             position: relative;
         }
         .hero-overlay {
-            background-color: rgba(0, 0, 0, 0.3); /* Adjusted: Made more transparent for lighter background */
+            background-color: rgba(0,0,0,0.3);
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            top:0; left:0; right:0; bottom:0;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
         }
-        h1, h2, h3 {
-            font-weight: 800; /* Extra bold for impact */
-            color: #059669; /* Emerald green */
+        h1,h2,h3 {
+            font-weight:800;
+            color:#059669;
         }
         .text-shadow-custom {
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
         }
         .section-divider {
-            border-top: 2px dashed #a7f3d0; /* Light emerald dashed line */
+            border-top: 2px dashed #a7f3d0;
             margin: 40px 0;
         }
-        .icon {
-            display: inline-block;
-            margin-right: 8px;
-            font-size: 1.2em;
-            color: #059669;
-        }
-        .highlight {
-            color: #059669;
-            font-weight: 600;
-        }
+        .icon { display:inline-block; margin-right:8px; font-size:1.2em; color:#059669; }
+        .highlight { color:#059669; font-weight:600; }
         .btn-primary {
-            background-color: #059669; /* Emerald green */
-            color: white;
-            padding: 12px 28px;
-            border-radius: 9999px; /* Fully rounded */
-            font-weight: 700;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
-            cursor: pointer;
+            background-color:#059669; color:white;
+            padding:12px 28px; border-radius:9999px;
+            font-weight:700; transition:0.3s;
+            box-shadow:0 4px 10px rgba(5,150,105,0.3); cursor:pointer;
         }
-        .btn-primary:hover {
-            background-color: #047857; /* Darker emerald */
-            transform: translateY(-2px);
-        }
+        .btn-primary:hover { background-color:#047857; transform:translateY(-2px); }
         .card {
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            margin-bottom: 30px;
+            background-color:#fff;
+            border-radius:15px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.1);
+            padding:30px;
+            margin-bottom:30px;
         }
         .form-input {
-            border: 1px solid #d1fae5; /* Light emerald border */
-            border-radius: 8px;
-            padding: 12px 15px;
-            width: 100%;
-            margin-bottom: 15px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            border:1px solid #d1fae5;
+            border-radius:8px;
+            padding:12px 15px;
+            width:100%;
+            margin-bottom:15px;
+            transition:0.3s;
         }
-        .form-input:focus {
-            outline: none;
-            border-color: #059669;
-            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
-        }
-        .form-select {
-            appearance: none; /* Remove default arrow */
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3' stroke='%23059669' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1.5em 1.5em;
-            padding-right: 2.5rem;
-        }
-        /* Fade-in animation for sections */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        /* Countdown styles */
-        .countdown-item {
-            background-color: #ecfdf5; /* Very light emerald */
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .countdown-value {
-            font-size: 2.5em;
-            font-weight: 700;
-            color: #059669;
-            line-height: 1;
-        }
-        .countdown-label {
-            font-size: 0.9em;
-            color: #333;
-            text-transform: uppercase;
-            margin-top: 5px;
-        }
-        /* Image gallery styles */
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .gallery-item img {
-            border-radius: 10px;
-            width: 100%;
-            height: 200px; /* Fixed height for consistency */
-            object-fit: cover; /* Cover the area, crop if necessary */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .gallery-item p {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 0.9em;
-            color: #555;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .hero-section {
-                height: 50vh;
-            }
-            .hero-overlay h1 {
-                font-size: 2.5em;
-            }
-            .hero-overlay p {
-                font-size: 1.2em;
-            }
-            .container-main {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 2.2em;
-            }
-            h2 {
-                font-size: 1.8em;
-            }
-            .countdown-value {
-                font-size: 2em;
-            }
-        }
+        .form-input:focus { outline:none; border-color:#059669; box-shadow:0 0 0 3px rgba(5,150,105,0.2); }
+        .form-select { appearance:none; background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3' stroke='%23059669' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e"); background-repeat:no-repeat; background-position:right 1rem center; background-size:1.5em 1.5em; padding-right:2.5rem; }
+        .fade-in { opacity:0; transform:translateY(20px); animation:fadeIn 1s ease-out forwards; }
+        @keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
+        .countdown-item { background-color:#ecfdf5; border-radius:10px; padding:15px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+        .countdown-value { font-size:2.5em; font-weight:700; color:#059669; line-height:1; }
+        .countdown-label { font-size:0.9em; color:#333; text-transform:uppercase; margin-top:5px; }
+        .image-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+        .gallery-item img { border-radius:10px; width:100%; height:200px; object-fit:cover; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
+        .gallery-item p { text-align:center; margin-top:10px; font-size:0.9em; color:#555; }
+        @media (max-width:768px) { .hero-section { height:50vh; } .hero-overlay h1 { font-size:2.5em; } .hero-overlay p { font-size:1.2em; } .container-main { padding:15px; } h1 { font-size:2.2em; } h2 { font-size:1.8em; } .countdown-value { font-size:2em; } }
     </style>
 </head>
 <body class="p-0 m-0">
 
-    <audio id="background-music" loop autoplay>
-        <source src="Images/Musica.mp3" type="audio/mpeg">
-        Tu navegador no soporta el elemento de audio.
-    </audio>
-    <div class="fixed bottom-4 right-4 z-50">
-        <button id="music-toggle" class="bg-emerald-600 text-white p-3 rounded-full shadow-lg hover:bg-emerald-700 transition-colors">
-            <i class="fas fa-volume-up"></i>
+<audio id="background-music" loop autoplay>
+    <source src="Images/Musica.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+</audio>
+<div class="fixed bottom-4 right-4 z-50">
+    <button id="music-toggle" class="bg-emerald-600 text-white p-3 rounded-full shadow-lg hover:bg-emerald-700 transition-colors">
+        <i class="fas fa-volume-up"></i>
+    </button>
+</div>
+
+<div class="hero-section">
+    <div class="hero-overlay">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-white text-shadow-custom">
+            ¡Las 40 Vueltas al Sol de Fernando! 🎂
+        </h1>
+        <p class="text-2xl md:text-3xl text-white text-shadow-custom mb-8">
+            Prepárate para una celebración inolvidable en un destino secreto...
+        </p>
+        <button id="reveal-button" class="btn-primary text-xl">
+            Descubre el Paraíso <i class="fas fa-chevron-down ml-2"></i>
         </button>
     </div>
+</div>
 
-    <div class="hero-section">
-        <div class="hero-overlay">
-            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-white text-shadow-custom">
-                ¡Las 40 Vueltas al Sol de Fernando! 🎂
-            </h1>
-            <p class="text-2xl md:text-3xl text-white text-shadow-custom mb-8">
-                Prepárate para una celebración inolvidable en un destino secreto...
-            </p>
-            <button id="reveal-button" class="btn-primary text-xl">
-                Descubre el Paraíso <i class="fas fa-chevron-down ml-2"></i>
-            </button>
+<div id="main-content" class="container-main max-w-4xl mx-auto p-6 md:p-10 hidden">
+
+    <!-- Noticias Nuevas -->
+    <section class="card fade-in mb-10" style="animation-delay:0.1s;">
+        <h2 class="text-2xl md:text-3xl mb-4 text-emerald-600 text-center">
+            📢 ¡Noticias frescas!
+        </h2>
+        <p class="text-lg text-gray-800 text-center">
+            Ya están disponibles los vuelos desde <span class="highlight">Bélgica</span> y <span class="highlight">España</span> para unirte a la celebración.
+        </p>
+    </section>
+
+    <!-- Countdown -->
+    <section class="card fade-in mb-10" style="animation-delay:0.2s;">
+        <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">¡La Cuenta Atrás Ha Comenzado! ⏳</h2>
+        <p class="text-lg text-gray-800 text-center mb-6">
+            Falta muy poco para que celebremos juntos esta fecha tan especial.
+        </p>
+        <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="countdown-item"><div class="countdown-value" id="days">00</div><div class="countdown-label">Días</div></div>
+            <div class="countdown-item"><div class="countdown-value" id="hours">00</div><div class="countdown-label">Horas</div></div>
+            <div class="countdown-item"><div class="countdown-value" id="minutes">00</div><div class="countdown-label">Minutos</div></div>
+            <div class="countdown-item"><div class="countdown-value" id="seconds">00</div><div class="countdown-label">Segundos</div></div>
         </div>
-    </div>
+    </section>
 
-    <div id="main-content" class="container-main max-w-4xl mx-auto p-6 md:p-10 hidden">
+    <!-- Aventurero/a -->
+    <section class="card fade-in" style="animation-delay:0.3s;">
+        <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">¿Aventurero/a desde el principio? 🏞️</h2>
+        <p class="text-lg text-gray-800 mb-4">
+            Únete a mí en una ruta previa por Camboya. ¡Exploremos juntos templos milenarios y paisajes asombrosos antes de la fiesta! Poco a poco voy planeando el itinerario. <a href="itinerario.html" class="highlight underline">Pincha aquí</a> para ver el itinerario completo.
+        </p>
+    </section>
 
-        <section class="card fade-in mb-10" style="animation-delay: 0.2s;">
-            <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
-                ¡La Cuenta Atrás Ha Comenzado! ⏳
-            </h2>
-            <p class="text-lg text-gray-800 text-center mb-6">
-                Falta muy poco para que celebremos juntos esta fecha tan especial.
-            </p>
-            <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="countdown-item">
-                    <div class="countdown-value" id="days">00</div>
-                    <div class="countdown-label">Días</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-value" id="hours">00</div>
-                    <div class="countdown-label">Horas</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-value" id="minutes">00</div>
-                    <div class="countdown-label">Minutos</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-value" id="seconds">00</div>
-                    <div class="countdown-label">Segundos</div>
-                </div>
+    <!-- Formulario RSVP -->
+    <section id="rsvp-section" class="card fade-in" style="animation-delay:0.4s;">
+        <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
+            ¡Confirma tu Asistencia! 📬
+        </h2>
+        <form action="https://formspree.io/f/xjkrnavo" method="POST" class="space-y-4">
+            <input type="hidden" name="_source" value="Fernando's Birthday Invitation">
+
+            <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Tu Nombre Completo:</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="Ej: Juan Pérez" required>
+
+            <label for="email" class="block text-lg font-medium text-gray-700 mb-2">Tu Correo Electrónico:</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="Ej: juan.perez@example.com" required>
+
+            <label class="block text-lg font-medium text-gray-700 mb-2">¿Vendrás con tu pareja?</label>
+            <div class="flex items-center space-x-4">
+                <label class="inline-flex items-center">
+                    <input type="radio" name="with_partner" value="yes" class="form-radio text-emerald-600" id="partner_yes">
+                    <span class="ml-2 text-lg text-gray-800">Sí</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="with_partner" value="no" class="form-radio text-emerald-600" id="partner_no" checked>
+                    <span class="ml-2 text-lg text-gray-800">No</span>
+                </label>
             </div>
-        </section>
-
-        <section class="card fade-in" style="animation-delay: 0.4s;">
-            <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
-                Un Lugar Maravilloso...
-            </h2>
-            <p class="text-lg text-gray-800 mb-4">
-                Imagina un rincón del mundo bañado por el sol, donde la arena es tan blanca como el azúcar y las aguas tan cristalinas que te invitan a sumergirte en un sueño. Un lugar donde la naturaleza exuberante se encuentra con la rica historia, ofreciéndote <span class="highlight">templos ancestrales y una cultura milenaria</span> que te envolverá en su magia.
-            </p>
-            <img src="Images/Playa.jpg" alt="" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
-            <p class="text-sm text-gray-500 text-center">
-                            </p>
-            <p class="text-lg text-gray-800 mb-4 mt-6">
-                Prepárate para una experiencia que combina la <span class="highlight">serenidad de paisajes vírgenes con la vibrante energía de una fiesta inolvidable</span>. Un destino que te abrazará con su calidez y te dejará recuerdos que durarán toda la vida.
-            </p>
-            <img src="Images/Templo.jpeg" alt="" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
-            <p class="text-sm text-gray-500 text-center">
-                            </p>
-            <h2 class="text-3xl md:text-4xl mb-6 mt-10 text-emerald-600 text-center">
-                ¡Nuestro Destino: Koh Rong, Camboya! 🏝️
-            </h2>
-            <p class="text-lg text-gray-800 mb-4">
-                Sí, he elegido el lugar perfecto para esta aventura: <span class="highlight">Koh Rong, Camboya</span>. Un edén donde el tiempo se detiene entre <span class="highlight">aguas turquesa que invitan a perderse, arenas blancas que parecen polvo de estrellas y una fiesta que quedará grabada en nuestra memoria para siempre.</span>
-            </p>
-        </section>
-
-        <div class="section-divider"></div>
-
-        <section class="card fade-in" style="animation-delay: 0.6s;">
-            <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
-                Nuestro Itinerario en el Paraíso 🗓️
-            </h2>
-            <p class="text-lg text-gray-800 mb-4">
-                Quiero que esta celebración sea un sueño hecho realidad, sin preocupaciones. Por eso, he diseñado una experiencia para que solo te enfoques en disfrutar:
-            </p>
-            <ul class="list-none p-0 text-lg text-gray-800 space-y-4">
-                <li class="flex items-start">
-                    <i class="fas fa-plane-arrival text-emerald-600 text-2xl mr-3 mt-1"></i>
-                    <div>
-                        <span class="highlight text-xl">Llegada:</span> Lunes, <span class="highlight">7 de diciembre de 2026</span>. ¡El paraíso te espera!
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-birthday-cake text-emerald-600 text-2xl mr-3 mt-1"></i>
-                    <div>
-                        <span class="highlight text-xl">La Celebración Épica:</span> Martes, <span class="highlight">8 de diciembre de 2026 por la noche</span>. Prepárate para una cena especial bajo las estrellas y una fiesta en la playa que hará temblar la arena.
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-suitcase-rolling text-emerald-600 text-2xl mr-3 mt-1"></i>
-                    <div>
-                        <span class="highlight text-xl">Check-out:</span> Miércoles <span class="highlight">9 o jueves 10 de diciembre de 2026</span>. Tú eliges cuándo despertar del sueño.
-                    </div>
-                </li>
-            </ul>
-        </section>
-
-        <div class="section-divider"></div>
-
-        <section class="card fade-in" style="animation-delay: 0.8s;">
-            <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
-                Tu Única Preocupación: Disfrutar 🎁
-            </h2>
-            <p class="text-lg text-gray-800 mb-4">
-                Para que solo te enfoques en vivir la magia de Koh Rong y celebrar sin límites, yo me encargo de todo lo demás:
-            </p>
-            <ul class="list-none p-0 text-lg text-gray-800 space-y-4">
-                <li class="flex items-start">
-                    <i class="fas fa-hotel text-emerald-600 text-2xl mr-3 mt-1"></i>
-                    <div>
-                        <span class="highlight text-xl">3 noches de alojamiento en Koh Rong</span> (del 7 al 10 de diciembre de 2026), para que tu única preocupación sea disfrutar.
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-champagne-glasses text-emerald-600 text-2xl mr-3 mt-1"></i>
-                    <div>
-                        <span class="highlight text-xl">Una cena exquisita y una fiesta legendaria en la playa.</span> ¡Música, baile y sorpresas bajo la luna tropical!
-                    </div>
-                </li>
-            </ul>
-            <p class="text-md text-gray-600 mt-6 italic text-center">
-                (Y sí, si vienes acompañado/a, tu pareja también está invitada a vivir esta aventura conmigo).
-            </p>
-        </section>
-
-        <div class="section-divider"></div>
-
-        <section class="card fade-in" style="animation-delay: 1s;">
-            <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
-                Una Tribu, Una Celebración 💖
-            </h2>
-            <p class="text-lg text-gray-800 mb-4">
-                He reunido a mis personas favoritas, a las que han marcado cada una de estas 40 vueltas al sol:
-            </p>
-            <ul class="list-none p-0 text-lg text-gray-800 space-y-4">
-                <li class="flex items-start">
-                    <i class="fas fa-user-graduate text-emerald-600 text-2xl mr-3 mt-1"></i>
-                    <div>
-                        Mis <span class="highlight">amigos del cole</span>, con quienes he crecido.
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-university text-emerald-600 text-2xl mr-3 mt-1"></i>
-                    <div>
-                        Los <span class="highlight">de la uni</span>, con quienes he forjado sueños.
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-flag-checkered text-emerald-600 text-2xl mr-3 mt-1"></i>
-                    <div>
-                        Mis <span class="highlight">cómplices de Bélgica</span>, que han hecho de mi segunda casa un hogar.
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-flag text-emerald-600 text-2xl mr-3 mt-1"></i>
-                    <div>
-                        Y mis <span class="highlight">raíces de España</span>, que siempre me recuerdan de dónde vengo.
-                    </div>
-                </li>
-            </ul>
-            <p class="text-lg text-gray-800 mt-6">
-                ¡No hay reglas! Ven solo/a, con tu media naranja, o como te sientas más cómodo/a. Después de la fiesta, si la aventura te llama, eres libre de explorar Camboya conmigo, con tu grupo o en solitario.
-            </p>
-        </section>
-
-        <div class="section-divider"></div>
-
-        <section class="card fade-in" style="animation-delay: 1.2s;">
-            <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
-                ¿Cómo llegar al Paraíso? 🗺️
-            </h2>
-            <p class="text-lg text-gray-800 mb-4">
-                La aventura comienza cuando tú lo decidas:
-            </p>
-            <ul class="list-none p-0 text-lg text-gray-800 space-y-4">
-                <li class="flex items-start">
-                    <i class="fas fa-hiking text-emerald-600 text-2xl mr-3 mt-1"></i>
-                    <div>
-                        <span class="highlight text-xl">Aventurero/a desde el principio:</span> Únete a mí en una ruta previa por Camboya. ¡Exploremos juntos templos milenarios y paisajes asombrosos antes de la fiesta! (Si te interesa esta opción, avísame para compartirte los detalles).
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i class="fas fa-map-marker-alt text-emerald-600 text-2xl mr-3 mt-1"></i>
-                    <div>
-                        <span class="highlight text-xl">Directo/a al Paraíso:</span> Si prefieres, vuela directamente a Koh Rong. No importa si vienes conmigo, con tu grupo o en solitario (¡los del cole, la uni, Bélgica, España...!), lo crucial es que el <span class="highlight">8 de diciembre de 2026</span> estemos todos juntos, brindando por la vida.
-                    </div>
-                </li>
-            </ul>
-        </section>
-
-        <div class="section-divider"></div>
-
-        <section class="card fade-in" style="animation-delay: 1.4s;">
-            <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
-                Explora el Paraíso y Más allá 📸
-            </h2>
-            <p class="text-lg text-gray-800 mb-6 text-center">
-                Un vistazo a la magia que nos espera en Camboya y Koh Rong.
-            </p>
-            <div class="text-center mb-8">
-                <img src="Images/Mapa.jpg" alt="" class="rounded-lg shadow-md inline-block max-w-full h-auto">
-                <p class="text-sm text-gray-500 text-center">
-                                    </p>
+            <div id="partner_name_field" class="hidden">
+                <label for="partner_name" class="block text-lg font-medium text-gray-700 mb-2">Nombre de tu pareja:</label>
+                <input type="text" id="partner_name" name="partner_name" class="form-input" placeholder="Ej: María García">
             </div>
-            <div class="image-gallery">
-                <div class="gallery-item">
-                    <img src="Images/2.jpg" alt="">
-                    <p>Buceo en aguas cristalinas</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Images/3.jpg" alt="">
-                    <p>Noches mágicas bajo un cielo estrellado, donde el plancton bioluminiscente ilumina el mar.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Images/4.jpg" alt="">
-                    <p>Cenas inolvidables con los pies en la arena, disfrutando de la gastronomía local mientras el sol se despide.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Images/5.jpg" alt="">
-                    <p>La auténtica vida isleña: barcos pesqueros tradicionales que pintan de color las tranquilas bahías de Koh Rong.</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Images/6.jpg" alt="">
-                    <p>Explorando el legado: vestigios de antiguas civilizaciones que susurran historias en medio de la exuberante vegetación.</p>
-                </div>
+
+            <label class="block text-lg font-medium text-gray-700 mb-2">¿Te unirás conmigo? Fecha de salida 4 de diciembre o nos vemos el 5/6 de diciembre en Phnom Penh para visitar la ciudad antes de irnos a Koh Rong.</label>
+            <div class="flex items-center space-x-4">
+                <label class="inline-flex items-center">
+                    <input type="radio" name="full_trip" value="yes" class="form-radio text-emerald-600" required>
+                    <span class="ml-2 text-lg text-gray-800">Sí</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="full_trip" value="no" class="form-radio text-emerald-600" required>
+                    <span class="ml-2 text-lg text-gray-800">No</span>
+                </label>
             </div>
-        </section>
 
-        <div class="section-divider"></div>
+            <label for="checkout_date" class="block text-lg font-medium text-gray-700 mb-2">¿Cuál es tu fecha de check-out?</label>
+            <select id="checkout_date" name="checkout_date" class="form-input form-select" required>
+                <option value="">Selecciona una opción</option>
+                <option value="Dec 9, 2026">Miércoles, 9 de diciembre de 2026</option>
+                <option value="Dec 10, 2026">Jueves, 10 de diciembre de 2026</option>
+            </select>
 
-        <section id="rsvp-section" class="card fade-in" style="animation-delay: 1.6s;">
-            <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
-                ¡Confirma tu Asistencia antes del 8 de junio de 2026! 📬
-            </h2>
-            <p class="text-xl text-gray-800 mb-6 text-center">
-                Para que todo sea perfecto y asegurar tu lugar en esta celebración épica, necesito saber si contaré contigo.
-            </p>
+            <!-- Nueva pregunta: ayuda con vuelos -->
+            <label class="block text-lg font-medium text-gray-700 mb-2">¿Necesitas ayuda buscando vuelos?</label>
+            <div class="flex items-center space-x-4">
+                <label class="inline-flex items-center">
+                    <input type="radio" name="need_flight_help" value="yes" class="form-radio text-emerald-600" id="flight_yes">
+                    <span class="ml-2 text-lg text-gray-800">Sí</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="need_flight_help" value="no" class="form-radio text-emerald-600" id="flight_no" checked>
+                    <span class="ml-2 text-lg text-gray-800">No</span>
+                </label>
+            </div>
+            <div id="flight_details_field" class="hidden">
+                <label for="flight_details" class="block text-lg font-medium text-gray-700 mb-2">Indica fechas de salida, llegada y lugar de origen preferido:</label>
+                <textarea id="flight_details" name="flight_details" rows="3" class="form-input"></textarea>
+            </div>
 
-            <form action="https://formspree.io/f/xjkrnavo" method="POST" class="space-y-4">
-                <input type="hidden" name="_source" value="Fernando's Birthday Invitation">
-                <div>
-                    <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Tu Nombre Completo:</label>
-                    <input type="text" id="name" name="name" class="form-input" placeholder="Ej: Juan Pérez" required>
-                </div>
-                <div>
-                    <label for="email" class="block text-lg font-medium text-gray-700 mb-2">Tu Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" class="form-input" placeholder="Ej: juan.perez@example.com" required>
-                </div>
-                <div>
-                    <label class="block text-lg font-medium text-gray-700 mb-2">¿Vendrás con tu pareja?</label>
-                    <div class="flex items-center space-x-4">
-                        <label class="inline-flex items-center">
-                            <input type="radio" name="with_partner" value="yes" class="form-radio text-emerald-600" id="partner_yes">
-                            <span class="ml-2 text-lg text-gray-800">Sí</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="radio" name="with_partner" value="no" class="form-radio text-emerald-600" id="partner_no" checked>
-                            <span class="ml-2 text-lg text-gray-800">No</span>
-                        </label>
-                    </div>
-                </div>
-                <div id="partner_name_field" class="hidden">
-                    <label for="partner_name" class="block text-lg font-medium text-gray-700 mb-2">Nombre de tu pareja:</label>
-                    <input type="text" id="partner_name" name="partner_name" class="form-input" placeholder="Ej: María García">
-                </div>
+            <label for="attendance" class="block text-lg font-medium text-gray-700 mb-2">¿Confirmas tu asistencia?</label>
+            <select id="attendance" name="attendance" class="form-input form-select" required>
+                <option value="">Selecciona una opción</option>
+                <option value="voy">✅ ¡Voy!</option>
+                <option value="mirando">❓ Lo estoy mirando...</option>
+                <option value="no_puedo">❌ No puedo, pero brindaré por ti.</option>
+            </select>
 
-                <div>
-                    <label class="block text-lg font-medium text-gray-700 mb-2">¿Te unirás al viaje completo (27 de noviembre al 12 de diciembre de 2026)?</label>
-                    <div class="flex items-center space-x-4">
-                        <label class="inline-flex items-center">
-                            <input type="radio" name="full_trip" value="yes" class="form-radio text-emerald-600" required>
-                            <span class="ml-2 text-lg text-gray-800">Sí</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="radio" name="full_trip" value="no" class="form-radio text-emerald-600" required>
-                            <span class="ml-2 text-lg text-gray-800">No</span>
-                        </label>
-                    </div>
-                </div>
+            <label for="message" class="block text-lg font-medium text-gray-700 mb-2">¿Algún mensaje o pregunta para Fernando?</label>
+            <textarea id="message" name="message" rows="4" class="form-input" placeholder="Ej: ¡Qué ganas de celebrar contigo!"></textarea>
 
-                <div>
-                    <label for="checkout_date" class="block text-lg font-medium text-gray-700 mb-2">¿Cuál es tu fecha de check-out preferida?</label>
-                    <select id="checkout_date" name="checkout_date" class="form-input form-select" required>
-                        <option value="">Selecciona una opción</option>
-                        <option value="Dec 9, 2026">Miércoles, 9 de diciembre de 2026</option>
-                        <option value="Dec 10, 2026">Jueves, 10 de diciembre de 2026</option>
-                    </select>
-                </div>
+            <div class="text-center">
+                <button type="submit" class="btn-primary w-full md:w-auto">Enviar Confirmación</button>
+            </div>
+        </form>
+    </section>
 
-                <div>
-                    <label for="attendance" class="block text-lg font-medium text-gray-700 mb-2">¿Confirmas tu asistencia?</label>
-                    <select id="attendance" name="attendance" class="form-input form-select" required>
-                        <option value="">Selecciona una opción</option>
-                        <option value="voy">✅ ¡Voy!</option>
-                        <option value="mirando">❓ Lo estoy mirando...</option>
-                        <option value="no_puedo">❌ No puedo, pero brindaré por ti.</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="message" class="block text-lg font-medium text-gray-700 mb-2">¿Algún mensaje o pregunta para Fernando?</label>
-                    <textarea id="message" name="message" rows="4" class="form-input" placeholder="Ej: ¡Qué ganas de celebrar contigo!"></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn-primary w-full md:w-auto">
-                        Enviar Confirmación
-                    </button>
-                </div>
-            </form>
-        </section>
+</div>
 
-        <div class="section-divider"></div>
+<script>
+document.getElementById('reveal-button').addEventListener('click', function() {
+    document.getElementById('main-content').classList.remove('hidden');
+    this.style.display = 'none';
+    document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+});
 
-        <footer class="text-center mt-10 p-6 bg-emerald-50 rounded-lg shadow-inner fade-in" style="animation-delay: 1.8s;">
-            <p class="text-xl text-gray-800 mb-4">
-                <i class="fas fa-envelope-open-text text-emerald-600 text-2xl mr-2"></i> ¡Te espero con los pies en la arena, música al atardecer y mil razones para brindar!
-            </p>
-            <p class="text-2xl font-bold text-emerald-700 mb-4">
-                Camboya me espera. Koh Rong me abraza. Y yo…
-            </p>
-            <p class="text-4xl font-extrabold text-emerald-800 animate-pulse">
-                ¡te espero con los brazos abiertos para celebrar juntos!
-            </p>
-            <p class="text-lg text-gray-600 mt-6">
-                <i class="fas fa-star text-emerald-600 mr-2"></i> ¡Prepárate para vivir una noche para recordar! ✨
-            </p>
-        </footer>
+// Countdown
+const countdownDate = new Date('Dec 8, 2026 00:00:00').getTime();
+setInterval(() => {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+    document.getElementById('days').innerHTML = String(Math.floor(distance/(1000*60*60*24))).padStart(2,'0');
+    document.getElementById('hours').innerHTML = String(Math.floor((distance%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+    document.getElementById('minutes').innerHTML = String(Math.floor((distance%(1000*60*60))/(1000*60))).padStart(2,'0');
+    document.getElementById('seconds').innerHTML = String(Math.floor((distance%(1000*60))/1000)).padStart(2,'0');
+    if(distance<0) { clearInterval(this); document.getElementById('countdown').innerHTML="<div class='col-span-4 text-center text-2xl font-bold text-emerald-700'>¡La Celebración Ha Comenzado!</div>"; }
+},1000);
 
-    </div>
+// Partner field toggle
+const partnerYes = document.getElementById('partner_yes');
+const partnerNo = document.getElementById('partner_no');
+const partnerNameField = document.getElementById('partner_name_field');
+function togglePartnerNameField(){ if(partnerYes.checked){ partnerNameField.classList.remove('hidden'); document.getElementById('partner_name').setAttribute('required','required'); }else{ partnerNameField.classList.add('hidden'); document.getElementById('partner_name').removeAttribute('required'); document.getElementById('partner_name').value=''; } }
+partnerYes.addEventListener('change',togglePartnerNameField);
+partnerNo.addEventListener('change',togglePartnerNameField);
+togglePartnerNameField();
 
-    <script>
-        // JavaScript for revealing content
-        document.getElementById('reveal-button').addEventListener('click', function() {
-            document.getElementById('main-content').classList.remove('hidden');
-            this.style.display = 'none'; // Hide the button after click
-            // Optional: Scroll to the top of the revealed content
-            document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
-        });
+// Flight help toggle
+const flightYes = document.getElementById('flight_yes');
+const flightNo = document.getElementById('flight_no');
+const flightDetailsField = document.getElementById('flight_details_field');
+function toggleFlightDetails(){ if(flightYes.checked){ flightDetailsField.classList.remove('hidden'); document.getElementById('flight_details').setAttribute('required','required'); }else{ flightDetailsField.classList.add('hidden'); document.getElementById('flight_details').removeAttribute('required'); document.getElementById('flight_details').value=''; } }
+flightYes.addEventListener('change',toggleFlightDetails);
+flightNo.addEventListener('change',toggleFlightDetails);
+toggleFlightDetails();
 
-        // JavaScript for countdown timer
-        const countdownDate = new Date('Dec 8, 2026 00:00:00').getTime();
+// Music toggle
+const music = document.getElementById('background-music');
+const musicToggle = document.getElementById('music-toggle');
+musicToggle.addEventListener('click', () => {
+    if(music.paused){ music.play(); musicToggle.innerHTML='<i class="fas fa-volume-up"></i>'; }
+    else { music.pause(); musicToggle.innerHTML='<i class="fas fa-volume-mute"></i>'; }
+});
+</script>
 
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerHTML = String(days).padStart(2, '0');
-            document.getElementById('hours').innerHTML = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerHTML = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerHTML = String(seconds).padStart(2, '0');
-
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById('countdown').innerHTML = "<div class='col-span-4 text-center text-2xl font-bold text-emerald-700'>¡La Celebración Ha Comenzado!</div>";
-            }
-        }, 1000);
-
-        // JavaScript for fade-in animation on scroll
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('opacity-100', 'translate-y-0');
-                        entry.target.style.animationPlayState = 'running';
-                    } else {
-                        // Optional: reset animation when out of view
-                        // entry.target.classList.remove('opacity-100', 'translate-y-0');
-                        // entry.target.style.animationPlayState = 'paused';
-                    }
-                });
-            }, { threshold: 0.1 }); // Trigger when 10% of the item is visible
-
-            document.querySelectorAll('.fade-in').forEach(element => {
-                observer.observe(element);
-            });
-
-            // Handle partner name field visibility
-            const partnerYes = document.getElementById('partner_yes');
-            const partnerNo = document.getElementById('partner_no');
-            const partnerNameField = document.getElementById('partner_name_field');
-            const partnerNameInput = document.getElementById('partner_name');
-
-            function togglePartnerNameField() {
-                if (partnerYes.checked) {
-                    partnerNameField.classList.remove('hidden');
-                    partnerNameInput.setAttribute('required', 'required'); // Make required if 'yes'
-                } else {
-                    partnerNameField.classList.add('hidden');
-                    partnerNameInput.removeAttribute('required'); // Remove required if 'no'
-                    partnerNameInput.value = ''; // Clear value if hidden
-                }
-            }
-
-            partnerYes.addEventListener('change', togglePartnerNameField);
-            partnerNo.addEventListener('change', togglePartnerNameField);
-            togglePartnerNameField(); // Set initial state
-
-            // Form submission handling: This now uses fetch to send data
-            document.querySelector('form').addEventListener('submit', async function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                const form = this;
-                // Manually collect form data
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const withPartner = document.querySelector('input[name="with_partner"]:checked').value;
-                let partnerName = '';
-                if (withPartner === 'yes') { // Only get partner name if 'yes' is selected
-                    partnerName = document.getElementById('partner_name').value;
-                }
-                const fullTrip = document.querySelector('input[name="full_trip"]:checked').value;
-                const checkoutDate = document.getElementById('checkout_date').value;
-                const attendance = document.getElementById('attendance').value;
-                const message = document.getElementById('message').value;
-
-                const formData = {
-                    name: name,
-                    email: email,
-                    with_partner: withPartner,
-                    partner_name: partnerName, // Will be empty string if not applicable or not filled
-                    full_trip: fullTrip,
-                    checkout_date: checkoutDate,
-                    attendance: attendance,
-                    message: message,
-                    _source: "Fernando's Birthday Invitation" // Hidden field value
-                };
-
-                // Log the data being sent for debugging (this will appear in your browser's console)
-                console.log('Datos a enviar:', formData);
-
-                try {
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify(formData)
-                    });
-
-                    if (response.ok) {
-                        // Formspree handles redirection to its success page automatically
-                        // No need for local success message here as Formspree redirects
-                    } else {
-                        // Handle errors if Formspree doesn't redirect (e.g., validation errors)
-                        const errorData = await response.json();
-                        console.error('Error al enviar el formulario:', errorData);
-                        // You could display a local error message here if needed
-                        alert('Hubo un error al enviar tu confirmación. Por favor, inténtalo de nuevo.'); // Using alert for critical error feedback
-                    }
-                } catch (error) {
-                    console.error('Error de red al enviar el formulario:', error);
-                    alert('Error de conexión. Por favor, inténtalo de nuevo más tarde.'); // Using alert for critical error feedback
-                } finally {
-                    form.reset(); // Clear the form after submission attempt
-                    togglePartnerNameField(); // Reset partner field visibility
-                }
-            });
-        });
-
-        // Music toggle functionality
-        document.getElementById('music-toggle').addEventListener('click', function() {
-            const music = document.getElementById('background-music');
-            const icon = this.querySelector('i');
-            if (music.paused) {
-                music.play();
-                icon.classList.remove('fa-volume-mute');
-                icon.classList.add('fa-volume-up');
-            } else {
-                music.pause();
-                icon.classList.remove('fa-volume-up');
-                icon.classList.add('fa-volume-mute');
-            }
-        });
-
-        // Autoplay music (might be blocked by browsers, hence the toggle button)
-        window.addEventListener('load', () => {
-            const music = document.getElementById('background-music');
-            music.volume = 0.3; // Set a lower default volume
-            // Attempt to play, but rely on user interaction for full browser compatibility
-            music.play().catch(e => console.log("Autoplay blocked:", e));
-        });
-    </script>
 </body>
 </html>
