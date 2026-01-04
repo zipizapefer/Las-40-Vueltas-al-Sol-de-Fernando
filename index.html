@@ -11,9 +11,16 @@
 .hidden { display: none; }
 .btn-primary { background-color: #059669; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; cursor: pointer; }
 .highlight { font-weight: bold; color: #b91c1c; }
+.audio-control { position: fixed; top: 1rem; right: 1rem; z-index: 50; }
 </style>
 </head>
 <body class="bg-gray-50 font-sans">
+
+<!-- Música de fondo -->
+<audio id="bgMusic" class="audio-control" controls autoplay loop>
+  <source src="audio/musica.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
 
 <!-- Idioma -->
 <div class="flex justify-center space-x-4 mb-4 mt-4">
@@ -22,7 +29,7 @@
 </div>
 
 <!-- Hero -->
-<section class="relative h-screen flex items-center justify-center bg-[url('hero.jpg')] bg-cover bg-center">
+<section class="relative h-screen flex items-center justify-center bg-[url('imagenes/hero.jpg')] bg-cover bg-center">
     <div class="absolute inset-0 bg-black/50"></div>
     <div class="relative text-center text-white">
         <h1 class="text-4xl md:text-6xl font-bold mb-4">
@@ -57,19 +64,27 @@
     <p class="text-lg text-gray-800 text-center">
         <span class="lang-es">
             Únete a mí en una ruta previa por Camboya. ¡Exploremos juntos templos milenarios y paisajes asombrosos antes de la fiesta! 
-            Ya voy poco a poco planeando el itinerario. 
+            <span class="highlight">Itinerario en construcción</span>. 
             <a href="itinerario.html" class="highlight underline">Pincha aquí para verlo</a>.
         </span>
         <span class="lang-en hidden">
             Join me on a pre-adventure in Cambodia. Let's explore ancient temples and amazing landscapes before the party! 
-            I am slowly planning the itinerary. 
+            <span class="highlight">Itinerary under construction</span>. 
             <a href="itinerario.html" class="highlight underline">Click here to see it</a>.
         </span>
     </p>
 </section>
 
+<!-- Galería de fotos -->
+<section class="fade-in mt-8 p-6 grid grid-cols-2 md:grid-cols-4 gap-4" style="animation-delay: 0.3s;">
+    <img src="imagenes/foto1.jpg" alt="Foto 1" class="rounded shadow-md">
+    <img src="imagenes/foto2.jpg" alt="Foto 2" class="rounded shadow-md">
+    <img src="imagenes/foto3.jpg" alt="Foto 3" class="rounded shadow-md">
+    <img src="imagenes/foto4.jpg" alt="Foto 4" class="rounded shadow-md">
+</section>
+
 <!-- Formulario -->
-<section class="card fade-in mt-8 p-6 bg-white rounded shadow-md max-w-xl mx-auto" style="animation-delay: 0.3s;">
+<section class="card fade-in mt-8 p-6 bg-white rounded shadow-md max-w-xl mx-auto" style="animation-delay: 0.4s;">
     <h2 class="text-3xl mb-4 text-emerald-600 text-center">
         <span class="lang-es">Confirma tu asistencia</span>
         <span class="lang-en hidden">Confirm Your Attendance</span>
