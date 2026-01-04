@@ -1,279 +1,140 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Las 40 Vueltas al Sol de Fernando!</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0fdf4;
-            color: #333;
-            line-height: 1.6;
-        }
-        .hero-section {
-            background-image: url('Images/Hero.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-        .hero-overlay {
-            background-color: rgba(0,0,0,0.3);
-            position: absolute;
-            top:0; left:0; right:0; bottom:0;
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            justify-content:center;
-            padding:20px;
-        }
-        h1,h2,h3 {
-            font-weight:800;
-            color:#059669;
-        }
-        .text-shadow-custom {
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-        }
-        .section-divider {
-            border-top: 2px dashed #a7f3d0;
-            margin: 40px 0;
-        }
-        .icon { display:inline-block; margin-right:8px; font-size:1.2em; color:#059669; }
-        .highlight { color:#059669; font-weight:600; }
-        .btn-primary {
-            background-color:#059669; color:white;
-            padding:12px 28px; border-radius:9999px;
-            font-weight:700; transition:0.3s;
-            box-shadow:0 4px 10px rgba(5,150,105,0.3); cursor:pointer;
-        }
-        .btn-primary:hover { background-color:#047857; transform:translateY(-2px); }
-        .card {
-            background-color:#fff;
-            border-radius:15px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.1);
-            padding:30px;
-            margin-bottom:30px;
-        }
-        .form-input {
-            border:1px solid #d1fae5;
-            border-radius:8px;
-            padding:12px 15px;
-            width:100%;
-            margin-bottom:15px;
-            transition:0.3s;
-        }
-        .form-input:focus { outline:none; border-color:#059669; box-shadow:0 0 0 3px rgba(5,150,105,0.2); }
-        .form-select { appearance:none; background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3' stroke='%23059669' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e"); background-repeat:no-repeat; background-position:right 1rem center; background-size:1.5em 1.5em; padding-right:2.5rem; }
-        .fade-in { opacity:0; transform:translateY(20px); animation:fadeIn 1s ease-out forwards; }
-        @keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
-        .countdown-item { background-color:#ecfdf5; border-radius:10px; padding:15px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
-        .countdown-value { font-size:2.5em; font-weight:700; color:#059669; line-height:1; }
-        .countdown-label { font-size:0.9em; color:#333; text-transform:uppercase; margin-top:5px; }
-        .image-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-        .gallery-item img { border-radius:10px; width:100%; height:200px; object-fit:cover; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
-        .gallery-item p { text-align:center; margin-top:10px; font-size:0.9em; color:#555; }
-        @media (max-width:768px) { .hero-section { height:50vh; } .hero-overlay h1 { font-size:2.5em; } .hero-overlay p { font-size:1.2em; } .container-main { padding:15px; } h1 { font-size:2.2em; } h2 { font-size:1.8em; } .countdown-value { font-size:2em; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viaje Aventura 2026</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+.fade-in { animation: fadeIn 1s ease forwards; opacity: 0; }
+@keyframes fadeIn { to { opacity: 1; } }
+.hidden { display: none; }
+.btn-primary { background-color: #059669; color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; cursor: pointer; }
+.highlight { font-weight: bold; color: #b91c1c; }
+</style>
 </head>
-<body class="p-0 m-0">
+<body class="bg-gray-50 font-sans">
 
-<audio id="background-music" loop autoplay>
-    <source src="Images/Musica.mp3" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio.
-</audio>
-<div class="fixed bottom-4 right-4 z-50">
-    <button id="music-toggle" class="bg-emerald-600 text-white p-3 rounded-full shadow-lg hover:bg-emerald-700 transition-colors">
-        <i class="fas fa-volume-up"></i>
-    </button>
+<!-- Idioma -->
+<div class="flex justify-center space-x-4 mb-4 mt-4">
+    <button id="lang-es" class="btn-primary">ES</button>
+    <button id="lang-en" class="btn-primary">EN</button>
 </div>
 
-<div class="hero-section">
-    <div class="hero-overlay">
-        <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-white text-shadow-custom">
-            ¡Las 40 Vueltas al Sol de Fernando! 🎂
+<!-- Hero -->
+<section class="relative h-screen flex items-center justify-center bg-[url('hero.jpg')] bg-cover bg-center">
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="relative text-center text-white">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">
+            <span class="lang-es">Aventura en Camboya y más</span>
+            <span class="lang-en hidden">Adventure in Cambodia & Beyond</span>
         </h1>
-        <p class="text-2xl md:text-3xl text-white text-shadow-custom mb-8">
-            Prepárate para una celebración inolvidable en un destino secreto...
+        <p class="text-xl md:text-2xl">
+            <span class="lang-es">Explora templos milenarios, playas paradisíacas y cultura única.</span>
+            <span class="lang-en hidden">Explore ancient temples, paradise beaches, and unique culture.</span>
         </p>
-        <button id="reveal-button" class="btn-primary text-xl">
-            Descubre el Paraíso <i class="fas fa-chevron-down ml-2"></i>
-        </button>
     </div>
-</div>
+</section>
 
-<div id="main-content" class="container-main max-w-4xl mx-auto p-6 md:p-10 hidden">
+<!-- Noticias frescas -->
+<section class="card fade-in mt-8 p-6 bg-white rounded shadow-md" style="animation-delay: 0.1s;">
+    <h2 class="text-3xl md:text-4xl mb-4 text-emerald-600 text-center">
+        <span class="lang-es">Noticias Frescas 📰</span>
+        <span class="lang-en hidden">Latest News 📰</span>
+    </h2>
+    <p class="text-lg text-gray-800 text-center">
+        <span class="lang-es">¡Ya hay vuelos disponibles desde Bélgica y España! ✈️<br>Precio ida y vuelta: <span class="highlight">700-900€</span>.</span>
+        <span class="lang-en hidden">Flights are now available from Belgium and Spain! ✈️ Round trip price: <span class="highlight">€700-900</span>.</span>
+    </p>
+</section>
 
-    <!-- Noticias Nuevas -->
-    <section class="card fade-in mb-10" style="animation-delay:0.1s;">
-        <h2 class="text-2xl md:text-3xl mb-4 text-emerald-600 text-center">
-            📢 ¡Noticias frescas!
-        </h2>
-        <p class="text-lg text-gray-800 text-center">
-            Ya están disponibles los vuelos desde <span class="highlight">Bélgica</span> y <span class="highlight">España</span> para unirte a la celebración.
-        </p>
-    </section>
+<!-- Itinerario previo -->
+<section class="card fade-in mt-8 p-6 bg-white rounded shadow-md" style="animation-delay: 0.2s;">
+    <h2 class="text-3xl md:text-4xl mb-4 text-emerald-600 text-center">
+        <span class="lang-es">Aventurero/a desde el principio</span>
+        <span class="lang-en hidden">Early Adventurer</span>
+    </h2>
+    <p class="text-lg text-gray-800 text-center">
+        <span class="lang-es">
+            Únete a mí en una ruta previa por Camboya. ¡Exploremos juntos templos milenarios y paisajes asombrosos antes de la fiesta! 
+            Ya voy poco a poco planeando el itinerario. 
+            <a href="itinerario.html" class="highlight underline">Pincha aquí para verlo</a>.
+        </span>
+        <span class="lang-en hidden">
+            Join me on a pre-adventure in Cambodia. Let's explore ancient temples and amazing landscapes before the party! 
+            I am slowly planning the itinerary. 
+            <a href="itinerario.html" class="highlight underline">Click here to see it</a>.
+        </span>
+    </p>
+</section>
 
-    <!-- Countdown -->
-    <section class="card fade-in mb-10" style="animation-delay:0.2s;">
-        <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">¡La Cuenta Atrás Ha Comenzado! ⏳</h2>
-        <p class="text-lg text-gray-800 text-center mb-6">
-            Falta muy poco para que celebremos juntos esta fecha tan especial.
-        </p>
-        <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="countdown-item"><div class="countdown-value" id="days">00</div><div class="countdown-label">Días</div></div>
-            <div class="countdown-item"><div class="countdown-value" id="hours">00</div><div class="countdown-label">Horas</div></div>
-            <div class="countdown-item"><div class="countdown-value" id="minutes">00</div><div class="countdown-label">Minutos</div></div>
-            <div class="countdown-item"><div class="countdown-value" id="seconds">00</div><div class="countdown-label">Segundos</div></div>
+<!-- Formulario -->
+<section class="card fade-in mt-8 p-6 bg-white rounded shadow-md max-w-xl mx-auto" style="animation-delay: 0.3s;">
+    <h2 class="text-3xl mb-4 text-emerald-600 text-center">
+        <span class="lang-es">Confirma tu asistencia</span>
+        <span class="lang-en hidden">Confirm Your Attendance</span>
+    </h2>
+    <form id="viajeForm" class="space-y-4">
+        <div>
+            <label class="block text-gray-700">
+                <span class="lang-es">¿Te unirás conmigo? Fecha de Salida 4 de diciembre o nos vemos el 5/6 de diciembre en Phnom Penh para visitar la ciudad antes de irnos a Koh Rong</span>
+                <span class="lang-en hidden">Will you join me? Departure Dec 4 or meet Dec 5/6 in Phnom Penh to explore the city before heading to Koh Rong</span>
+            </label>
+            <input type="text" name="asistencia" class="mt-1 block w-full border rounded p-2">
         </div>
-    </section>
-
-    <!-- Aventurero/a -->
-    <section class="card fade-in" style="animation-delay:0.3s;">
-        <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">¿Aventurero/a desde el principio? 🏞️</h2>
-        <p class="text-lg text-gray-800 mb-4">
-            Únete a mí en una ruta previa por Camboya. ¡Exploremos juntos templos milenarios y paisajes asombrosos antes de la fiesta! Poco a poco voy planeando el itinerario. <a href="itinerario.html" class="highlight underline">Pincha aquí</a> para ver el itinerario completo.
-        </p>
-    </section>
-
-    <!-- Formulario RSVP -->
-    <section id="rsvp-section" class="card fade-in" style="animation-delay:0.4s;">
-        <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">
-            ¡Confirma tu Asistencia! 📬
-        </h2>
-        <form action="https://formspree.io/f/xjkrnavo" method="POST" class="space-y-4">
-            <input type="hidden" name="_source" value="Fernando's Birthday Invitation">
-
-            <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Tu Nombre Completo:</label>
-            <input type="text" id="name" name="name" class="form-input" placeholder="Ej: Juan Pérez" required>
-
-            <label for="email" class="block text-lg font-medium text-gray-700 mb-2">Tu Correo Electrónico:</label>
-            <input type="email" id="email" name="email" class="form-input" placeholder="Ej: juan.perez@example.com" required>
-
-            <label class="block text-lg font-medium text-gray-700 mb-2">¿Vendrás con tu pareja?</label>
-            <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">
-                    <input type="radio" name="with_partner" value="yes" class="form-radio text-emerald-600" id="partner_yes">
-                    <span class="ml-2 text-lg text-gray-800">Sí</span>
-                </label>
-                <label class="inline-flex items-center">
-                    <input type="radio" name="with_partner" value="no" class="form-radio text-emerald-600" id="partner_no" checked>
-                    <span class="ml-2 text-lg text-gray-800">No</span>
-                </label>
-            </div>
-            <div id="partner_name_field" class="hidden">
-                <label for="partner_name" class="block text-lg font-medium text-gray-700 mb-2">Nombre de tu pareja:</label>
-                <input type="text" id="partner_name" name="partner_name" class="form-input" placeholder="Ej: María García">
-            </div>
-
-            <label class="block text-lg font-medium text-gray-700 mb-2">¿Te unirás conmigo? Fecha de salida 4 de diciembre o nos vemos el 5/6 de diciembre en Phnom Penh para visitar la ciudad antes de irnos a Koh Rong.</label>
-            <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">
-                    <input type="radio" name="full_trip" value="yes" class="form-radio text-emerald-600" required>
-                    <span class="ml-2 text-lg text-gray-800">Sí</span>
-                </label>
-                <label class="inline-flex items-center">
-                    <input type="radio" name="full_trip" value="no" class="form-radio text-emerald-600" required>
-                    <span class="ml-2 text-lg text-gray-800">No</span>
-                </label>
-            </div>
-
-            <label for="checkout_date" class="block text-lg font-medium text-gray-700 mb-2">¿Cuál es tu fecha de check-out?</label>
-            <select id="checkout_date" name="checkout_date" class="form-input form-select" required>
-                <option value="">Selecciona una opción</option>
-                <option value="Dec 9, 2026">Miércoles, 9 de diciembre de 2026</option>
-                <option value="Dec 10, 2026">Jueves, 10 de diciembre de 2026</option>
+        <div>
+            <label class="block text-gray-700">
+                <span class="lang-es">¿Cuál es tu fecha de check-out?</span>
+                <span class="lang-en hidden">What is your check-out date?</span>
+            </label>
+            <input type="date" name="checkout" class="mt-1 block w-full border rounded p-2">
+        </div>
+        <div>
+            <label class="block text-gray-700">
+                <span class="lang-es">¿Necesitas ayuda buscando vuelos?</span>
+                <span class="lang-en hidden">Do you need help finding flights?</span>
+            </label>
+            <select id="ayudaVuelos" class="mt-1 block w-full border rounded p-2">
+                <option value="no">No</option>
+                <option value="si">Sí</option>
             </select>
-
-            <!-- Nueva pregunta: ayuda con vuelos -->
-            <label class="block text-lg font-medium text-gray-700 mb-2">¿Necesitas ayuda buscando vuelos?</label>
-            <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">
-                    <input type="radio" name="need_flight_help" value="yes" class="form-radio text-emerald-600" id="flight_yes">
-                    <span class="ml-2 text-lg text-gray-800">Sí</span>
-                </label>
-                <label class="inline-flex items-center">
-                    <input type="radio" name="need_flight_help" value="no" class="form-radio text-emerald-600" id="flight_no" checked>
-                    <span class="ml-2 text-lg text-gray-800">No</span>
-                </label>
-            </div>
-            <div id="flight_details_field" class="hidden">
-                <label for="flight_details" class="block text-lg font-medium text-gray-700 mb-2">Indica fechas de salida, llegada y lugar de origen preferido:</label>
-                <textarea id="flight_details" name="flight_details" rows="3" class="form-input"></textarea>
-            </div>
-
-            <label for="attendance" class="block text-lg font-medium text-gray-700 mb-2">¿Confirmas tu asistencia?</label>
-            <select id="attendance" name="attendance" class="form-input form-select" required>
-                <option value="">Selecciona una opción</option>
-                <option value="voy">✅ ¡Voy!</option>
-                <option value="mirando">❓ Lo estoy mirando...</option>
-                <option value="no_puedo">❌ No puedo, pero brindaré por ti.</option>
-            </select>
-
-            <label for="message" class="block text-lg font-medium text-gray-700 mb-2">¿Algún mensaje o pregunta para Fernando?</label>
-            <textarea id="message" name="message" rows="4" class="form-input" placeholder="Ej: ¡Qué ganas de celebrar contigo!"></textarea>
-
-            <div class="text-center">
-                <button type="submit" class="btn-primary w-full md:w-auto">Enviar Confirmación</button>
-            </div>
-        </form>
-    </section>
-
-</div>
+        </div>
+        <div id="detallesVuelos" class="hidden space-y-2">
+            <label class="block text-gray-700">
+                <span class="lang-es">Lugar de origen preferido</span>
+                <span class="lang-en hidden">Preferred departure city</span>
+            </label>
+            <input type="text" name="origen" class="mt-1 block w-full border rounded p-2">
+            <label class="block text-gray-700">
+                <span class="lang-es">Fecha de salida</span>
+                <span class="lang-en hidden">Departure date</span>
+            </label>
+            <input type="date" name="fechaSalida" class="mt-1 block w-full border rounded p-2">
+            <label class="block text-gray-700">
+                <span class="lang-es">Fecha de llegada</span>
+                <span class="lang-en hidden">Return date</span>
+            </label>
+            <input type="date" name="fechaLlegada" class="mt-1 block w-full border rounded p-2">
+        </div>
+        <button type="submit" class="btn-primary w-full">Enviar</button>
+    </form>
+</section>
 
 <script>
-document.getElementById('reveal-button').addEventListener('click', function() {
-    document.getElementById('main-content').classList.remove('hidden');
-    this.style.display = 'none';
-    document.getElementById('main-content').scrollIntoView({ behavior: 'smooth' });
+// Idioma
+document.getElementById('lang-es').addEventListener('click', () => {
+    document.querySelectorAll('.lang-es').forEach(el => el.classList.remove('hidden'));
+    document.querySelectorAll('.lang-en').forEach(el => el.classList.add('hidden'));
+});
+document.getElementById('lang-en').addEventListener('click', () => {
+    document.querySelectorAll('.lang-en').forEach(el => el.classList.remove('hidden'));
+    document.querySelectorAll('.lang-es').forEach(el => el.classList.add('hidden'));
 });
 
-// Countdown
-const countdownDate = new Date('Dec 8, 2026 00:00:00').getTime();
-setInterval(() => {
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
-    document.getElementById('days').innerHTML = String(Math.floor(distance/(1000*60*60*24))).padStart(2,'0');
-    document.getElementById('hours').innerHTML = String(Math.floor((distance%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
-    document.getElementById('minutes').innerHTML = String(Math.floor((distance%(1000*60*60))/(1000*60))).padStart(2,'0');
-    document.getElementById('seconds').innerHTML = String(Math.floor((distance%(1000*60))/1000)).padStart(2,'0');
-    if(distance<0) { clearInterval(this); document.getElementById('countdown').innerHTML="<div class='col-span-4 text-center text-2xl font-bold text-emerald-700'>¡La Celebración Ha Comenzado!</div>"; }
-},1000);
-
-// Partner field toggle
-const partnerYes = document.getElementById('partner_yes');
-const partnerNo = document.getElementById('partner_no');
-const partnerNameField = document.getElementById('partner_name_field');
-function togglePartnerNameField(){ if(partnerYes.checked){ partnerNameField.classList.remove('hidden'); document.getElementById('partner_name').setAttribute('required','required'); }else{ partnerNameField.classList.add('hidden'); document.getElementById('partner_name').removeAttribute('required'); document.getElementById('partner_name').value=''; } }
-partnerYes.addEventListener('change',togglePartnerNameField);
-partnerNo.addEventListener('change',togglePartnerNameField);
-togglePartnerNameField();
-
-// Flight help toggle
-const flightYes = document.getElementById('flight_yes');
-const flightNo = document.getElementById('flight_no');
-const flightDetailsField = document.getElementById('flight_details_field');
-function toggleFlightDetails(){ if(flightYes.checked){ flightDetailsField.classList.remove('hidden'); document.getElementById('flight_details').setAttribute('required','required'); }else{ flightDetailsField.classList.add('hidden'); document.getElementById('flight_details').removeAttribute('required'); document.getElementById('flight_details').value=''; } }
-flightYes.addEventListener('change',toggleFlightDetails);
-flightNo.addEventListener('change',toggleFlightDetails);
-toggleFlightDetails();
-
-// Music toggle
-const music = document.getElementById('background-music');
-const musicToggle = document.getElementById('music-toggle');
-musicToggle.addEventListener('click', () => {
-    if(music.paused){ music.play(); musicToggle.innerHTML='<i class="fas fa-volume-up"></i>'; }
-    else { music.pause(); musicToggle.innerHTML='<i class="fas fa-volume-mute"></i>'; }
+// Mostrar campos vuelos
+document.getElementById('ayudaVuelos').addEventListener('change', (e) => {
+    const div = document.getElementById('detallesVuelos');
+    div.classList.toggle('hidden', e.target.value === 'no');
 });
 </script>
 
