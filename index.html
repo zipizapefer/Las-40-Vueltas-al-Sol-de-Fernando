@@ -10,38 +10,37 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
-body { font-family: 'Inter', sans-serif; background-color:#f0fdf4; color:#333; line-height:1.6; margin:0; padding:0; }
-.hero-section { background-image: url('Images/Hero.jpg'); background-size: cover; background-position:center; height:60vh; display:flex; align-items:center; justify-content:center; text-align:center; color:white; position:relative; }
+body { font-family:'Inter',sans-serif; background:#f0fdf4; color:#333; line-height:1.6; margin:0; padding:0; }
+.hero-section { background-image:url('Images/Hero.jpg'); background-size:cover; background-position:center; height:60vh; display:flex; align-items:center; justify-content:center; text-align:center; color:white; position:relative; }
 .hero-overlay { background-color: rgba(0,0,0,0.3); position:absolute; top:0; left:0; right:0; bottom:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; }
 h1,h2,h3 { font-weight:800; color:#059669; }
-.text-shadow-custom { text-shadow:2px 2px 4px rgba(0,0,0,0.7); }
+.text-shadow-custom { text-shadow: 2px 2px 4px rgba(0,0,0,0.7); }
 .section-divider { border-top:2px dashed #a7f3d0; margin:40px 0; }
 .icon { display:inline-block; margin-right:8px; font-size:1.2em; color:#059669; }
 .highlight { color:#059669; font-weight:600; }
 .btn-primary { background-color:#059669; color:white; padding:12px 28px; border-radius:9999px; font-weight:700; transition:0.3s; box-shadow:0 4px 10px rgba(5,150,105,0.3); cursor:pointer; }
 .btn-primary:hover { background-color:#047857; transform:translateY(-2px); }
-.card { background-color:#fff; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.1); padding:30px; margin-bottom:30px; }
-.form-input { border:1px solid #d1fae5; border-radius:8px; padding:12px 15px; width:100%; margin-bottom:15px; transition:0.3s; }
-.form-input:focus { outline:none; border-color:#059669; box-shadow:0 0 0 3px rgba(5,150,105,0.2); }
-.form-select { appearance:none; background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3' stroke='%23059669' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e"); background-repeat:no-repeat; background-position:right 1rem center; background-size:1.5em 1.5em; padding-right:2.5rem; }
+.card { background:white; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.1); padding:30px; margin-bottom:30px; }
+.form-input, .form-select { border:1px solid #d1fae5; border-radius:8px; padding:12px 15px; width:100%; margin-bottom:15px; transition:0.3s; }
+.form-input:focus, .form-select:focus { outline:none; border-color:#059669; box-shadow:0 0 0 3px rgba(5,150,105,0.2); }
+.form-select { appearance:none; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3' stroke='%23059669' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e"); background-repeat:no-repeat; background-position:right 1rem center; background-size:1.5em 1.5em; padding-right:2.5rem; }
 .fade-in { opacity:0; transform:translateY(20px); animation:fadeIn 1s ease-out forwards; }
 @keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
-.countdown-item { background-color:#ecfdf5; border-radius:10px; padding:15px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+.countdown-item { background:#ecfdf5; border-radius:10px; padding:15px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
 .countdown-value { font-size:2.5em; font-weight:700; color:#059669; line-height:1; }
 .countdown-label { font-size:0.9em; color:#333; text-transform:uppercase; margin-top:5px; }
 .image-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
 .gallery-item img { border-radius:10px; width:100%; height:200px; object-fit:cover; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
 .gallery-item p { text-align:center; margin-top:10px; font-size:0.9em; color:#555; }
-.lang-toggle { position:fixed; top:10px; right:10px; background:#059669; color:white; padding:10px 15px; border-radius:10px; cursor:pointer; z-index:999; }
+#language-toggle { position:fixed; top:20px; right:20px; background:#059669; color:white; padding:10px 15px; border-radius:9999px; cursor:pointer; z-index:100; }
 @media (max-width:768px) { .hero-section { height:50vh; } .hero-overlay h1 { font-size:2.5em; } .hero-overlay p { font-size:1.2em; } .container-main { padding:15px; } h1 { font-size:2.2em; } h2 { font-size:1.8em; } .countdown-value { font-size:2em; } }
 </style>
 </head>
 <body>
 
-<!-- Música -->
+<!-- Music -->
 <audio id="background-music" loop autoplay>
     <source src="Images/Musica.mp3" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio.
 </audio>
 <div class="fixed bottom-4 right-4 z-50">
     <button id="music-toggle" class="bg-emerald-600 text-white p-3 rounded-full shadow-lg hover:bg-emerald-700 transition-colors">
@@ -49,181 +48,124 @@ h1,h2,h3 { font-weight:800; color:#059669; }
     </button>
 </div>
 
-<!-- Cambio de idioma -->
-<div class="lang-toggle" id="lang-toggle">EN / ES</div>
+<!-- Language Toggle -->
+<button id="language-toggle">EN/ES</button>
 
 <!-- Hero -->
 <div class="hero-section">
     <div class="hero-overlay">
-        <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-white text-shadow-custom lang-es">¡Las 40 Vueltas al Sol de Fernando! 🎂</h1>
-        <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-white text-shadow-custom lang-en" style="display:none;">Fernando's 40 Orbits Around the Sun! 🎂</h1>
-        <p class="text-2xl md:text-3xl text-white text-shadow-custom mb-8 lang-es">Prepárate para una celebración inolvidable en un destino secreto...</p>
-        <p class="text-2xl md:text-3xl text-white text-shadow-custom mb-8 lang-en" style="display:none;">Get ready for an unforgettable celebration in a secret destination...</p>
-        <button id="reveal-button" class="btn-primary text-xl lang-es">Descubre el Paraíso <i class="fas fa-chevron-down ml-2"></i></button>
-        <button id="reveal-button-en" class="btn-primary text-xl lang-en" style="display:none;">Discover Paradise <i class="fas fa-chevron-down ml-2"></i></button>
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-white text-shadow-custom" data-es="¡Las 40 Vueltas al Sol de Fernando!" data-en="Fernando's 40 Trips Around the Sun!">¡Las 40 Vueltas al Sol de Fernando!</h1>
+        <p class="text-2xl md:text-3xl text-white text-shadow-custom mb-8" data-es="Prepárate para una celebración inolvidable en un destino secreto..." data-en="Get ready for an unforgettable celebration in a secret destination...">Prepárate para una celebración inolvidable en un destino secreto...</p>
+        <button id="reveal-button" class="btn-primary text-xl" data-es="Descubre el Paraíso" data-en="Discover Paradise">Descubre el Paraíso <i class="fas fa-chevron-down ml-2"></i></button>
     </div>
 </div>
 
-<!-- Contenido principal -->
 <div id="main-content" class="container-main max-w-4xl mx-auto p-6 md:p-10 hidden">
-
-<!-- Noticias -->
-<section class="card fade-in mb-10" style="animation-delay:0.1s;">
-    <h2 class="text-2xl md:text-3xl mb-4 text-emerald-600 text-center lang-es">📢 ¡Noticias frescas!</h2>
-    <h2 class="text-2xl md:text-3xl mb-4 text-emerald-600 text-center lang-en" style="display:none;">📢 Fresh News!</h2>
-    <p class="text-lg text-gray-800 text-center lang-es">Ya están disponibles los vuelos ida y vuelta desde <span class="highlight">Bélgica</span> y <span class="highlight">España</span> entre 700-900€.</p>
-    <p class="text-lg text-gray-800 text-center lang-en" style="display:none;">Round-trip flights from <span class="highlight">Belgium</span> and <span class="highlight">Spain</span> are now available for €700-900.</p>
-</section>
 
 <!-- Countdown -->
 <section class="card fade-in mb-10" style="animation-delay:0.2s;">
-<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center lang-es">¡La Cuenta Atrás Ha Comenzado! ⏳</h2>
-<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center lang-en" style="display:none;">The Countdown Has Begun! ⏳</h2>
+<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center" data-es="¡La Cuenta Atrás Ha Comenzado! ⏳" data-en="The Countdown Has Begun! ⏳">¡La Cuenta Atrás Ha Comenzado! ⏳</h2>
+<p class="text-lg text-gray-800 text-center mb-6" data-es="Falta muy poco para que celebremos juntos esta fecha tan especial." data-en="It's almost time to celebrate this special date together.">Falta muy poco para que celebremos juntos esta fecha tan especial.</p>
 <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4">
-    <div class="countdown-item"><div class="countdown-value" id="days">00</div><div class="countdown-label lang-es">Días</div><div class="countdown-label lang-en" style="display:none;">Days</div></div>
-    <div class="countdown-item"><div class="countdown-value" id="hours">00</div><div class="countdown-label lang-es">Horas</div><div class="countdown-label lang-en" style="display:none;">Hours</div></div>
-    <div class="countdown-item"><div class="countdown-value" id="minutes">00</div><div class="countdown-label lang-es">Minutos</div><div class="countdown-label lang-en" style="display:none;">Minutes</div></div>
-    <div class="countdown-item"><div class="countdown-value" id="seconds">00</div><div class="countdown-label lang-es">Segundos</div><div class="countdown-label lang-en" style="display:none;">Seconds</div></div>
+    <div class="countdown-item"><div class="countdown-value" id="days">00</div><div class="countdown-label" data-es="Días" data-en="Days">Días</div></div>
+    <div class="countdown-item"><div class="countdown-value" id="hours">00</div><div class="countdown-label" data-es="Horas" data-en="Hours">Horas</div></div>
+    <div class="countdown-item"><div class="countdown-value" id="minutes">00</div><div class="countdown-label" data-es="Minutos" data-en="Minutes">Minutos</div></div>
+    <div class="countdown-item"><div class="countdown-value" id="seconds">00</div><div class="countdown-label" data-es="Segundos" data-en="Seconds">Segundos</div></div>
 </div>
 </section>
 
-<!-- Aventurero -->
-<section class="card fade-in" style="animation-delay:0.3s;">
-<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center lang-es">¿Aventurero/a desde el principio? 🏞️</h2>
-<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center lang-en" style="display:none;">Adventurer From the Start? 🏞️</h2>
-<p class="text-lg text-gray-800 mb-4 lang-es">
-Únete a mí en una ruta previa por Camboya. ¡Exploremos juntos templos milenarios y paisajes asombrosos antes de la fiesta! Itinerario en construcción. <a href="#" class="highlight underline">Pincha aquí</a> para ver el itinerario completo.
-</p>
-<p class="text-lg text-gray-800 mb-4 lang-en" style="display:none;">
-Join me on a pre-trip in Cambodia. Explore ancient temples and amazing landscapes before the party! Itinerary under construction. <a href="#" class="highlight underline">Click here</a> to see the full itinerary.
-</p>
+<!-- Destination -->
+<section class="card fade-in" style="animation-delay:0.4s;">
+<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center" data-es="Un Lugar Maravilloso..." data-en="A Wonderful Place...">Un Lugar Maravilloso...</h2>
+<p class="text-lg text-gray-800 mb-4" data-es="Imagina un rincón del mundo bañado por el sol..." data-en="Imagine a corner of the world bathed in sunlight...">Imagina un rincón del mundo bañado por el sol...</p>
+<img src="Images/Playa.jpg" alt="Playa" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
+<p class="text-lg text-gray-800 mb-4 mt-6" data-es="Prepárate para una experiencia..." data-en="Get ready for an experience...">Prepárate para una experiencia que combina la <span class="highlight">serenidad de paisajes vírgenes con la vibrante energía de una fiesta inolvidable</span>.</p>
+<img src="Images/Templo.jpeg" alt="Templo" class="rounded-lg shadow-md w-full h-auto mt-6 mb-4">
+<h2 class="text-3xl md:text-4xl mb-6 mt-10 text-emerald-600 text-center" data-es="¡Nuestro Destino: Koh Rong, Camboya! 🏝️" data-en="Our Destination: Koh Rong, Cambodia! 🏝️">¡Nuestro Destino: Koh Rong, Camboya! 🏝️</h2>
+<p class="text-lg text-gray-800 mb-4" data-es="Sí, he elegido el lugar perfecto para esta aventura..." data-en="Yes, I chose the perfect place for this adventure...">Sí, he elegido el lugar perfecto para esta aventura: <span class="highlight">Koh Rong, Camboya</span>.</p>
+</section>
 
-<!-- FORMULARIO COMPLETO -->
-<section id="rsvp-section" class="card fade-in" style="animation-delay:0.4s;">
-<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center lang-es">¡Confirma tu Asistencia! 📬</h2>
-<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center lang-en" style="display:none;">RSVP! 📬</h2>
-<form action="https://formspree.io/f/xjkrnavo" method="POST" class="space-y-4">
+<!-- Itinerary -->
+<div class="section-divider"></div>
+<section class="card fade-in" style="animation-delay:0.6s;">
+<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center" data-es="Nuestro Itinerario en el Paraíso 🗓️" data-en="Our Paradise Itinerary 🗓️">Nuestro Itinerario en el Paraíso 🗓️</h2>
+<p class="text-lg text-gray-800 mb-4" data-es="Quiero que esta celebración sea un sueño hecho realidad..." data-en="I want this celebration to be a dream come true...">Quiero que esta celebración sea un sueño hecho realidad, sin preocupaciones. Por eso, he diseñado una experiencia para que solo te enfoques en disfrutar:</p>
+<ul class="list-none p-0 text-lg text-gray-800 space-y-4">
+<li class="flex items-start"><i class="fas fa-plane-arrival text-emerald-600 text-2xl mr-3 mt-1"></i><div><span class="highlight text-xl" data-es="Llegada:" data-en="Arrival:">Llegada:</span> Lunes, <span class="highlight">7 de diciembre de 2026</span>. ¡El paraíso te espera!</div></li>
+<li class="flex items-start"><i class="fas fa-birthday-cake text-emerald-600 text-2xl mr-3 mt-1"></i><div><span class="highlight text-xl" data-es="La Celebración Épica:" data-en="Epic Celebration:">La Celebración Épica:</span> Martes, <span class="highlight">8 de diciembre de 2026 por la noche</span>.</div></li>
+<li class="flex items-start"><i class="fas fa-suitcase-rolling text-emerald-600 text-2xl mr-3 mt-1"></i><div><span class="highlight text-xl" data-es="Check-out:" data-en="Check-out:">Check-out:</span> Miércoles <span class="highlight">9 o jueves 10 de diciembre de 2026</span> de Koh Rong.</div></li>
+</ul>
+</section>
 
-<input type="hidden" name="_source" value="Fernando's Birthday Invitation">
-
-<label for="name" class="block text-lg font-medium text-gray-700 mb-2 lang-es">Tu Nombre Completo:</label>
-<label for="name" class="block text-lg font-medium text-gray-700 mb-2 lang-en" style="display:none;">Your Full Name:</label>
-<input type="text" id="name" name="name" class="form-input" placeholder="Ej: Juan Pérez" required>
-
-<label class="block text-lg font-medium text-gray-700 mb-2 lang-es">¿Vendrás con tu pareja?</label>
-<label class="block text-lg font-medium text-gray-700 mb-2 lang-en" style="display:none;">Will you come with a partner?</label>
-<div class="flex items-center space-x-4">
-<label class="inline-flex items-center"><input type="radio" name="with_partner" value="yes" class="form-radio text-emerald-600" id="partner_yes"><span class="ml-2 text-lg text-gray-800 lang-es">Sí</span><span class="ml-2 text-lg text-gray-800 lang-en" style="display:none;">Yes</span></label>
-<label class="inline-flex items-center"><input type="radio" name="with_partner" value="no" class="form-radio text-emerald-600" id="partner_no" checked><span class="ml-2 text-lg text-gray-800 lang-es">No</span><span class="ml-2 text-lg text-gray-800 lang-en" style="display:none;">No</span></label>
+<!-- Gallery -->
+<div class="section-divider"></div>
+<section class="card fade-in" style="animation-delay:1.4s;">
+<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center" data-es="Explora el Paraíso y Más allá 📸" data-en="Explore Paradise and Beyond 📸">Explora el Paraíso y Más allá 📸</h2>
+<p class="text-lg text-gray-800 mb-6 text-center" data-es="Un vistazo a la magia que nos espera..." data-en="A glimpse of the magic that awaits us...">Un vistazo a la magia que nos espera en Camboya y Koh Rong.</p>
+<div class="text-center mb-8">
+    <img src="Images/Mapa.jpg" alt="Mapa del destino" class="rounded-lg shadow-md inline-block max-w-full h-auto">
+    <p class="text-sm text-gray-500 text-center" data-es="Nuestro paraíso y los lugares que visitaremos." data-en="Our paradise and the places we will visit.">Nuestro paraíso y los lugares que visitaremos.</p>
 </div>
-<div id="partner_name_field" class="hidden">
-<label for="partner_name" class="block text-lg font-medium text-gray-700 mb-2 lang-es">Nombre de tu pareja:</label>
-<label for="partner_name" class="block text-lg font-medium text-gray-700 mb-2 lang-en" style="display:none;">Partner's Name:</label>
-<input type="text" id="partner_name" name="partner_name" class="form-input" placeholder="Ej: María García">
+<div class="image-gallery">
+<div class="gallery-item"><img src="Images/2.jpg" alt="Buceo"><p>Buceo en aguas cristalinas.</p></div>
+<div class="gallery-item"><img src="Images/3.jpg" alt="Cielo estrellado"><p>Noches mágicas bajo un cielo estrellado con plancton bioluminiscente.</p></div>
+<div class="gallery-item"><img src="Images/4.jpg" alt="Cena en la playa"><p>Cenas inolvidables en la arena disfrutando de la gastronomía local.</p></div>
+<div class="gallery-item"><img src="Images/5.jpg" alt="Barcos tradicionales"><p>Barcos pesqueros tradicionales que pintan de color las bahías de Koh Rong.</p></div>
+<div class="gallery-item"><img src="Images/6.jpg" alt="Ruinas y vegetación"><p>Explorando vestigios de antiguas civilizaciones en la exuberante vegetación.</p></div>
+<div class="gallery-item"><img src="Images/7.jpg" alt="Playa solitaria"><p>Playas vírgenes donde sentirte completamente en el paraíso.</p></div>
+<div class="gallery-item"><img src="Images/8.jpg" alt="Atardecer"><p>Atardeceres que pintan el cielo de colores imposibles de olvidar.</p></div>
+<div class="gallery-item"><img src="Images/9.jpg" alt="Fiesta en la playa"><p>Fiestas épicas bajo la luna tropical, con música y baile sin fin.</p></div>
 </div>
+</section>
 
-<!-- Check-in Koh Rong -->
-<label for="checkin_koh" class="block text-lg font-medium text-gray-700 mb-2 lang-es">Fecha de llegada a Koh Rong:</label>
-<label for="checkin_koh" class="block text-lg font-medium text-gray-700 mb-2 lang-en" style="display:none;">Koh Rong Check-in Date:</label>
-<input type="date" id="checkin_koh" name="checkin_koh" class="form-input" required>
-
-<!-- Check-out Koh Rong -->
-<label for="checkout_koh" class="block text-lg font-medium text-gray-700 mb-2 lang-es">Fecha de salida de Koh Rong:</label>
-<label for="checkout_koh" class="block text-lg font-medium text-gray-700 mb-2 lang-en" style="display:none;">Koh Rong Check-out Date:</label>
-<input type="date" id="checkout_koh" name="checkout_koh" class="form-input" required>
-
-<!-- Asistencia al viaje -->
-<label class="block text-lg font-medium text-gray-700 mb-2 lang-es">¿Te unirás conmigo? Fecha de salida 4 de diciembre o nos vemos el 5/6 en Phnom Penh antes de ir a Koh Rong.</label>
-<label class="block text-lg font-medium text-gray-700 mb-2 lang-en" style="display:none;">Will you join me? Departure Dec 4 or meet Dec 5/6 in Phnom Penh before heading to Koh Rong.</label>
-<div class="flex items-center space-x-4">
-<label class="inline-flex items-center"><input type="radio" name="full_trip" value="yes" class="form-radio text-emerald-600" required><span class="ml-2 text-lg text-gray-800 lang-es">Sí</span><span class="ml-2 text-lg text-gray-800 lang-en" style="display:none;">Yes</span></label>
-<label class="inline-flex items-center"><input type="radio" name="full_trip" value="no" class="form-radio text-emerald-600" required><span class="ml-2 text-lg text-gray-800 lang-es">No</span><span class="ml-2 text-lg text-gray-800 lang-en" style="display:none;">No</span></label>
-</div>
-
-<!-- Ayuda con vuelos -->
-<label class="block text-lg font-medium text-gray-700 mb-2 lang-es">¿Necesitas ayuda buscando vuelos?</label>
-<label class="block text-lg font-medium text-gray-700 mb-2 lang-en" style="display:none;">Do you need help finding flights?</label>
-<div class="flex items-center space-x-4">
-<label class="inline-flex items-center"><input type="radio" name="need_flight_help" value="yes" class="form-radio text-emerald-600" id="flight_yes"><span class="ml-2 text-lg text-gray-800 lang-es">Sí</span><span class="ml-2 text-lg text-gray-800 lang-en" style="display:none;">Yes</span></label>
-<label class="inline-flex items-center"><input type="radio" name="need_flight_help" value="no" class="form-radio text-emerald-600" id="flight_no" checked><span class="ml-2 text-lg text-gray-800 lang-es">No</span><span class="ml-2 text-lg text-gray-800 lang-en" style="display:none;">No</span></label>
-</div>
-<div id="flight_details_field" class="hidden">
-<label for="flight_details" class="block text-lg font-medium text-gray-700 mb-2 lang-es">Indica fechas de salida, llegada y lugar de origen preferido:</label>
-<label for="flight_details" class="block text-lg font-medium text-gray-700 mb-2 lang-en" style="display:none;">Provide departure, arrival dates and preferred origin city:</label>
-<textarea id="flight_details" name="flight_details" rows="3" class="form-input"></textarea>
-</div>
-
-<!-- Mensaje -->
-<label for="message" class="block text-lg font-medium text-gray-700 mb-2 lang-es">¿Algún mensaje o pregunta para Fernando?</label>
-<label for="message" class="block text-lg font-medium text-gray-700 mb-2 lang-en" style="display:none;">Any message or question for Fernando?</label>
-<textarea id="message" name="message" rows="3" class="form-input"></textarea>
-
-<button type="submit" class="btn-primary w-full lang-es">Enviar RSVP 🎉</button>
-<button type="submit" class="btn-primary w-full lang-en" style="display:none;">Send RSVP 🎉</button>
-
+<!-- Formulario -->
+<div class="section-divider"></div>
+<section class="card fade-in" style="animation-delay:1.6s;">
+<h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center" data-es="Confirma tu Asistencia 📝" data-en="Confirm Your Attendance 📝">Confirma tu Asistencia 📝</h2>
+<form class="max-w-xl mx-auto space-y-4">
+    <input type="text" class="form-input" placeholder="Nombre / Name" required>
+    <input type="email" class="form-input" placeholder="Correo / Email" required>
+    <label class="block text-gray-700 font-semibold">Check-in / Check-out:</label>
+    <input type="date" class="form-input" placeholder="Check-in">
+    <input type="date" class="form-input" placeholder="Check-out">
+    <button type="submit" class="btn-primary w-full">Enviar / Submit</button>
 </form>
 </section>
 
-</div>
+<!-- Footer -->
+<div class="section-divider"></div>
+<footer class="text-center text-gray-500 text-sm mb-10">
+    <p>&copy; 2026 Fernando. Todos los derechos reservados.</p>
+</footer>
 
 <script>
-// Mostrar contenido al pulsar botón
-document.getElementById('reveal-button').addEventListener('click', function() {
-    document.getElementById('main-content').classList.remove('hidden');
-    window.scrollTo({ top: document.getElementById('main-content').offsetTop, behavior: 'smooth' });
-});
-document.getElementById('reveal-button-en').addEventListener('click', function() {
-    document.getElementById('main-content').classList.remove('hidden');
-    window.scrollTo({ top: document.getElementById('main-content').offsetTop, behavior: 'smooth' });
-});
-
-// Toggle música
-const musicBtn = document.getElementById('music-toggle');
-const music = document.getElementById('background-music');
-musicBtn.addEventListener('click', () => {
-    if (music.paused) music.play();
-    else music.pause();
-});
-
-// Toggle idioma
-document.getElementById('lang-toggle').addEventListener('click', function() {
-    document.querySelectorAll('.lang-es').forEach(el=>el.style.display=(el.style.display=='none')?'inline':'none');
-    document.querySelectorAll('.lang-en').forEach(el=>el.style.display=(el.style.display=='none')?'inline':'none');
-});
-
-// Mostrar campo pareja si es Sí
-document.querySelectorAll('input[name="with_partner"]').forEach(el=>{
-    el.addEventListener('change', function(){
-        if(this.value=='yes') document.getElementById('partner_name_field').classList.remove('hidden');
-        else document.getElementById('partner_name_field').classList.add('hidden');
-    });
-});
-// Mostrar detalles de vuelo
-document.querySelectorAll('input[name="need_flight_help"]').forEach(el=>{
-    el.addEventListener('change', function(){
-        if(this.value=='yes') document.getElementById('flight_details_field').classList.remove('hidden');
-        else document.getElementById('flight_details_field').classList.add('hidden');
-    });
-});
-
 // Countdown
-const targetDate = new Date("2026-12-04T10:00:00"); // Fecha del evento
-function updateCountdown() {
-    const now = new Date();
-    const diff = targetDate - now;
-    if(diff<0) return;
-    const days=Math.floor(diff/1000/60/60/24);
-    const hours=Math.floor(diff/1000/60/60%24);
-    const minutes=Math.floor(diff/1000/60%60);
-    const seconds=Math.floor(diff/1000%60);
-    document.getElementById('days').innerText = String(days).padStart(2,'0');
-    document.getElementById('hours').innerText = String(hours).padStart(2,'0');
-    document.getElementById('minutes').innerText = String(minutes).padStart(2,'0');
-    document.getElementById('seconds').innerText = String(seconds).padStart(2,'0');
-}
-setInterval(updateCountdown,1000);
-updateCountdown();
-</script>
+const countdownDate = new Date("December 8, 2026 20:00:00").getTime();
+const daysEl = document.getElementById("days"), hoursEl = document.getElementById("hours"), minutesEl = document.getElementById("minutes"), secondsEl = document.getElementById("seconds");
+setInterval(() => {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+    daysEl.innerText = String(Math.floor(distance/(1000*60*60*24))).padStart(2,'0');
+    hoursEl.innerText = String(Math.floor((distance%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+    minutesEl.innerText = String(Math.floor((distance%(1000*60*60))/(1000*60))).padStart(2,'0');
+    secondsEl.innerText = String(Math.floor((distance%(1000*60))/1000)).padStart(2,'0');
+},1000);
 
+// Reveal main content
+document.getElementById("reveal-button").onclick = ()=>document.getElementById("main-content").classList.remove("hidden");
+
+// Music toggle
+const music = document.getElementById("background-music");
+document.getElementById("music-toggle").onclick = ()=>{
+    if(music.paused){music.play();} else {music.pause();}
+};
+
+// Language toggle
+document.getElementById("language-toggle").onclick = ()=>{
+    document.querySelectorAll("[data-es]").forEach(el=>{
+        if(el.innerText===el.dataset.es){el.innerText=el.dataset.en;} else {el.innerText=el.dataset.es;}
+    });
+};
+</script>
 </body>
 </html>
