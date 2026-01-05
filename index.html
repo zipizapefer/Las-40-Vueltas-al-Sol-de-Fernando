@@ -120,7 +120,7 @@
             📢 ¡Noticias frescas!
         </h2>
         <p class="text-lg text-gray-800 text-center">
-            Ya están disponibles los vuelos desde <span class="highlight">Bélgica</span> y <span class="highlight">España</span> para unirte a la celebración.
+            Ya están disponibles los vuelos desde <span class="highlight">Bélgica</span> y <span class="highlight">España</span> para unirte a la celebración. No dudes en contactarme para que te ayude buscando vuelos!
         </p>
     </section>
 
@@ -142,7 +142,7 @@
     <section class="card fade-in" style="animation-delay:0.3s;">
         <h2 class="text-3xl md:text-4xl mb-6 text-emerald-600 text-center">¿Aventurero/a desde el principio? 🏞️</h2>
         <p class="text-lg text-gray-800 mb-4">
-            Únete a mí en una ruta previa por Camboya. ¡Exploremos juntos templos milenarios y paisajes asombrosos antes de la fiesta! Poco a poco voy planeando el itinerario. <a href="itinerario.html" class="highlight underline">Pincha aquí</a> para ver el itinerario completo.
+            Únete a mí en una ruta previa por Camboya. ¡Exploremos juntos templos milenarios y paisajes asombrosos antes de la fiesta! Fecha de salida 4 de Diciembre 2026. Poco a poco voy planeando el itinerario. <a href="itinerario.html" class="highlight underline">Pincha aquí</a> para ver el itinerario completo.
         </p>
     </section>
 
@@ -155,10 +155,10 @@
             <input type="hidden" name="_source" value="Fernando's Birthday Invitation">
 
             <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Tu Nombre Completo:</label>
-            <input type="text" id="name" name="name" class="form-input" placeholder="Ej: Juan Pérez" required>
+            <input type="text" id="name" name="name" class="form-input" placeholder="Ej: Paquita Salas" required>
 
             <label for="email" class="block text-lg font-medium text-gray-700 mb-2">Tu Correo Electrónico:</label>
-            <input type="email" id="email" name="email" class="form-input" placeholder="Ej: juan.perez@example.com" required>
+            <input type="email" id="email" name="email" class="form-input" placeholder="Ej: paquita.salas@ejemplo.com" required>
 
             <label class="block text-lg font-medium text-gray-700 mb-2">¿Vendrás con tu pareja?</label>
             <div class="flex items-center space-x-4">
@@ -172,11 +172,11 @@
                 </label>
             </div>
             <div id="partner_name_field" class="hidden">
-                <label for="partner_name" class="block text-lg font-medium text-gray-700 mb-2">Nombre de tu pareja:</label>
-                <input type="text" id="partner_name" name="partner_name" class="form-input" placeholder="Ej: María García">
+                <label for="partner_name" class="block text-lg font-medium text-gray-700 mb-2">Nombre y apellidos de tu pareja:</label>
+                <input type="text" id="partner_name" name="partner_name" class="form-input" placeholder="Ej: Rosalia Perez">
             </div>
 
-            <label class="block text-lg font-medium text-gray-700 mb-2">¿Te unirás conmigo? Fecha de salida 4 de diciembre o nos vemos el 5/6 de diciembre en Phnom Penh para visitar la ciudad antes de irnos a Koh Rong.</label>
+            <label class="block text-lg font-medium text-gray-700 mb-2">¿Te unirás conmigo? Fecha de salida 4 de diciembre o nos vemos el 5/6 de diciembre en Phnom Penh para visitar la ciudad antes de irnos a Koh Rong. <a href="itinerario.html" class="highlight underline">Pincha aquí</a> para ver el itinerario completo.</label>
             <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">
                     <input type="radio" name="full_trip" value="yes" class="form-radio text-emerald-600" required>
@@ -187,7 +187,12 @@
                     <span class="ml-2 text-lg text-gray-800">No</span>
                 </label>
             </div>
-
+<label for="checkin_date" class="block text-lg font-medium text-gray-700 mb-2">¿Cuál es tu fecha de check-in?</label>
+            <select id="checkout_date" name="checkout_date" class="form-input form-select" required>
+                <option value="">Selecciona una opción</option>
+                <option value="Dec 7, 2026">Lunes, 7 de diciembre de 2026</option>
+                <option value="Dec 8, 2026">Martes, 8 de diciembre de 2026</option>
+            </select>
             <label for="checkout_date" class="block text-lg font-medium text-gray-700 mb-2">¿Cuál es tu fecha de check-out?</label>
             <select id="checkout_date" name="checkout_date" class="form-input form-select" required>
                 <option value="">Selecciona una opción</option>
