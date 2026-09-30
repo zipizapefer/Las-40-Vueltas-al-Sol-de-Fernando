@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Las 40 Vueltas al Sol · Fernando</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            gold: '#d97706',
+                            goldlight: '#fef3c7',
+                            accent: '#0284c7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+        }
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(6, 78, 59, 0.3) 0%, rgba(6, 78, 59, 0.85) 100%), 
+                        url('https://upload.wikimedia.org/wikipedia/commons/f/f7/Cambodia_island_paradise_koh_rong_sanloem.jpg') center/cover no-repeat fixed;
+        }
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(217, 119, 6, 0.25);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #059669;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #047857;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 ease-out bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700 pointer-events-none">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toast-msg" class="text-sm font-medium">Copiado al portapapeles</span>
+    </div>
+
+    <header class="hero-gradient min-h-[82vh] flex flex-col justify-between p-6 sm:p-12 relative text-white">
+        <div class="max-w-6xl mx-auto w-full pt-6 flex justify-between items-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-xs font-bold tracking-widest uppercase">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                4–28 Diciembre 2026
+            </div>
+            <button onclick="sharePage()" class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-xs font-semibold transition-all flex items-center gap-2">
+                <i class="fa-solid fa-share-nodes"></i> <span class="hidden sm:inline">Compartir</span>
+            </button>
+        </div>
+
+        <div class="max-w-6xl mx-auto w-full my-auto py-12">
+            <p class="text-brand-goldlight uppercase tracking-widest font-bold text-sm sm:text-base mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-plane-departure text-amber-400"></i> Camboya · Laos · Tailandia
+            </p>
+            <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight leading-none mb-6 drop-shadow-md">
+                Las 40 Vueltas <br><span class="italic font-normal text-amber-300">al Sol</span> de Fernando
+            </h1>
+            <p class="text-lg sm:text-2xl text-slate-100 max-w-2xl font-light leading-relaxed mb-8 drop-shadow">
+                Una aventura por el sudeste asiático, una isla tropical privada, viejos y nuevos amigos y una noche inolvidable. 🌴✨
+            </p>
+
+            <div class="inline-flex flex-wrap items-center gap-3 sm:gap-4 p-4 sm:p-6 rounded-3xl glass-dark border border-white/20 gold-glow">
+                <div class="text-center px-3 sm:px-4 border-r border-white/10">
+                    <span id="cd-days" class="block font-serif text-3xl sm:text-5xl font-extrabold text-amber-400">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-300 font-semibold">Días</span>
+                </div>
+                <div class="text-center px-3 sm:px-4 border-r border-white/10">
+                    <span id="cd-hours" class="block font-serif text-3xl sm:text-5xl font-extrabold text-white">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-300 font-semibold">Horas</span>
+                </div>
+                <div class="text-center px-3 sm:px-4 border-r border-white/10">
+                    <span id="cd-mins" class="block font-serif text-3xl sm:text-5xl font-extrabold text-white">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-300 font-semibold">Minutos</span>
+                </div>
+                <div class="text-center px-3 sm:px-4">
+                    <span id="cd-secs" class="block font-serif text-3xl sm:text-5xl font-extrabold text-emerald-400">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-300 font-semibold">Segundos</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto w-full pb-4 text-center sm:text-left flex justify-between items-end">
+            <span class="text-xs text-white/70">📍 Koh Rong · 8 de Diciembre Cumpleaños Oficial</span>
+            <a href="#resumen" class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md flex items-center justify-center transition-all animate-bounce">
+                <i class="fa-solid fa-arrow-down text-white"></i>
+            </a>
+        </div>
+    </header>
+
+    <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all">
+        <div class="max-w-6xl mx-auto px-4 flex items-center gap-2 overflow-x-auto py-3 no-scrollbar">
+            <a href="#resumen" class="nav-item whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold text-slate-700 hover:bg-brand-50 hover:text-brand-900 transition-all flex items-center gap-1.5 bg-slate-100">
+                <i class="fa-solid fa-compass text-brand-700"></i> Ruta
+            </a>
+            <a href="#viajeros" class="nav-item whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold text-slate-700 hover:bg-brand-50 hover:text-brand-900 transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-users text-brand-700"></i> Viajeros
+            </a>
+            <a href="#itinerario" class="nav-item whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold text-slate-700 hover:bg-brand-50 hover:text-brand-900 transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-map-location-dot text-brand-700"></i> Itinerario
+            </a>
+            <a href="#cumple" class="nav-item whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold text-amber-800 bg-amber-50 border border-amber-200/80 hover:bg-amber-100 transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-cake-candles text-amber-600"></i> Fiesta 8/12
+            </a>
+            <a href="#playlist" class="nav-item whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold text-slate-700 hover:bg-brand-50 hover:text-brand-900 transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-music text-emerald-600"></i> Playlist
+            </a>
+            <a href="#comunidad" class="nav-item whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold text-slate-700 hover:bg-brand-50 hover:text-brand-900 transition-all flex items-center gap-1.5">
+                <i class="fa-brands fa-whatsapp text-emerald-600"></i> Grupo
+            </a>
+            <a href="#checklist" class="nav-item whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold text-slate-700 hover:bg-brand-50 hover:text-brand-900 transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-list-check text-brand-700"></i> Checklist
+            </a>
+            <a href="#info" class="nav-item whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold text-slate-700 hover:bg-brand-50 hover:text-brand-900 transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-passport text-brand-700"></i> Visados / Trámites
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 space-y-16">
+
+        <!-- SECTION 1: RESUMEN DE RUTA -->
+        <section id="resumen" class="scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand-700 bg-brand-50 px-3 py-1 rounded-full border border-brand-100">Visión General</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">🧭 El viaje de un vistazo</h2>
+                </div>
+                <p class="text-sm text-slate-500 max-w-md">25 días explorando ciudades imperiales, ruinas milenarias, templos budistas y playas paradisíacas.</p>
+            </div>
+
+            <!-- Route Steps Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-brand-900 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-plane"></i>
+                        </span>
+                        <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-600">04 Dic</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-1">Salida de Europa</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Bruselas / Madrid / Barcelona → Pekín.</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center text-amber-700 group-hover:bg-amber-600 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-archway"></i>
+                        </span>
+                        <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-amber-100 text-amber-800">5–7 Dic</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-1">Pekín & Phnom Penh</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Gran Muralla, Phnom Penh y preparación para la isla.</p>
+                </div>
+
+                <div class="bg-amber-50/80 p-5 rounded-2xl border-2 border-amber-300 shadow-md transition-all group relative overflow-hidden">
+                    <div class="absolute -right-4 -bottom-4 text-amber-200/50 text-6xl pointer-events-none">🎂</div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-9 h-9 rounded-xl bg-amber-500 flex items-center justify-center text-white shadow-sm">
+                            <i class="fa-solid fa-cake-candles"></i>
+                        </span>
+                        <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-amber-200 text-amber-900">7–10 Dic</span>
+                    </div>
+                    <h3 class="font-extrabold text-amber-950 mb-1">CUMPLEAÑOS KOH RONG</h3>
+                    <p class="text-xs text-amber-900/80 leading-relaxed font-medium">Isla tropical, fiesta en la playa y celebración el 8 de diciembre.</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-brand-900 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-place-of-worship"></i>
+                        </span>
+                        <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-600">10–12 Dic</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-1">Siem Reap & Angkor</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Templos milenarios, amanecer en Angkor Wat.</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-brand-900 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-water"></i>
+                        </span>
+                        <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-600">12–17 Dic</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-1">Laos Tranquilo</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Luang Prabang, cascadas Kuang Si, Mekong y Vientiane.</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-brand-900 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-city"></i>
+                        </span>
+                        <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-600">17–21 Dic</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-1">Bangkok</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Templos dorados, vida urbana, rooftops y masajes.</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-umbrella-beach"></i>
+                        </span>
+                        <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">21–26 Dic</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-1">Koh Lipe · Navidad</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Akira Lipe Resort. Navidad tropical en el paraíso.</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-brand-900 group-hover:text-white transition-all">
+                            <i class="fa-solid fa-plane-arrival"></i>
+                        </span>
+                        <span class="text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-600">26–28 Dic</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-1">Vuelta a casa</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Bangkok → Múnich → Bruselas / España.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: VIAJEROS Y TRAMOS -->
+        <section id="viajeros" class="scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand-700 bg-brand-50 px-3 py-1 rounded-full border border-brand-100">Logística de Grupo</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">👥 Quién viaja con quién</h2>
+                </div>
+                <div class="w-full md:w-auto">
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="flightSearch" onkeyup="filterFlights()" placeholder="Buscar viajero, vuelo o fecha..." class="w-full md:w-72 pl-10 pr-4 py-2 text-xs rounded-full border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 shadow-sm">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Traveler Groups Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+                    <div class="flex items-center gap-2 font-bold text-brand-900 mb-2">
+                        <i class="fa-solid fa-plane-departure text-brand-600"></i> Fernando · Luis · Maite
+                    </div>
+                    <p class="text-xs text-slate-600"><b>BRU → PEK → KTI:</b> Salida y viaje juntos en grupo principal desde Bruselas.</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+                    <div class="flex items-center gap-2 font-bold text-brand-900 mb-2">
+                        <i class="fa-solid fa-plane-departure text-brand-600"></i> Rosa · Andrea
+                    </div>
+                    <p class="text-xs text-slate-600"><b>BCN → PEK → KTI:</b> Se incorporan en el vuelo Pekín → Phnom Penh.</p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+                    <div class="flex items-center gap-2 font-bold text-brand-900 mb-2">
+                        <i class="fa-solid fa-plane-departure text-brand-600"></i> Irene · Héctor · Lucía · Brais
+                    </div>
+                    <p class="text-xs text-slate-600"><b>MAD → PEK → KTI:</b> Planes en Pekín y vuelo nocturno a Phnom Penh.</p>
+                </div>
+
+                <div class="bg-amber-50 p-5 rounded-2xl border border-amber-200 shadow-sm">
+                    <div class="flex items-center gap-2 font-bold text-amber-900 mb-2">
+                        <i class="fa-solid fa-umbrella-beach text-amber-600"></i> Equipo Koh Rong
+                    </div>
+                    <p class="text-xs text-amber-900/80">Candela, David, Carolina, Niels, Héctor Díaz, Francisco, Carmen, Florentino y Miriam (llegada libre).</p>
+                </div>
+            </div>
+
+            <!-- Flights Table -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+                <div class="p-4 bg-slate-50 border-b border-slate-200/80 flex items-center justify-between">
+                    <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-ticket text-brand-600"></i> Tramos y vuelos confirmados del grupo
+                    </h3>
+                    <span class="text-[11px] text-slate-500">Desplaza lateralmente en móvil <i class="fa-solid fa-arrow-right sm:hidden"></i></span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs" id="flightTable">
+                        <thead class="bg-slate-100 text-slate-700 uppercase tracking-wider font-extrabold border-b border-slate-200">
+                            <tr>
+                                <th class="p-3.5">Fecha</th>
+                                <th class="p-3.5">Tramo</th>
+                                <th class="p-3.5">Horario</th>
+                                <th class="p-3.5">Compañía / Vuelo</th>
+                                <th class="p-3.5">Equipaje Indicado</th>
+                                <th class="p-3.5">Viajeros Confirmados</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-slate-700">
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="p-3.5 font-extrabold text-amber-700">04/12</td>
+                                <td class="p-3.5 font-bold">BRU → PEK</td>
+                                <td class="p-3.5">12:00 → 04:45 (+1)</td>
+                                <td class="p-3.5"><span class="px-2 py-1 rounded bg-slate-100 font-semibold text-slate-800">Air China CA964</span></td>
+                                <td class="p-3.5">5 kg cabina + 23 kg facturado</td>
+                                <td class="p-3.5 font-medium">Fernando · Luis · Maite</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="p-3.5 font-extrabold text-amber-700">05/12</td>
+                                <td class="p-3.5 font-bold">PEK → KTI</td>
+                                <td class="p-3.5">18:55 → 23:10</td>
+                                <td class="p-3.5"><span class="px-2 py-1 rounded bg-slate-100 font-semibold text-slate-800">Air China CA745</span></td>
+                                <td class="p-3.5">5 kg cabina + 23 kg facturado</td>
+                                <td class="p-3.5 font-medium">Fernando · Luis · Maite · Irene · Héctor · Lucía · Brais</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="p-3.5 font-extrabold text-amber-700">10/12</td>
+                                <td class="p-3.5 font-bold">KOS → SAI</td>
+                                <td class="p-3.5">10:15 → 11:15</td>
+                                <td class="p-3.5"><span class="px-2 py-1 rounded border border-brand-200 bg-brand-50 text-brand-800 font-semibold">Air Cambodia K6 130</span></td>
+                                <td class="p-3.5">7 kg cabina + 23 kg facturado</td>
+                                <td class="p-3.5 font-medium">Fernando · Luis · Maite · Candela · David · Irene · Héctor · Bea · Felix · Lucía · Brais</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="p-3.5 font-extrabold text-amber-700">12/12</td>
+                                <td class="p-3.5 font-bold">SAI → LPQ</td>
+                                <td class="p-3.5">17:05 → 18:30</td>
+                                <td class="p-3.5"><span class="px-2 py-1 rounded bg-slate-100 font-semibold text-slate-800">Vuelo de grupo</span></td>
+                                <td class="p-3.5">10 kg cabina + 23 kg facturado</td>
+                                <td class="p-3.5 font-medium">Fernando · Luis · Maite</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="p-3.5 font-extrabold text-amber-700">17/12</td>
+                                <td class="p-3.5 font-bold">VTE → DMK</td>
+                                <td class="p-3.5">08:05 → 09:15</td>
+                                <td class="p-3.5"><span class="px-2 py-1 rounded bg-slate-100 font-semibold text-slate-800">Thai AirAsia</span></td>
+                                <td class="p-3.5">7 kg cabina + 20 kg facturado</td>
+                                <td class="p-3.5 font-medium">Fernando · Luis · Maite</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="p-3.5 font-extrabold text-amber-700">21/12</td>
+                                <td class="p-3.5 font-bold">BKK → HDY</td>
+                                <td class="p-3.5">06:35 → 08:05</td>
+                                <td class="p-3.5"><span class="px-2 py-1 rounded bg-slate-100 font-semibold text-slate-800">Thai Airways TG259</span></td>
+                                <td class="p-3.5">7 kg + 1 pieza de 23 kg</td>
+                                <td class="p-3.5 font-medium">Fernando · Luis · Maite</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="p-3.5 font-extrabold text-amber-700">26/12</td>
+                                <td class="p-3.5 font-bold">HDY → BKK</td>
+                                <td class="p-3.5">20:40 → 22:15</td>
+                                <td class="p-3.5"><span class="px-2 py-1 rounded bg-slate-100 font-semibold text-slate-800">Thai Airways TG268</span></td>
+                                <td class="p-3.5">Según billete</td>
+                                <td class="p-3.5 font-medium">Fernando · Luis · Maite</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeria" class="scroll-mt-24">
+            <h2 class="font-serif text-3xl font-extrabold text-slate-900 mb-6">📸 Destinos de Ensueño</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer h-48 sm:h-64" onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/4/44/Angkor_Wat_sunrise.jpg', 'Angkor Wat al amanecer')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Angkor_Wat_sunrise.jpg" alt="Angkor Wat" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                        <span class="text-white text-xs font-bold">🇰🇭 Angkor Wat</span>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer h-48 sm:h-64" onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/1/1a/Koh_Rong_Cambodia.jpg', 'Isla Koh Rong')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Koh_Rong_Cambodia.jpg" alt="Koh Rong" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                        <span class="text-white text-xs font-bold">🎂 Koh Rong</span>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer h-48 sm:h-64" onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/e/ea/Wat_Arun_Bangkok.jpg', 'Wat Arun Bangkok')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Wat_Arun_Bangkok.jpg" alt="Bangkok Wat Arun" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                        <span class="text-white text-xs font-bold">🇹🇭 Wat Arun</span>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-2xl cursor-pointer h-48 sm:h-64" onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/d/d7/Ko_Lipe_%28island%29%2C_Beach%2C_Thailand.jpg', 'Koh Lipe Playa')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Ko_Lipe_%28island%29%2C_Beach%2C_Thailand.jpg" alt="Koh Lipe" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                        <span class="text-white text-xs font-bold">🏝️ Koh Lipe</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: ITINERARIO DETALLADO CON FILTROS -->
+        <section id="itinerario" class="scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand-700 bg-brand-50 px-3 py-1 rounded-full border border-brand-100">Día a Día</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">📅 Itinerario Detallado</h2>
+                </div>
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-1.5 p-1.5 bg-slate-200/80 rounded-2xl text-xs font-bold">
+                    <button onclick="filterItinerary('all')" class="itin-btn px-3 py-1.5 rounded-xl bg-white text-slate-900 shadow-sm transition-all" data-cat="all">Todos</button>
+                    <button onclick="filterItinerary('camboya')" class="itin-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 transition-all" data-cat="camboya">🇰🇭 Camboya</button>
+                    <button onclick="filterItinerary('laos')" class="itin-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 transition-all" data-cat="laos">🇱🇦 Laos</button>
+                    <button onclick="filterItinerary('bangkok')" class="itin-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 transition-all" data-cat="bangkok">🇹🇭 Bangkok</button>
+                    <button onclick="filterItinerary('lipe')" class="itin-btn px-3 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 transition-all" data-cat="lipe">🏝️ Koh Lipe</button>
+                </div>
+            </div>
+
+            <div class="space-y-4" id="itineraryContainer">
+                <!-- Day 04 -->
+                <div class="itin-card camboya bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-black uppercase text-amber-700 tracking-wider">04 Diciembre</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">Air China</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-extrabold text-slate-900 mb-2">✈️ Salida hacia Camboya vía Pekín</h3>
+                    <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                        <li><b>BRU → PEK · CA964 · 12:00 → 04:45 (+1)</b></li>
+                        <li>Fernando · Luis · Maite viajan juntos desde Bruselas.</li>
+                        <li>Equipaje indicado: <b>5 kg cabina + 23 kg facturado por persona</b>.</li>
+                    </ul>
+                </div>
+
+                <!-- Day 05 -->
+                <div class="itin-card camboya bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-black uppercase text-amber-700 tracking-wider">05 Diciembre</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-700 border border-amber-200">Gran Muralla</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-extrabold text-slate-900 mb-2">🇨🇳 Pekín + Vuelo a Phnom Penh</h3>
+                    <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside mb-3">
+                        <li><b>05:00–16:30:</b> Gran Muralla + comida + Ciudad Prohibida (Grupo Fernando).</li>
+                        <li>Irene y Héctor organizan Pekín por libre; Lucía y Brais llegan a las 06:30.</li>
+                        <li><b>PEK → KTI · CA745 · 18:55 → 23:10</b></li>
+                        <li>Llegada y traslado al <b>Check Inn Phnom Penh Royal Palace</b>.</li>
+                    </ul>
+                </div>
+
+                <!-- Day 06 -->
+                <div class="itin-card camboya bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-black uppercase text-amber-700 tracking-wider">06 Diciembre</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Historia</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-extrabold text-slate-900 mb-2">🏛️ Phnom Penh</h3>
+                    <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                        <li>Palacio Real y Pagoda de Plata.</li>
+                        <li>Tuol Sleng para conocer la historia reciente.</li>
+                        <li>Mercado Central / Mercado Ruso y atardecer junto al río Mekong.</li>
+                    </ul>
+                </div>
+
+                <!-- Day 07 -->
+                <div class="itin-card camboya bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-black uppercase text-amber-700 tracking-wider">07 Diciembre</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-700 border border-amber-200">Rumbo a la Isla</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-extrabold text-slate-900 mb-2">🏝️ Phnom Penh → Koh Rong</h3>
+                    <p class="text-xs text-slate-600 mb-3">Traslado por carretera hacia Sihanoukville. Ferry previsto con Buva Sea a las 14:30. Primera puesta de sol tropical juntos.</p>
+                    <a href="https://www.buvasea.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-bold text-brand-700 hover:text-brand-900 bg-brand-50 px-3 py-1.5 rounded-lg border border-brand-100">
+                        <i class="fa-solid fa-ship"></i> Consultar / Comprar Ferry Buva Sea
+                    </a>
+                </div>
+
+                <!-- Day 07-10 CUMPLEAÑOS -->
+                <div id="cumple" class="itin-card camboya scroll-mt-24 bg-gradient-to-br from-amber-900 via-amber-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden border border-amber-500/30">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-amber-500 text-slate-950">07–10 Diciembre</span>
+                        <span class="text-amber-400 font-serif italic text-sm">🎉 Evento Principal</span>
+                    </div>
+                    <h3 class="font-serif text-3xl sm:text-4xl font-extrabold text-amber-300 mb-3">🎂 FIESTA 40 VUELTAS AL SOL</h3>
+                    <p class="text-slate-200 text-sm max-w-2xl leading-relaxed mb-6">
+                        El <b>8 de Diciembre</b> es el día grande. La isla de Koh Rong será nuestro refugio durante tres noches.
+                        Playa · sunset · cena especial frente al mar · tarta · música · karaoke · fiesta hasta el amanecer. 🌴🍹
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                        <div class="p-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/10">
+                            <span class="text-xl mb-1 block">🌅</span>
+                            <h4 class="font-bold text-amber-200 text-xs uppercase">Tarde</h4>
+                            <p class="text-[11px] text-slate-300">Snorkel, playa, piscina, siesta & sunset.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/10">
+                            <span class="text-xl mb-1 block">🍽️</span>
+                            <h4 class="font-bold text-amber-200 text-xs uppercase">Cena</h4>
+                            <p class="text-[11px] text-slate-300">Cena especial frente al mar.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/10">
+                            <span class="text-xl mb-1 block">🎤</span>
+                            <h4 class="font-bold text-amber-200 text-xs uppercase">Noche</h4>
+                            <p class="text-[11px] text-slate-300">Música, tarta, karaoke & fiesta.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 09 -->
+                <div class="itin-card camboya bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-black uppercase text-amber-700 tracking-wider">09 Diciembre</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-teal-50 text-teal-700 border border-teal-200">Relax & Magia</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-extrabold text-slate-900 mb-2">🌊 Koh Rong · Día de Recuperación</h3>
+                    <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                        <li>Snorkel, kayak, excursión en barco o relax en la playa.</li>
+                        <li>Sendero por la jungla a playas tranquilas.</li>
+                        <li>🌌 Por la noche: tour para ver plancton bioluminiscente en el agua.</li>
+                    </ul>
+                </div>
+
+                <!-- Day 10 -->
+                <div class="itin-card camboya bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-black uppercase text-amber-700 tracking-wider">10 Diciembre</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">Air Cambodia</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-extrabold text-slate-900 mb-2">🛕 Koh Rong → Siem Reap</h3>
+                    <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                        <li>Ferry Buva Sea temprano (06:30–07:00). Traslado a Sihanoukville Airport.</li>
+                        <li><b>KOS → SAI · 10:15 → 11:15</b> (7 kg cabina + 23 kg facturado).</li>
+                        <li>Check-in en <b>Phka Chan Hotel</b>. Atardecer en Pre Rup o templos cercanos.</li>
+                    </ul>
+                </div>
+
+                <!-- Day 11 -->
+                <div class="itin-card camboya bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-black uppercase text-amber-700 tracking-wider">11 Diciembre</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-50 text-amber-700 border border-amber-200">Amanecer Mágico</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-extrabold text-slate-900 mb-2">🛕 Angkor Wat al Amanecer</h3>
+                    <p class="text-xs text-slate-600 mb-3">Salida de madrugada: Angkor Wat → Bayon → Ta Prohm (templo de las raíces). Regreso, descanso y masaje reconfortante.</p>
+                    <a href="https://www.angkorenterprise.gov.kh/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-bold text-amber-900 bg-amber-100 hover:bg-amber-200 px-3 py-1.5 rounded-lg border border-amber-300">
+                        <i class="fa-solid fa-ticket"></i> Comprar Entradas Oficiales Angkor
+                    </a>
+                </div>
+
+                <!-- Day 12-16 LAOS -->
+                <div class="itin-card laos bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-black uppercase text-amber-700 tracking-wider">12–16 Diciembre</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">🇱🇦 Laos UNESCO</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-extrabold text-slate-900 mb-2">🇱🇦 Luang Prabang, Kuang Si & Vientiane</h3>
+                    <ul class="text-xs text-slate-600 space-y-2">
+                        <li><b>12/12:</b> Banteay Srei → Vuelo <b>SAI → LPQ (17:05 → 18:30)</b>.</li>
+                        <li><b>13/12:</b> Ceremonia Tak Bat al amanecer, Wat Xieng Thong, Mercado Nocturno junto al Mekong.</li>
+                        <li><b>14/12:</b> Cascadas de Kuang Si, Bear Rescue Center y puesta de sol desde Mount Phousi.</li>
+                        <li><b>15/12:</b> Barco por el Mekong a las cúpulas de Pak Ou + Tren de alta velocidad a Vientiane.</li>
+                        <li><b>16/12:</b> Capital Vientiane: Patuxai, Pha That Luang, Wat Si Saket y Buddha Park.</li>
+                    </ul>
+                </div>
+
+                <!-- Day 17-20 BANGKOK -->
+                <div class="itin-card bangkok bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-black uppercase text-amber-700 tracking-wider">17–20 Diciembre</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-50 text-purple-700 border border-purple-200">🇹🇭 Bangkok Urbana</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-extrabold text-slate-900 mb-2">🇹🇭 Bangkok: Templos & Rooftops</h3>
+                    <p class="text-xs text-slate-600 mb-2">Vuelo <b>VTE → DMK (08:05 → 09:15)</b>. Alojamiento céntrico.</p>
+                    <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
+                        <li>Grand Palace, Wat Phra Kaew, Wat Pho (Buda Reclinado) y Wat Arun al atardecer.</li>
+                        <li>Chinatown, mercados flotantes, shopping en Siam y cenas en terrazas rooftop.</li>
+                    </ul>
+                </div>
+
+                <!-- Day 21-26 KOH LIPE -->
+                <div class="itin-card lipe bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-black uppercase text-amber-700 tracking-wider">21–26 Diciembre</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-cyan-50 text-cyan-700 border border-cyan-200">🎄 Navidad Tropical</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-extrabold text-slate-900 mb-2">🏝️ Koh Lipe · Akira Lipe Resort</h3>
+                    <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                        <li><b>21/12:</b> Vuelo BKK → HDY (06:35 → 08:05) + bus al puerto + ferry a Koh Lipe.</li>
+                        <li><b>22–25/12:</b> Días de relax, aguas cristalinas, snorkel y celebración de Nochebuena/Navidad tropical.</li>
+                        <li><b>26/12:</b> Regreso HDY → BKK (20:40 → 22:15). Noche en <b>Jasmine City Hotel</b>.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PLAYLIST SPOTIFY -->
+        <section id="playlist" class="scroll-mt-24">
+            <div class="bg-gradient-to-br from-emerald-900 to-teal-950 text-white rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden border border-emerald-500/20">
+                <div class="max-w-3xl">
+                    <span class="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-widest bg-emerald-500 text-slate-950 mb-4 inline-block">Música Colaborativa</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-extrabold mb-4">🎵 Playlist: Las 40 Vueltas al Sol</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                        ¡Añade la banda sonora de nuestro viaje! Cada viajero puede añadir hasta <b>5 canciones</b>:
+                        una que te recuerde a Fernando, una para bailar, una vergonzosa que te encante, una para volar y otra para sonar en la playa.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <a id="spotify-listen" href="#" target="_blank" rel="noopener" class="px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs transition-all flex items-center gap-2 shadow-lg">
+                            <i class="fa-brands fa-spotify text-lg"></i> Abrir Playlist
+                        </a>
+                        <a id="spotify-add" href="#" target="_blank" rel="noopener" class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-extrabold text-xs transition-all border border-white/20 flex items-center gap-2">
+                            <i class="fa-solid fa-plus text-amber-400"></i> Añadir mis 5 canciones
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="checklist" class="scroll-mt-24">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-widest text-brand-700 bg-brand-50 px-3 py-1 rounded-full border border-brand-100">Prepárate</span>
+                        <h2 class="font-serif text-3xl font-extrabold text-slate-900 mt-1">📋 Checklist del Viajero</h2>
+                    </div>
+                    <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">Se guarda automáticamente en tu móvil</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" id="checklistGrid">
+                    <!-- Dynamic checkboxes with LocalStorage JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: COMUNIDAD & WHATSAPP -->
+        <section id="comunidad" class="scroll-mt-24">
+            <h2 class="font-serif text-3xl font-extrabold text-slate-900 mb-6">📲 Comunidad & Coordinación</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- WhatsApp Card -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-lg">Grupo Oficial de WhatsApp</h3>
+                                <p class="text-xs text-slate-500">Coordinación en tiempo real, fotos y avisos</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-6">
+                            Únete al grupo de WhatsApp para estar al día de todos los vuelos, quedadas, traslados y sorpresas durante las 40 vueltas al sol.
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center gap-4 pt-4 border-t border-slate-100">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADx0lEQVR4nO2cXYrkOAyAP60N85hAH6COktxgjtTskfYG8VH6AAXJY4GD9kFykq7tZWCmi/pBekilbH/YASHrx4kovyflr98EIcgggwwyyCCDDPLxSHHJUNqdXcZFREbwOxH/+5zPGeQtyGw/wwSwvAHdOSuswjCtoqVPFVizsqQKgNxvtUE+MrmZm/ePHyojSWHJyGi9P9R6RfL3zRnka5D5uqGcLkLpz1nLqbpFAkRZvmvOIF+dXDJmeN7nZNZHJ/zuVnMG+cxks0OdAgsw/PNWKSPA8la1SFIGXc0OHROSz/WcQd6ctGis90Z5n493Mpo/tFpY9l1zBvkipNmhq4KHlj4B3UUoPaIsq+j1qOd6ziBvR6KqqgwzAElV561jBgatnzuSmkzP9ZxB3p7sKqp6ERm7ik5dReSkqtOSUdXqQyYP0+682iAfiVx2SCsMc1LXFzM8Sb1tBoZ5t01hh4I8iO9MXTXdaKqS1FWFZBp2HBI6FORBWq3jIwNLj0f5gJZ+9kFFklrOyIb84ZxBvhZpOiSQqtDVTJFUxZoQoDuLlhHEkkRo1MuC/B9yFUtRD3oRD9O6bS+bvVekD586yC9Jc4r+PqltWa4+i4gXYztVysnd7ruvNshHJGUEYBGxmiusIu+qpk0UEdHJCmkZne682iAfi9zy1GtWunN2OwQoy1sVujXb3WDNF9H7rTbIRyR9G9N9j7IQvrbeOW2R/36J2D7IXTy2L2NyY1R+JoWlt78CCfHI/00p/awRlwX5WXQTd5hbrcMt0gxAUrt4KjvsUJAHMfWxQKypj+1gnqyuWzmkDQkdCvKT7PUyj7esrcXxX9qm0KEgD+JxWelntcirjJa2VqGraAvE1JyiYVrvudogH5E8nMk/hPDl51l0q40J3dwGmbP9Z3MG+VrkVi/LFbrLpjkZ8errmpUlV4WatZy2w4zP9ZxB3o48nGP0k4rmXavuB0Dcsbbe8IeCvJLDXmZ1exYBOpBhqmjpz9lsUxm/a84gX5e0VGLnJ2CB9kqH9K2kZkO+cc4gn5885Bj3NNB+Et82L8CPMNK1gbGXBdnEc4wmnllsuaBWt98zRcNM+ENBXskhCb0lpveUYzuDxmaHIk8d5LXscZlbmi1j7cUN/bShzYQOBfkrcsn2hrROi3/DiuEju0Wi0/b1hsdYbZAPSJYeKKeKjKzS7FDbxuIdxSD/I9ff/dAypkr5CQo1C+Sq4KlsoYvzQ0Fey1Vc1g4Mtd6JZC93HP2m8IeCPIjor8d8KfGN8yCDDDLIIIMM8kXIfwGMU8Zgse9ATQAAAABJRU5ErkJggg==" alt="QR WhatsApp" class="w-36 h-36 p-2 rounded-2xl border border-slate-200 bg-white shadow-sm">
+                        <a href="https://chat.whatsapp.com/GjACYRnLyciA1W3OmxKu05?s=cl&p=i&ilr=4&iam=1" target="_blank" rel="noopener" class="w-full text-center py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all shadow-md flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-base"></i> Unirme al Grupo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Spotify Card -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl">
+                                <i class="fa-solid fa-compact-disc"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-lg">Playlist Colaborativa</h3>
+                                <p class="text-xs text-slate-500">5 temazos por viajero</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-6">
+                            Escucha lo que han seleccionado tus compañeros de viaje para la playa, los trayectos en barco y la gran noche de cumpleaños.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100">
+                        <a href="https://open.spotify.com/playlist/6zUg3yI9iwVfCl44hzZzsc?si=5ss2qpBJTXmS5G8AJXb-NQ&utm_source=copy-link&pi=wgh1p2sfS-i7T&pt=24f1575523a8888d8e5ddc788eb32389" target="_blank" rel="noopener" class="w-full text-center py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-all shadow-md flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-spotify text-emerald-400 text-base"></i> Escuchar en Spotify
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: INFORMACIÓN OFICIAL Y TRÁMITES -->
+        <section id="info" class="scroll-mt-24">
+            <h2 class="font-serif text-3xl font-extrabold text-slate-900 mb-6">🔗 Enlaces Oficiales & Visados</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <strong class="text-slate-900 text-sm block mb-1">⛴️ Buva Sea Cambodia</strong>
+                        <p class="text-xs text-slate-500 mb-3">Horarios y reserva de ferries/speedboats hacia Koh Rong.</p>
+                    </div>
+                    <a href="https://www.buvasea.com/" target="_blank" rel="noopener" class="text-xs font-bold text-brand-700 hover:underline flex items-center gap-1">
+                        Web Oficial <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <strong class="text-slate-900 text-sm block mb-1">🎟️ Angkor Enterprise</strong>
+                        <p class="text-xs text-slate-500 mb-3">Portal oficial para la compra del Angkor Pass oficial.</p>
+                    </div>
+                    <a href="https://www.angkorenterprise.gov.kh/" target="_blank" rel="noopener" class="text-xs font-bold text-brand-700 hover:underline flex items-center gap-1">
+                        Comprar Entrada <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <strong class="text-slate-900 text-sm block mb-1">🛂 Cambodia e-Arrival</strong>
+                        <p class="text-xs text-slate-500 mb-3">Formulario obligatorio de entrada (gratuito) dentro de los 7 días previos.</p>
+                    </div>
+                    <a href="https://arrival.gov.kh/" target="_blank" rel="noopener" class="text-xs font-bold text-brand-700 hover:underline flex items-center gap-1">
+                        Completar e-Arrival <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <strong class="text-slate-900 text-sm block mb-1">🛂 Cambodia e-Visa</strong>
+                        <p class="text-xs text-slate-500 mb-3">Web oficial del visado camboyano si te corresponde.</p>
+                    </div>
+                    <a href="https://www.evisa.gov.kh/" target="_blank" rel="noopener" class="text-xs font-bold text-brand-700 hover:underline flex items-center gap-1">
+                        Solicitar eVisa <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <strong class="text-slate-900 text-sm block mb-1">🛂 Laos Digital Immigration</strong>
+                        <p class="text-xs text-slate-500 mb-3">Registro digital obligatorio de entrada a Laos.</p>
+                    </div>
+                    <a href="https://www.immigration.gov.la/" target="_blank" rel="noopener" class="text-xs font-bold text-brand-700 hover:underline flex items-center gap-1">
+                        Formulario Laos <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <strong class="text-slate-900 text-sm block mb-1">🛂 Thailand TDAC</strong>
+                        <p class="text-xs text-slate-500 mb-3">Tarjeta digital de llegada a Tailandia (máx 3 días antes).</p>
+                    </div>
+                    <a href="https://tdac.immigration.go.th/" target="_blank" rel="noopener" class="text-xs font-bold text-brand-700 hover:underline flex items-center gap-1">
+                        Thailand Digital Card <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Lightbox Modal for Images -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden backdrop-blur-md flex items-center justify-center p-4 cursor-pointer" onclick="closeLightbox()">
+        <div class="relative max-w-4xl w-full text-center">
+            <img id="lightbox-img" src="" alt="Zoom" class="max-h-[85vh] mx-auto rounded-2xl shadow-2xl border border-white/20">
+            <p id="lightbox-caption" class="text-white text-sm font-bold mt-4"></p>
+            <button class="absolute -top-12 right-0 text-white text-2xl hover:text-amber-400">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 px-6 mt-20 border-t border-slate-800 text-center">
+        <div class="max-w-6xl mx-auto space-y-4">
+            <p class="font-serif text-white text-xl font-bold">Las 40 Vueltas al Sol · Fernando 🌴</p>
+            <p class="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
+                Versión 6.0 · Actualizado Septiembre 2026. Reconfirma siempre los horarios exactos de vuelos y ferries en las páginas oficiales.
+            </p>
+            <div class="pt-4 text-[11px] text-slate-400 border-t border-slate-800">
+                Imágenes bajo licencia Creative Commons / Wikimedia Commons (mendhak, Wikirictor, Peter in s, Vyacheslav Argenberg).
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Target birthday date: Dec 8, 2026 20:00 CET
+        const targetDate = new Date("2026-12-08T20:00:00+01:00").getTime();
+
+        function updateCountdown() {
+            const now = Date.now();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('cd-days').innerText = "00";
+                document.getElementById('cd-hours').innerText = "00";
+                document.getElementById('cd-mins').innerText = "00";
+                document.getElementById('cd-secs').innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('cd-days').innerText = String(days).padStart(2, '0');
+            document.getElementById('cd-hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('cd-mins').innerText = String(mins).padStart(2, '0');
+            document.getElementById('cd-secs').innerText = String(secs).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Spotify Links Setup
+        const SPOTIFY_PLAYLIST_URL = "https://open.spotify.com/playlist/6zUg3yI9iwVfCl44hzZzsc?si=5ss2qpBJTXmS5G8AJXb-NQ&utm_source=copy-link&pi=wgh1p2sfS-i7T&pt=24f1575523a8888d8e5ddc788eb32389";
+        document.getElementById("spotify-listen").href = SPOTIFY_PLAYLIST_URL;
+        document.getElementById("spotify-add").href = SPOTIFY_PLAYLIST_URL;
+
+        // Interactive Flight Table Filter
+        function filterFlights() {
+            const input = document.getElementById("flightSearch").value.toLowerCase();
+            const rows = document.querySelectorAll("#flightTable tbody tr");
+
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(input) ? "" : "none";
+            });
+        }
+
+        // Itinerary Category Filter
+        function filterItinerary(category) {
+            const cards = document.querySelectorAll(".itin-card");
+            const buttons = document.querySelectorAll(".itin-btn");
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute("data-cat") === category) {
+                    btn.classList.add("bg-white", "text-slate-900", "shadow-sm");
+                    btn.classList.remove("text-slate-600");
+                } else {
+                    btn.classList.remove("bg-white", "text-slate-900", "shadow-sm");
+                    btn.classList.add("text-slate-600");
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === "all" || card.classList.contains(category)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        // Lightbox Handler
+        function openLightbox(src, caption) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-caption').innerText = caption;
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+
+        // Share Page
+        function sharePage() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Las 40 Vueltas al Sol · Fernando',
+                    text: '¡Acompaña a Fernando en su viaje de 40 cumpleaños!',
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                copyToClipboard(window.location.href, 'Enlace de la web copiado');
+            }
+        }
+
+        // Toast Helper
+        function copyToClipboard(text, message = 'Copiado al portapapeles') {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        const checklistItems = [
+            "Pasaporte con +6 meses de validez",
+            "Seguro de viaje internacional",
+            "Billetes e itinerarios guardados offline",
+            "Cambodia e-Arrival (7 días antes)",
+            "Visado de Camboya (si aplica)",
+            "Laos Digital Immigration Form",
+            "Laos eVisa (si aplica)",
+            "Thailand TDAC (3 días antes)",
+            "eSIM / Roaming activado",
+            "Copia digital del pasaporte",
+            "Repelente de mosquitos + Protector solar",
+            "Calzado cómodo para templos",
+            "Mochila ligera / Bolsa estanca para Koh Rong"
+        ];
+
+        function renderChecklist() {
+            const container = document.getElementById("checklistGrid");
+            const savedState = JSON.parse(localStorage.getItem("trip_checklist") || "{}");
+
+            container.innerHTML = checklistItems.map((item, index) => {
+                const isChecked = savedState[index] ? "checked" : "";
+                return `
+                    <label class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200/80 bg-slate-50 hover:bg-slate-100/80 cursor-pointer transition-all">
+                        <input type="checkbox" onchange="toggleChecklist(${index})" ${isChecked} class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                        <span class="text-xs font-semibold text-slate-700 ${isChecked ? 'line-through text-slate-400' : ''}">${item}</span>
+                    </label>
+                `;
+            }).join("");
+        }
+
+        function toggleChecklist(index) {
+            const savedState = JSON.parse(localStorage.getItem("trip_checklist") || "{}");
+            savedState[index] = !savedState[index];
+            localStorage.setItem("trip_checklist", JSON.stringify(savedState));
+            renderChecklist();
+        }
+
+        // Initialize Checklist
+        renderChecklist();
+    </script>
+</body>
+</html>
