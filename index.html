@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Las 40 Vueltas al Sol · Fernando</title>
+<link rel="preconnect" href="https://unpkg.com">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{--green:#064e3b;--emerald:#059669;--mint:#ecfdf5;--gold:#d97706;--cream:#fffaf0;--ink:#17211b;--muted:#66736c;--white:#fff;--line:#dbe9e1}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink);background:#f5faf7;line-height:1.55}
+.hero{min-height:78vh;display:flex;align-items:end;padding:42px 22px;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.72)),url("https://commons.wikimedia.org/wiki/Special:FilePath/Koh%20Rong%20Cambodia.jpg") center/cover;color:#fff}
+.hero-inner{max-width:1080px;margin:auto;width:100%}
+.kicker{text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:800;opacity:.9}
+.hero h1{font-size:clamp(2.6rem,8vw,6rem);line-height:.95;margin:12px 0}
+.hero .subtitle{font-size:clamp(1.05rem,2.5vw,1.45rem);max-width:680px}
+.countdown{display:inline-block;margin-top:18px;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);padding:10px 15px;border-radius:999px;font-weight:800}
+nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid #e5ece8;display:flex;gap:7px;padding:10px 12px;overflow:auto;justify-content:center}
+nav a{color:var(--green);text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap;padding:7px 10px;border-radius:999px}
+nav a:hover{background:var(--mint)}
+main{max-width:1080px;margin:auto;padding:22px}
+section{scroll-margin-top:70px}
+h2{font-size:clamp(1.7rem,4vw,2.5rem);color:var(--green);margin:52px 0 18px}
+h3{color:var(--green);margin-top:0}
+.lead{font-size:1.08rem;color:#405047}
+.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:20px;margin:16px 0;box-shadow:0 7px 24px rgba(6,78,59,.06)}
+.gold{border-color:#f1d49c;background:var(--cream)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.info{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px}
+.info strong{display:block;color:var(--green);margin-bottom:5px}
+.tag{display:inline-block;background:#d9f7e9;color:var(--green);padding:4px 9px;border-radius:999px;font-size:.76rem;font-weight:800;margin:2px 4px 8px 0}
+.day{overflow:hidden}
+.day .day-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.day-date{font-size:.78rem;color:var(--gold);font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+ul{padding-left:22px}
+li{margin:6px 0}
+.flight{display:grid;grid-template-columns:105px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #edf2ef}
+.flight:last-child{border-bottom:0}
+.flight strong{color:var(--green)}
+.badge{background:#f0f4f2;border-radius:8px;padding:5px 8px;font-size:.75rem;font-weight:700}
+.table-wrap{overflow:auto;border-radius:14px}
+table{width:100%;border-collapse:collapse;background:#fff;min-width:720px}
+th,td{padding:11px 10px;border-bottom:1px solid #e5ece8;text-align:left;font-size:.86rem}
+th{background:var(--green);color:#fff}
+.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
+.gallery img{width:100%;height:220px;object-fit:cover;border-radius:15px;display:block}
+.gallery img:first-child{height:450px;grid-row:span 2}
+.caption{font-size:.7rem;color:#7b8781;margin-top:7px}
+#map{height:500px;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.map-note{font-size:.78rem;color:var(--muted);margin-top:8px}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.timeline .stop{padding:15px;border-radius:14px;background:#fff;border:1px solid var(--line)}
+.stop b{display:block;color:var(--green)}
+.btn{display:inline-block;text-decoration:none;background:var(--green);color:#fff!important;font-weight:900;padding:11px 16px;border-radius:10px;margin:4px 6px 4px 0}
+.btn.goldbtn{background:var(--gold)}
+.btn.light{background:#e5f7ee;color:var(--green)!important}
+.secret{background:linear-gradient(135deg,#064e3b,#0f766e);color:white;border-radius:22px;padding:25px}
+.secret h3{color:white}
+.secret .muted{color:#d7f6e8}
+.check li{list-style:none;margin-left:-20px}
+footer{padding:45px 20px;text-align:center;color:var(--muted)}
+.small{font-size:.82rem;color:var(--muted)}
+@media(max-width:750px){.gallery{grid-template-columns:1fr 1fr}.gallery img:first-child{height:280px;grid-column:span 2;grid-row:auto}.gallery img{height:180px}.timeline{grid-template-columns:1fr 1fr}#map{height:390px}.flight{grid-template-columns:1fr}}
+@media(max-width:480px){main{padding:12px}.hero{min-height:72vh}.timeline{grid-template-columns:1fr}}
+
+.photo-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0 28px}
+.photo-strip img{width:100%;height:170px;object-fit:cover;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+@media(max-width:650px){.photo-strip{grid-template-columns:repeat(2,1fr)}.photo-strip img{height:125px}}
+
+</style>
+</head>
+<body>
+
+<header class="hero">
+<div class="hero-inner">
+<div class="kicker">4–28 diciembre 2026 · Camboya · Laos · Tailandia</div>
+<h1>Las 40 Vueltas<br>al Sol de Fernando</h1>
+<p class="subtitle">Una aventura por Asia, una isla tropical, amigos por el camino y una noche para recordar. 🌴</p>
+<div class="countdown" id="countdown">Calculando...</div>
+</div>
+</header>
+
+<nav>
+<a href="#resumen">🧭 Ruta</a><a href="#mapa">🗺️ Mapa</a><a href="#viajeros">👥 Viajeros</a>
+<a href="#camboya">🇰🇭 Camboya</a><a href="#cumple">🎂 Cumple</a><a href="#laos">🇱🇦 Laos</a>
+<a href="#bangkok">🇹🇭 Bangkok</a><a href="#lipe">🏝️ Koh Lipe</a><a href="#playlist">🎵 Playlist</a><a href="#info">🔗 Info útil</a>
+</nav>
+
+<main>
+
+<section id="resumen">
+<h2>🧭 El viaje de un vistazo</h2>
+<div class="timeline">
+<div class="stop"><b>✈️ SALIDA · 4 diciembre</b><span>Bruselas / Madrid / Barcelona → Pekín</span></div>
+<div class="stop"><b>🇰🇭 5–7 diciembre</b><span>Phnom Penh + Pekín + preparación para la isla</span></div>
+<div class="stop"><b>🎂 7–10 diciembre · CUMPLEAÑOS KOH RONG</b><span>Isla, playa y celebración del 8 de diciembre</span></div>
+<div class="stop"><b>🛕 10–12 diciembre</b><span>Siem Reap & Angkor</span></div>
+<div class="stop"><b>🇱🇦 12–17 diciembre</b><span>Luang Prabang + Vientiane</span></div>
+<div class="stop"><b>🌆 17–21 diciembre</b><span>Bangkok</span></div>
+<div class="stop"><b>🎄 21–26 diciembre</b><span>Koh Lipe · Navidad tropical</span></div>
+<div class="stop"><b>✈️ 26–28 diciembre</b><span>Bangkok → Múnich → Bruselas</span></div>
+</div>
+
+<div class="card gold">
+<h3>🎂 El corazón del viaje</h3>
+<p><b>7/12:</b> nos reunimos en Koh Rong.</p>
+<p><b>8/12:</b> 40 vueltas al sol · playa · sunset · cena · tarta · música · karaoke · fiesta.</p>
+<p><b>9/12:</b> recuperación opcional… o última aventura en la isla.</p>
+<p><b>10/12:</b> ferry temprano y continuación hacia Siem Reap.</p>
+</div>
+</section>
+
+<section id="mapa">
+<h2>🗺️ La ruta completa</h2>
+<p class="lead">De Europa a Asia y de templo en templo hasta terminar la Navidad con los pies en el mar.</p>
+<div id="map"></div>
+<p class="map-note">Mapa interactivo con OpenStreetMap. Pulsa cada punto para ver la etapa.</p>
+</section>
+
+<section id="viajeros">
+<h2>👥 Quién viaja con quién</h2>
+<p class="lead">La idea es que nadie tenga que perseguir a 20 personas por WhatsApp para saber quién está en cada vuelo.</p>
+
+<div class="grid">
+<div class="info"><strong>✈️ Fernando · Luis · Maite</strong>BRU → PEK → KTI · viaje juntos desde Bruselas.</div>
+<div class="info"><strong>✈️ Rosa · Andrea</strong>BCN → PEK → KTI · se incorporan al mismo vuelo PEK → KTI.</div>
+<div class="info"><strong>✈️ Irene · Héctor · Lucía · Brais</strong>MAD → PEK → KTI · diferentes planes en Pekín, mismo vuelo nocturno a Phnom Penh.</div>
+<div class="info"><strong>🏝️ Incorporación en Koh Rong</strong>Candela, David, Carolina, Niels, Héctor Díaz, Francisco, Carmen, Florentino y Miriam organizan su llegada por libre.</div>
+</div>
+
+<h3>✈️ Tramos que compartimos</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Fecha</th><th>Tramo</th><th>Horario</th><th>Compañía / vuelo</th><th>Equipaje indicado</th><th>Viajeros</th></tr></thead>
+<tbody>
+<tr><td>04/12</td><td>BRU → PEK</td><td>12:00 → 04:45 (+1)</td><td>Air China CA964</td><td>5 kg cabina + 23 kg facturado</td><td>Fernando · Luis · Maite</td></tr>
+<tr><td>05/12</td><td>PEK → KTI</td><td>18:55 → 23:10</td><td>Air China CA745</td><td>5 kg cabina + 23 kg facturado</td><td>Fernando · Luis · Maite · Irene · Héctor · Lucía · Brais</td></tr>
+<tr><td>10/12</td><td>KOS → SAI</td><td>10:15 → 11:15</td><td>Air Cambodia K6 130</td><td>7 kg cabina + 23 kg facturado</td><td>Fernando · Luis · Maite · Candela · David · Irene · Héctor · Bea · Felix · Lucía · Brais</td></tr>
+<tr><td>12/12</td><td>SAI → LPQ</td><td>17:05 → 18:30</td><td>Vuelo del grupo</td><td>10 kg cabina + 23 kg facturado</td><td>Fernando · Luis · Maite</td></tr>
+<tr><td>17/12</td><td>VTE → DMK</td><td>08:05 → 09:15</td><td>Vuelo del grupo</td><td>7 kg cabina + 20 kg facturado</td><td>Fernando · Luis · Maite</td></tr>
+<tr><td>21/12</td><td>BKK → HDY</td><td>06:35 → 08:05</td><td>Thai Airways TG259</td><td>7 kg + 1 pieza de 23 kg facturada</td><td>Fernando · Luis · Maite</td></tr>
+<tr><td>26/12</td><td>HDY → BKK</td><td>20:40 → 22:15</td><td>Thai Airways TG268</td><td>Según billete</td><td>Fernando · Luis · Maite</td></tr>
+</tbody>
+</table>
+</div>
+<p class="small">Los datos de equipaje son los indicados en la planificación actual. Cada viajero debe comprobar las condiciones finales de su propio billete.</p>
+</section>
+
+<section id="camboya">
+<h2>🇰🇭 Camboya</h2>
+
+<div class="gallery">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Angkor%20Wat%20sunrise.jpg" alt="Angkor Wat al amanecer">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Koh%20Rong%20Cambodia.jpg" alt="Koh Rong">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mekong%20at%20Luang%20Prabang.jpg" alt="Mekong en Luang Prabang">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Koh%20Lipe%20%28island%29%2C%20Beach%2C%20Thailand.jpg" alt="Koh Lipe">
+</div>
+<p class="caption">Imágenes: Wikimedia Commons. Créditos/licencias en la sección de fuentes al final.</p>
+
+<div class="card day"><div class="day-head"><div><div class="day-date">04 diciembre</div><h3>✈️ Salida hacia Camboya vía Pekín</h3></div><span class="tag">Air China</span></div>
+<ul><li><b>BRU → PEK · CA964 · 12:00 → 04:45 (+1)</b></li><li>Fernando · Luis · Maite viajan juntos.</li><li>Equipaje indicado: <b>5 kg cabina + 23 kg facturado por persona</b>.</li></ul></div>
+
+<div class="card day"><div class="day-head"><div><div class="day-date">05 diciembre</div><h3>🇨🇳 Pekín + vuelo a Phnom Penh</h3></div><span class="tag">Gran Muralla</span></div>
+<ul><li>05:00–16:30: Gran Muralla + comida + Ciudad Prohibida para el grupo de Fernando.</li><li>Irene y Héctor organizan Pekín por libre; Lucía y Brais llegan a las 06:30.</li><li><b>PEK → KTI · CA745 · 18:55 → 23:10</b>.</li><li>Equipaje indicado: <b>5 kg cabina + 23 kg facturado</b>.</li><li>Llegada y traslado al <b>Check Inn Phnom Penh Royal Palace</b>.</li></ul></div>
+
+<div class="card day"><div class="day-head"><div><div class="day-date">06 diciembre</div><h3>🏛️ Phnom Penh</h3></div><span class="tag">Historia</span></div>
+<ul><li>Palacio Real y Pagoda de Plata.</li><li>Tuol Sleng para quien quiera profundizar en la historia reciente del país.</li><li>Mercado Central / Mercado Ruso.</li><li>Atardecer junto al Mekong.</li></ul></div>
+
+<div class="card day"><div class="day-head"><div><div class="day-date">07 diciembre</div><h3>🏝️ Phnom Penh → Koh Rong</h3></div><span class="tag">Punto de encuentro</span></div>
+<ul><li>Traslado por carretera hacia Sihanoukville.</li><li>⛴️ <b>Buva Sea Cambodia · ferry previsto 14:30</b>.</li><li>Tarde de playa y primera puesta de sol juntos.</li></ul>
+<a class="btn" href="https://www.buvasea.com/" target="_blank">⛴️ Comprar / consultar ferry Buva Sea</a>
+</div>
+
+<div class="card day"><div class="day-head"><div><div class="day-date">07–10 diciembre</div><h3>🎂 CUMPLEAÑOS · KOH RONG</h3></div><span class="tag">40 vueltas</span></div>
+<p>La isla será nuestro punto de encuentro durante tres noches. El <b>8 de diciembre</b> es el día grande.</p>
+</div>
+
+<div class="card">
+  <p style="margin:0"><b>🧭 Cómo leer este itinerario:</b> cada día responde a tres preguntas: <b>cuándo</b>, <b>dónde</b> y <b>qué hacemos</b>. Los detalles importantes de vuelos, hoteles y traslados están dentro de cada día.</p>
+</div>
+
+</section>
+
+<section id="cumple">
+<h2>🎂 Las 40 Vueltas al Sol</h2>
+<div class="secret">
+<h3>Una noche para recordar 🌴</h3>
+<p>El 8 de diciembre cumplimos una misión: celebrar 40 vueltas al sol como se merece.</p>
+<p>Playa · sunset · cena frente al mar · tarta · música · karaoke · fiesta.</p>
+<p class="muted"><b>Vuelve más adelante.</b> Los detalles de la celebración se irán completando poco a poco: horarios, ubicación, menú, música, instrucciones para la noche y alguna que otra sorpresa.</p>
+</div>
+
+<div class="grid" style="margin-top:16px">
+<div class="info"><strong>🌅 Antes de la fiesta</strong>Playa, piscina, snorkel, siesta y puesta de sol.</div>
+<div class="info"><strong>🍽️ La cena</strong>Una cena especial frente al mar para celebrar juntos.</div>
+<div class="info"><strong>🎤 Después…</strong>Música, karaoke y todo lo necesario para que la noche se alargue.</div>
+<div class="info"><strong>🔓 Próximamente</strong>Más información aquí. Guarda esta web y vuelve a visitarla.</div>
+</div>
+</section>
+
+<section id="camboya2">
+<div class="card day"><div class="day-head"><div><div class="day-date">09 diciembre</div><h3>🌊 Koh Rong · día de recuperación</h3></div><span class="tag">Relax</span></div>
+<ul><li>Snorkel, kayak, excursión en barco o simplemente playa.</li><li>Sendero de jungla y playas más tranquilas.</li><li>🌌 Por la noche, posibilidad de buscar plancton bioluminiscente.</li></ul></div>
+
+<div class="card day"><div class="day-head"><div><div class="day-date">10 diciembre</div><h3>🛕 Koh Rong → Siem Reap</h3></div><span class="tag">Air Cambodia</span></div>
+<ul><li>⛴️ Buva Sea: ferry previsto <b>06:30–07:00</b>.</li><li>Traslado a Sihanoukville Airport.</li><li><b>KOS → SAI · 10:15 → 11:15</b>.</li><li>Equipaje indicado: <b>7 kg cabina + 23 kg facturado</b>.</li><li>Check-in en <b>Phka Chan Hotel</b>.</li><li>🌅 Si la logística lo permite: primer sunset de Angkor / Pre Rup.</li></ul></div>
+
+<div class="card day"><div class="day-head"><div><div class="day-date">11 diciembre</div><h3>🛕 Angkor Wat · amanecer</h3></div><span class="tag">Sunrise</span></div>
+<ul><li>Salida de madrugada para estar en Angkor Wat antes del amanecer.</li><li>Angkor Wat → Bayon → Ta Prohm.</li><li>Regreso, descanso y masaje.</li></ul>
+<a class="btn goldbtn" href="https://www.angkorenterprise.gov.kh/" target="_blank">🎟️ Entradas oficiales Angkor</a>
+</div>
+
+<div class="card day"><div class="day-head"><div><div class="day-date">12 diciembre</div><h3>🛕 Últimos templos → Laos</h3></div><span class="tag">Banteay Srei</span></div>
+<ul><li>Banteay Srei · Preah Khan · Neak Pean.</li><li><b>SAI → LPQ · 17:05 → 18:30</b>.</li><li>Equipaje indicado: <b>10 kg cabina + 23 kg facturado</b>.</li></ul></div>
+</section>
+
+
+<div class="photo-strip">
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Luang%20Prabang%20Laos.jpg" alt="Luang Prabang">
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kuang%20Si%20Falls%20Laos.jpg" alt="Kuang Si Falls">
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Wat%20Arun%20Bangkok.jpg" alt="Wat Arun Bangkok">
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ko%20Lipe%20Thailand.jpg" alt="Koh Lipe">
+</div>
+
+<section id="laos">
+<h2>🇱🇦 Laos</h2>
+<div class="card day"><div class="day-head"><div><div class="day-date">13 diciembre</div><h3>🌅 Luang Prabang</h3></div><span class="tag">UNESCO</span></div>
+<ul><li>Tak Bat al amanecer, siempre con respeto y distancia.</li><li>Wat Xieng Thong · Wat Mai · Wat Sensoukharam.</li><li>Royal Palace Museum · Heuan Chan Heritage House.</li><li>Ock Pop Tok Textiles.</li><li>Night Market y cena junto al Mekong.</li></ul></div>
+
+<div class="card day"><div class="day-head"><div><div class="day-date">14 diciembre</div><h3>💦 Kuang Si Falls</h3></div><span class="tag">Naturaleza</span></div>
+<ul><li>Kuang Si Falls.</li><li>Bear Rescue Center.</li><li>Pueblo Hmong si encaja con la excursión.</li><li>Sunset desde Mount Phousi + Night Market.</li></ul></div>
+
+<div class="card day"><div class="day-head"><div><div class="day-date">15 diciembre</div><h3>🚤 Mekong + Pak Ou → Vientiane</h3></div><span class="tag">Río</span></div>
+<ul><li>Barco a Pak Ou: <b>08:30 → aproximadamente 14:00</b>.</li><li>Regreso a Luang Prabang y tren hacia Vientiane sobre las 16:00–17:00.</li><li>Llegar a la estación aproximadamente 1 hora antes: controles tipo aeropuerto.</li></ul></div>
+
+<div class="card day"><div class="day-head"><div><div class="day-date">16 diciembre</div><h3>🏛️ Vientiane</h3></div><span class="tag">Capital</span></div>
+<ul><li>Patuxai · Pha That Luang · Wat Si Saket.</li><li>Buddha Park.</li><li>COPE Visitor Centre como opción adicional.</li></ul></div>
+
+<div class="card day"><div class="day-head"><div><div class="day-date">17 diciembre</div><h3>✈️ Laos → Bangkok</h3></div><span class="tag">Thai AirAsia</span></div>
+<ul><li><b>VTE → DMK · 08:05 → 09:15</b>.</li><li>Equipaje indicado: <b>7 kg cabina + 20 kg facturado</b>.</li><li>Traslado al hotel en Bangkok.</li></ul></div>
+</section>
+
+
+<div class="photo-strip">
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Grand%20Palace%20Bangkok.jpg" alt="Bangkok Grand Palace">
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Chao%20Phraya%20River%20Bangkok.jpg" alt="Chao Phraya">
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Koh%20Lipe%20Beach.jpg" alt="Koh Lipe beach">
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Walking%20Street%20Koh%20Lipe.jpg" alt="Koh Lipe">
+</div>
+
+<section id="bangkok">
+<h2>🇹🇭 Bangkok</h2>
+<div class="card" style="padding:0;overflow:hidden">
+<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok%20Wat%20Arun.jpg" alt="Wat Arun Bangkok" style="width:100%;height:330px;object-fit:cover">
+<div style="padding:20px"><h3>17–21 diciembre · Bangkok</h3><p>Templos, Chao Phraya, rooftops, Chinatown, compras, masajes y un poco de vida urbana antes de la Navidad en la isla.</p></div>
+</div>
+<div class="grid">
+<div class="info"><strong>18/12 · Templos</strong>Grand Palace · Wat Phra Kaew · Wat Pho · Wat Arun.</div>
+<div class="info"><strong>19/12 · Ciudad</strong>Shopping · masaje · Chinatown. Rosa y Andrea continúan su viaje.</div>
+<div class="info"><strong>20/12 · Último día</strong>Mercados · compras · rooftop · cena.</div>
+<div class="info"><strong>21/12 · Isla</strong>BKK → HDY 06:35–08:05 + bus + ferry.</div>
+</div>
+</section>
+
+<section id="lipe">
+<h2>🏝️ Koh Lipe · Navidad</h2>
+<div class="card">
+<h3>21–26 diciembre · Akira Lipe Resort</h3>
+<ul><li><b>BKK → HDY · TG259 · 06:35 → 08:05</b>.</li><li>Equipaje indicado: <b>7 kg + 1 pieza de 23 kg facturada</b>.</li><li>Bus al ferry + ferry al hotel.</li><li>22–25: playa, snorkel, excursiones y Navidad tropical.</li><li>26/12: ferry → bus → <b>HDY → BKK · TG268 · 20:40 → 22:15</b>.</li><li>Noche en <b>Jasmine City Hotel</b>.</li></ul>
+</div>
+</section>
+
+<section id="playlist">
+<h2>🎵 Playlist · Las 40 vueltas al sol</h2>
+<div class="card gold">
+<h3>🎶 Cada persona elige 5 canciones</h3>
+<p>Una canción que te recuerde a Fernando, una que te dé vergüenza reconocer que te encanta, una para bailar, una para el viaje y una que quieras escuchar en una playa de Camboya.</p>
+<p><b>Regla:</b> máximo 5 canciones por persona. El resto lo ponemos nosotros. 😎</p>
+<a class="btn" id="spotify-listen" href="#" target="_blank">▶️ Abrir playlist</a>
+<a class="btn goldbtn" id="spotify-add" href="#" target="_blank">➕ Añadir mis 5 canciones</a>
+<p class="small">La playlist base se llama <b>“Las 40 vueltas al sol”</b>. El enlace para colaborar se añadirá aquí cuando esté creado.</p>
+</div>
+</section>
+
+<section id="info">
+<h2>🔗 Información oficial y trámites</h2>
+<div class="grid">
+<div class="info"><strong>⛴️ Buva Sea Cambodia</strong><p>Ferries / speedboats hacia Koh Rong.</p><a class="btn light" href="https://www.buvasea.com/" target="_blank">Buva Sea</a></div>
+<div class="info"><strong>🎟️ Angkor Enterprise</strong><p>Única referencia oficial para comprar entradas del Parque Arqueológico de Angkor.</p><a class="btn light" href="https://www.angkorenterprise.gov.kh/" target="_blank">Comprar entrada</a></div>
+<div class="info"><strong>🛂 Cambodia e-Arrival</strong><p>Formulario oficial de entrada. Gratuito y obligatorio para viajeros.</p><a class="btn light" href="https://arrival.gov.kh/" target="_blank">Cambodia e-Arrival</a></div>
+<div class="info"><strong>🛂 Cambodia e-Visa</strong><p>Web oficial para quienes necesiten visado.</p><a class="btn light" href="https://www.evisa.gov.kh/" target="_blank">Cambodia e-Visa</a></div>
+<div class="info"><strong>🛂 Laos Digital Immigration Form</strong><p>Laos exige registro digital de entrada/salida a viajeros extranjeros.</p><a class="btn light" href="https://www.immigration.gov.la/" target="_blank">Laos Immigration</a></div>
+<div class="info"><strong>🛂 Laos e-Visa</strong><p>Web oficial del Ministerio de Asuntos Exteriores de Laos para eVisa.</p><a class="btn light" href="https://www.laoevisa.gov.la/" target="_blank">Lao eVisa</a></div>
+<div class="info"><strong>🛂 Thailand TDAC</strong><p>La tarjeta digital de llegada debe completarse dentro de los 3 días anteriores a la entrada.</p><a class="btn light" href="https://tdac.immigration.go.th/" target="_blank">Thailand TDAC</a></div>
+</div>
+
+<div class="card">
+<h3>📋 Checklist</h3>
+<ul class="check">
+<li>☐ Pasaporte con validez suficiente</li><li>☐ Seguro de viaje</li><li>☐ Billetes guardados offline</li><li>☐ Cambodia e-Arrival dentro de los 7 días previos</li><li>☐ Visado de Camboya si corresponde</li><li>☐ Laos LDIF dentro de la ventana requerida</li><li>☐ Laos eVisa si corresponde</li><li>☐ Thailand TDAC dentro de los 3 días previos</li><li>☐ eSIM / roaming</li><li>☐ Copia digital del pasaporte</li><li>☐ Repelente + protector solar</li><li>☐ Calzado cómodo para templos</li><li>☐ Mochila pequeña / bolsa estanca para excursiones</li>
+</ul>
+</div>
+</section>
+
+<div class="card">
+<h3>🖼️ Créditos de imágenes</h3>
+<p class="small">Las fotografías principales se han seleccionado de Wikimedia Commons para poder utilizarlas respetando sus licencias: Angkor Wat sunrise — mendhak; Koh Rong Cambodia — MoonsMoon; Mekong at Luang Prabang — Peter in s; Koh Lipe Beach — Vyacheslav Argenberg; Bangkok Wat Arun — autor indicado en Wikimedia Commons. Consulta las páginas originales antes de redistribuir la web fuera de GitHub.</p>
+</div>
+
+<footer>
+<p>✨ Viaje en construcción · versión 5.3</p>
+<p>Actualizado: septiembre de 2026</p>
+<p>Los horarios y condiciones de vuelos/ferries deben reconfirmarse antes del viaje.</p>
+</footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const stops=[
+["Bruselas","Bruselas, Bélgica",50.8503,4.3517],
+["Madrid","Madrid, España",40.4168,-3.7038],
+["Barcelona","Barcelona, España",41.3874,2.1686],
+["Pekín","Pekín, China",39.9042,116.4074],
+["Phnom Penh","Phnom Penh, Camboya",11.5564,104.9282],
+["Koh Rong","Koh Rong, Camboya",10.728,103.240],
+["Siem Reap","Siem Reap, Camboya",13.3633,103.8564],
+["Luang Prabang","Luang Prabang, Laos",19.8845,102.1350],
+["Vientiane","Vientiane, Laos",17.9757,102.6331],
+["Bangkok","Bangkok, Tailandia",13.7563,100.5018],
+["Koh Lipe","Koh Lipe, Tailandia",6.5014,99.3050],
+["Múnich","Múnich, Alemania",48.1351,11.5820]
+];
+const map=L.map('map',{scrollWheelZoom:false}).setView([22,92],4);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+const route=stops.slice(0,1).concat(stops.slice(3));
+route.forEach((s,i)=>L.marker([s[2],s[3]]).addTo(map).bindPopup('<b>'+s[0]+'</b><br>'+s[1]));
+L.polyline(route.map(s=>[s[2],s[3]]),{weight:4,dashArray:'8 8'}).addTo(map);
+map.fitBounds(route.map(s=>[s[2],s[3]]),{padding:[25,25]});
+
+const target=new Date("2026-12-08T20:00:00+01:00").getTime();
+function countdown(){
+ const d=target-Date.now(), el=document.getElementById('countdown');
+ if(d<=0){el.textContent="🎂 ¡Hoy celebramos las 40 vueltas al sol!";return;}
+ const days=Math.floor(d/86400000), hrs=Math.floor(d%86400000/3600000), min=Math.floor(d%3600000/60000);
+ el.textContent=`🎂 Faltan ${days} días · ${hrs} h · ${min} min`;
+}
+countdown();setInterval(countdown,60000);
+
+// Cuando exista el enlace real de Spotify, sustituir solo estas dos URLs.
+const SPOTIFY_PLAYLIST_URL="SPOTIFY_PLAYLIST_URL_AQUI";
+const SPOTIFY_COLLAB_URL="SPOTIFY_COLLABORATION_URL_AQUI";
+document.getElementById("spotify-listen").href=SPOTIFY_PLAYLIST_URL;
+document.getElementById("spotify-add").href=SPOTIFY_COLLAB_URL;
+</script>
+</body>
+</html>
