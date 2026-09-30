@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Las 40 Vueltas al Sol de Fernando · Camboya, Laos & Tailandia 2026</title>
+<style>
+:root{
+  --green:#059669; --dark:#064e3b; --light:#ecfdf5; --gold:#d97706;
+  --ink:#1f2937; --muted:#6b7280; --card:#fff; --line:#d1fae5;
+}
+*{box-sizing:border-box}
+body{font-family:Arial,sans-serif;margin:0;background:#f0fdf4;color:var(--ink);line-height:1.55}
+header{background:linear-gradient(135deg,#064e3b,#059669);color:white;text-align:center;padding:58px 20px 45px}
+header h1{font-size:clamp(2rem,6vw,3.6rem);margin:0 0 10px}
+header p{font-size:1.15rem;margin:5px 0}
+.countdown{display:inline-block;margin-top:18px;padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.16);font-weight:bold}
+nav{position:sticky;top:0;z-index:5;background:white;border-bottom:1px solid #e5e7eb;padding:10px;display:flex;gap:8px;overflow:auto;justify-content:center}
+nav a{white-space:nowrap;text-decoration:none;color:var(--dark);font-size:.9rem;font-weight:bold;padding:7px 10px;border-radius:999px}
+nav a:hover{background:var(--light)}
+main{max-width:1000px;margin:auto;padding:20px}
+h2{color:var(--dark);margin-top:42px;font-size:1.7rem}
+h3{color:#065f46}
+.card{background:var(--card);border-left:6px solid #10b981;padding:18px 20px;margin:18px 0;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.hero-card{border-left-color:var(--gold);background:#fffbeb}
+.day h3{margin:0 0 6px}
+ul{padding-left:22px}
+.tag{display:inline-block;background:#d1fae5;color:#065f46;padding:4px 10px;border-radius:999px;font-size:.78rem;margin:3px 5px 8px 0}
+.flight{display:grid;grid-template-columns:110px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #ecfdf5}
+.flight:last-child{border-bottom:0}
+.flight strong{color:var(--dark)}
+.badge{font-size:.75rem;padding:4px 8px;border-radius:8px;background:#f3f4f6;color:#4b5563}
+table{width:100%;border-collapse:collapse;background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+th,td{text-align:left;padding:10px 9px;border-bottom:1px solid #e5e7eb;font-size:.88rem}
+th{background:#064e3b;color:white}
+tr:last-child td{border-bottom:0}
+.small{font-size:.88rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.info{padding:16px;background:#fff;border-radius:12px;border:1px solid var(--line)}
+.info strong{display:block;color:var(--dark);margin-bottom:4px}
+.notice{background:#fff7ed;border-left:5px solid #f59e0b;padding:14px 16px;border-radius:8px}
+.checklist li{margin-bottom:7px}
+footer{text-align:center;color:var(--muted);padding:45px 20px}
+@media(max-width:650px){
+  main{padding:12px}.flight{grid-template-columns:1fr}.flight .badge{justify-self:start}
+  th,td{font-size:.78rem;padding:8px 6px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌏 Las 40 Vueltas al Sol de Fernando</h1>
+  <p>Una noche para recordar · Camboya 🇰🇭 · Laos 🇱🇦 · Tailandia 🇹🇭</p>
+  <div class="countdown" id="countdown">Calculando...</div>
+</header>
+
+<nav>
+  <a href="#resumen">Resumen</a>
+  <a href="#viajeros">Quién viaja</a>
+  <a href="#camboya">Camboya</a>
+  <a href="#laos">Laos</a>
+  <a href="#bangkok">Bangkok</a>
+  <a href="#lipe">Koh Lipe</a>
+  <a href="#logistica">Logística</a>
+  <a href="#checklist">Checklist</a>
+</nav>
+
+<main>
+
+<section id="resumen">
+<h2>🧭 El viaje de un vistazo</h2>
+<div class="grid">
+  <div class="info"><strong>04–05 dic</strong>✈️ Bruselas / Madrid / Barcelona → Pekín → Phnom Penh</div>
+  <div class="info"><strong>05–07 dic</strong>🇰🇭 Phnom Penh + llegada de grupos</div>
+  <div class="info"><strong>07–10 dic</strong>🏝️ Isla · alojamiento incluido · celebración el 8</div>
+  <div class="info"><strong>10–12 dic</strong>🛕 Siem Reap & Angkor</div>
+  <div class="info"><strong>12–17 dic</strong>🇱🇦 Luang Prabang + Vientiane</div>
+  <div class="info"><strong>17–21 dic</strong>🎄 Bangkok</div>
+  <div class="info"><strong>21–26 dic</strong>🏝️ Koh Lipe · Navidad</div>
+  <div class="info"><strong>26–28 dic</strong>✈️ Bangkok → Múnich → Bruselas</div>
+</div>
+<div class="card hero-card">
+  <strong>🎂 El momento central</strong>
+  <p><b>7 de diciembre:</b> nos reunimos en la isla.</p>
+  <p><b>8 de diciembre:</b> cumpleaños de Fernando · día de playa + cena frente al mar + música + karaoke + fiesta.</p>
+  <p><b>9 de diciembre:</b> día libre para recuperarnos… o seguir explorando.</p>
+  <p><b>10 de diciembre:</b> salida de la isla y continuación hacia Siem Reap.</p>
+  <p class="small">El nombre del alojamiento de la celebración se mantiene deliberadamente como sorpresa 🎁.</p>
+</div>
+</section>
+
+<section id="viajeros">
+<h2>👥 Quién viaja con quién</h2>
+<p class="small">Esta tabla muestra solo información útil para coordinarse. No se publican códigos de reserva, localizadores ni otros datos privados.</p>
+
+<div class="card">
+  <h3>✈️ Grupo BRU → PEK → KTI</h3>
+  <p><b>Fernando · María Teresa · Luis</b></p>
+  <p>04/12 BRU 12:00 → PEK 04:45 (+1) · 05/12 PEK 18:55 → KTI 23:10.</p>
+  <span class="tag">Viajan juntos</span><span class="tag">Pekín</span><span class="tag">Phnom Penh</span>
+</div>
+
+<div class="card">
+  <h3>✈️ Grupo BCN → PEK → KTI</h3>
+  <p><b>Rosa · Andrea</b></p>
+  <p>04/12 BCN 11:25 → PEK 05:30 (+1) · 05/12 PEK 18:55 → KTI 23:10.</p>
+  <span class="tag">Viajan juntas</span><span class="tag">Se unen al grupo en Pekín</span>
+</div>
+
+<div class="card">
+  <h3>✈️ Grupo MAD → PEK → KTI</h3>
+  <p><b>Irene · Héctor · Lucía · Brais</b></p>
+  <p>04/12 MAD 12:20 → PEK 06:30 (+1) · 05/12 PEK 18:55 → KTI 23:10.</p>
+  <span class="tag">Viajan juntos</span><span class="tag">Pekín</span>
+</div>
+
+<div class="card">
+  <h3>🏝️ Llegadas por libre / incorporación en la isla</h3>
+  <p><b>Candela · David · Carolina · Niels · Héctor · Francisco · Carmen · Florentino · Miriam</b></p>
+  <p>Varios se incorporan directamente en Koh Rong el <b>7 de diciembre</b> o organizan sus propios traslados. La idea es que el punto de encuentro sea la isla.</p>
+  <span class="tag">Nos vemos el 07/12</span><span class="tag">Viaje independiente</span>
+</div>
+
+<h3>🔗 Tramos que podemos compartir</h3>
+<table>
+<thead><tr><th>Fecha</th><th>Tramo</th><th>Horario</th><th>Quién coincide</th></tr></thead>
+<tbody>
+<tr><td>05/12</td><td>PEK → KTI</td><td>18:55 → 23:10</td><td>Fernando, María Teresa, Luis, Rosa, Andrea, Irene, Héctor, Lucía, Brais</td></tr>
+<tr><td>10/12</td><td>KOS → SAI</td><td>10:15 → 11:15</td><td>Fernando, María Teresa, Luis, Rosa, Andrea, Candela, David, Irene, Héctor, Bea, Felix, Lucía, Brais</td></tr>
+<tr><td>12/12</td><td>SAI → LPQ</td><td>17:05 → 18:30</td><td>Grupo principal de Fernando</td></tr>
+<tr><td>17/12</td><td>VTE → DMK</td><td>08:05 → 09:15</td><td>Grupo principal de Fernando</td></tr>
+<tr><td>21/12</td><td>BKK → HDY</td><td>06:35 → 08:05</td><td>Grupo principal de Fernando</td></tr>
+<tr><td>26/12</td><td>HDY → BKK</td><td>20:40 → 22:15</td><td>Grupo principal de Fernando</td></tr>
+</tbody>
+</table>
+<p class="small">Los horarios reflejan la planificación actual y pueden cambiar por la compañía aérea. Antes de volar, cada viajero debe comprobar su billete.</p>
+</section>
+
+<section id="camboya">
+<h2>📍 Camboya 🇰🇭</h2>
+
+<div class="day card">
+<h3>📅 4 de diciembre · Salida hacia Camboya vía Pekín</h3>
+<span class="tag">✈️ Air China</span><span class="tag">China</span>
+<ul>
+<li>✈️ <b>BRU → PEK · CA964 · 13:00 → 04:45 (+1)</b>.</li>
+<li>Para quienes salen de Madrid o Barcelona: conexiones independientes hasta Pekín.</li>
+<li>Equipaje según la tarifa contratada de cada viajero.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 5 de diciembre · Pekín + llegada a Phnom Penh</h3>
+<span class="tag">🇨🇳 Gran Muralla</span><span class="tag">Ciudad Prohibida</span><span class="tag">🇰🇭 Phnom Penh</span>
+<ul>
+<li>05:00–16:30: plan de Pekín para el grupo principal: Gran Muralla + comida + Ciudad Prohibida.</li>
+<li>Algunos viajeros llegan a Pekín a las 05:30–06:30 y pueden hacer su propio recorrido.</li>
+<li>✈️ <b>PEK → KTI · CA745 · 18:55 → 23:10</b>.</li>
+<li>Llegada a Phnom Penh, traslado al hotel y descanso.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 6 de diciembre · Phnom Penh</h3>
+<span class="tag">Historia</span><span class="tag">Cultura</span>
+<ul>
+<li>Palacio Real y Pagoda de Plata.</li>
+<li>Museo del Genocidio Tuol Sleng — visita intensa, opcional según preferencias.</li>
+<li>Mercado Central o Mercado Ruso.</li>
+<li>Atardecer junto al Mekong y cena camboyana.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 7 de diciembre · Phnom Penh → Koh Rong</h3>
+<span class="tag">🏝️ Punto de encuentro</span><span class="tag">Ferry</span>
+<ul>
+<li>Traslado por carretera hacia Sihanoukville.</li>
+<li>Objetivo: estar en el embarque del ferry con tiempo para el <b>ferry previsto alrededor de las 14:30</b>.</li>
+<li>⛴️ Ferry hacia Koh Rong.</li>
+<li>Check-in, playa, puesta de sol y primera noche juntos.</li>
+</ul>
+<div class="notice">🎁 <b>Sorpresa:</b> el nombre del hotel de cumpleaños NO aparece aquí. Solo se comunicará cuando corresponda.</div>
+</div>
+
+<div class="day card">
+<h3>🎂 8 de diciembre · LAS 40 VUELTAS AL SOL</h3>
+<span class="tag">🎉 Cumpleaños</span><span class="tag">🏝️ Playa</span><span class="tag">🍹 Fiesta</span>
+<ul>
+<li>Mañana libre: playa, piscina, snorkel o simplemente no hacer absolutamente nada.</li>
+<li>Comida ligera y siesta estratégica.</li>
+<li>Tarde de playa y puesta de sol.</li>
+<li>🌅 Preparación para la cena especial.</li>
+<li>🍽️ Cena privada frente al mar.</li>
+<li>🎂 Tarta.</li>
+<li>🎤 Karaoke + música + fiesta.</li>
+</ul>
+<p><b>Dress code sugerido:</b> tropical / beach party. Camisa hawaiana, lino, colores vivos, vestido de verano… lo que os apetezca.</p>
+</div>
+
+<div class="day card">
+<h3>📅 9 de diciembre · Koh Rong</h3>
+<span class="tag">Aventura</span><span class="tag">Relax</span><span class="tag">✨ Bioluminiscencia</span>
+<ul>
+<li>Despertar sin alarma.</li>
+<li>Snorkel, kayak o excursión en barco.</li>
+<li>Playas más tranquilas y senderos de jungla.</li>
+<li>🌌 Si las condiciones son buenas: salida nocturna para buscar plancton bioluminiscente.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 10 de diciembre · Koh Rong → Siem Reap</h3>
+<span class="tag">✈️ Air Cambodia</span><span class="tag">Angkor</span>
+<ul>
+<li>⛴️ Ferry previsto aproximadamente <b>06:30–07:00</b> hacia Sihanoukville.</li>
+<li>Traslado al aeropuerto de Sihanoukville.</li>
+<li>✈️ <b>KOS → SAI · K6 130 · 10:15 → 11:15</b>.</li>
+<li>Check-in en <b>Phka Chan Hotel</b>, alojamiento del grupo principal.</li>
+<li>🌅 Primera toma de contacto con Angkor al atardecer, si la logística lo permite.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 11 de diciembre · Angkor Wat: el gran día</h3>
+<span class="tag">🛕 Templos</span><span class="tag">Sunrise</span>
+<ul>
+<li>🌅 <b>Amanecer en Angkor Wat.</b></li>
+<li>Angkor Wat y sus galerías y bajorrelieves.</li>
+<li>Bayon y sus famosas caras.</li>
+<li>Ta Prohm y sus raíces gigantes.</li>
+<li>Regreso al hotel para piscina / descanso.</li>
+<li>Masaje tradicional camboyano por la tarde.</li>
+</ul>
+<p class="small">Angkor Wat abre actualmente desde las 05:00. El sitio oficial de Angkor Enterprise es la referencia para entradas y horarios.</p>
+</div>
+
+<div class="day card">
+<h3>📅 12 de diciembre · Angkor + Laos</h3>
+<span class="tag">🛕 Grand Circuit</span><span class="tag">✈️ Laos</span>
+<ul>
+<li>Por la mañana: <b>Banteay Srei</b>, famoso por sus relieves finamente tallados.</li>
+<li>Continuación por <b>Preah Khan</b> y <b>Neak Pean</b>.</li>
+<li>Regreso a Siem Reap y aeropuerto.</li>
+<li>✈️ <b>SAI → LPQ · 17:05 → 18:30</b>.</li>
+<li>Llegada a Luang Prabang, traslado al hotel y primera cena junto al Mekong.</li>
+</ul>
+</div>
+</section>
+
+<section id="laos">
+<h2>📍 Laos 🇱🇦</h2>
+
+<div class="day card">
+<h3>📅 13 de diciembre · Luang Prabang</h3>
+<span class="tag">Budismo</span><span class="tag">Patrimonio</span>
+<ul>
+<li>🌅 Tak Bat: observación respetuosa de la ceremonia de limosnas de los monjes.</li>
+<li>Wat Xieng Thong.</li>
+<li>Wat Mai y Wat Sensoukharm.</li>
+<li>Royal Palace Museum.</li>
+<li>Heuan Chan Heritage House.</li>
+<li>Atardecer y paseo por el Night Market.</li>
+<li>Ock Pop Tok para conocer el trabajo textil tradicional.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 14 de diciembre · Kuang Si Falls</h3>
+<span class="tag">🌿 Naturaleza</span><span class="tag">💦 Cascadas</span>
+<ul>
+<li>Salida temprano hacia <b>Kuang Si Falls</b>.</li>
+<li>Pozas turquesas y senderos.</li>
+<li>Bear Rescue Center.</li>
+<li>Parada en un pueblo Hmong si el tiempo lo permite.</li>
+<li>Regreso a Luang Prabang y tarde libre.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 15 de diciembre · Mekong + Pak Ou → Vientiane</h3>
+<span class="tag">🚤 Mekong</span><span class="tag">🚆 Tren</span>
+<ul>
+<li>🚤 Barco por el Mekong hacia <b>Pak Ou Caves</b>.</li>
+<li>Salida prevista 08:30 y regreso aproximadamente 14:00.</li>
+<li>Las cuevas contienen miles de pequeñas imágenes de Buda.</li>
+<li>🚆 Tren hacia Vientiane alrededor de las 16:00–17:00.</li>
+<li><b>Importante:</b> llegar con antelación a la estación; los controles son similares a los de un aeropuerto.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 16 de diciembre · Vientiane</h3>
+<span class="tag">Capital</span><span class="tag">Templos</span>
+<ul>
+<li>Patuxai.</li>
+<li>Pha That Luang.</li>
+<li>Wat Si Saket.</li>
+<li>COPE Visitor Centre como alternativa cultural especialmente interesante.</li>
+<li>Por la tarde: Buddha Park si la logística lo permite.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 17 de diciembre · Laos → Bangkok</h3>
+<span class="tag">✈️ Thai AirAsia</span><span class="tag">🇹🇭 Tailandia</span>
+<ul>
+<li>✈️ <b>VTE → DMK · FD1043 · 08:05 → 09:15</b>.</li>
+<li>Llegada a Don Mueang y traslado al hotel en Bangkok.</li>
+<li>Tarde suave para empezar Bangkok sin prisas.</li>
+</ul>
+</div>
+</section>
+
+<section id="bangkok">
+<h2>📍 Bangkok & Navidad 🎄</h2>
+
+<div class="day card">
+<h3>📅 18 de diciembre · Bangkok clásico</h3>
+<span class="tag">Templos</span><span class="tag">Chao Phraya</span>
+<ul>
+<li>Grand Palace y Wat Phra Kaew.</li>
+<li>Wat Pho.</li>
+<li>Wat Arun al otro lado del Chao Phraya.</li>
+<li>Atardecer junto al río.</li>
+<li>Rooftop para terminar el día.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 19 de diciembre · Bangkok urbano</h3>
+<span class="tag">Shopping</span><span class="tag">Masaje</span>
+<ul>
+<li>Rosa y Andrea continúan su viaje por separado.</li>
+<li>Shopping: Siam / CentralWorld / MBK según intereses.</li>
+<li>Masaje tailandés.</li>
+<li>Chinatown al anochecer.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 20 de diciembre · Último día completo en Bangkok</h3>
+<span class="tag">🌆 Ciudad</span><span class="tag">🍜 Food</span>
+<ul>
+<li>Mercado local o mercado flotante según preferencias.</li>
+<li>Últimas compras.</li>
+<li>Último rooftop / cena especial antes de ir hacia las islas.</li>
+</ul>
+</div>
+</section>
+
+<section id="lipe">
+<h2>📍 Koh Lipe · Navidad 🏝️🎄</h2>
+
+<div class="day card">
+<h3>📅 21 de diciembre · Bangkok → Hat Yai → Koh Lipe</h3>
+<span class="tag">✈️ Thai Airways</span><span class="tag">⛴️ Ferry</span>
+<ul>
+<li>✈️ <b>BKK → HDY · TG259 · 06:35 → 08:05</b>.</li>
+<li>Traslado por carretera hacia el embarcadero.</li>
+<li>⛴️ Ferry / speedboat hacia Koh Lipe.</li>
+<li>Check-in en <b>Akira Lipe Resort</b>.</li>
+<li>Primera tarde de playa y Walking Street.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 22–25 de diciembre · Koh Lipe 🎄</h3>
+<span class="tag">🏖️ Playa</span><span class="tag">🤿 Snorkel</span><span class="tag">🎄 Navidad</span>
+<ul>
+<li>Relax total.</li>
+<li>Snorkel y excursiones por las islas cercanas.</li>
+<li>Sunset Beach.</li>
+<li>Walking Street y cenas frente al mar.</li>
+<li>🎄 24–25: Navidad tropical.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 26 de diciembre · Koh Lipe → Bangkok</h3>
+<span class="tag">Regreso</span>
+<ul>
+<li>Ferry desde el hotel.</li>
+<li>Bus al aeropuerto de Hat Yai.</li>
+<li>✈️ <b>HDY → BKK · TG268 · 20:40 → 22:15</b>.</li>
+<li>Traslado al <b>Jasmine City Hotel</b>.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 27 de diciembre · Último día + vuelta a Europa</h3>
+<span class="tag">🛍️ Últimas compras</span><span class="tag">💆 Masaje</span>
+<ul>
+<li>Último día en Bangkok: outlet, compras y masaje.</li>
+<li>✈️ <b>BKK → MUC · Lufthansa LH773 · 23:10 → 05:20 (+1)</b>.</li>
+</ul>
+</div>
+
+<div class="day card">
+<h3>📅 28 de diciembre · Múnich → Bruselas</h3>
+<span class="tag">✈️ Regreso</span>
+<ul>
+<li>✈️ <b>MUC → BRU · Lufthansa LH2282 · 07:00 → 08:00</b>.</li>
+<li>Fin de la aventura. ❤️</li>
+</ul>
+</div>
+</section>
+
+<section id="logistica">
+<h2>🧳 Logística que nos interesa tener controlada</h2>
+<div class="grid">
+<div class="info"><strong>🏨 Hoteles conocidos</strong>
+Phnom Penh: Check Inn Phnom Penh Royal Palace<br>
+Siem Reap: Phka Chan Hotel<br>
+Koh Lipe: Akira Lipe Resort<br>
+Bangkok final: Jasmine City Hotel
+</div>
+<div class="info"><strong>🎁 Hotel del cumpleaños</strong>
+<strong>Secreto.</strong> No aparece en esta web hasta que Fernando decida desvelarlo.
+</div>
+<div class="info"><strong>🏨 Pendientes</strong>
+Hotel Luang Prabang · Hotel Vientiane · Hotel Bangkok 17–20 dic: confirmar / actualizar.
+</div>
+<div class="info"><strong>🚐 Traslados</strong>
+Phnom Penh → Sihanoukville → ferry<br>
+KOS → SAI<br>
+Aeropuertos → hoteles<br>
+Vientiane → estación / tren<br>
+Hat Yai → ferry → Koh Lipe
+</div>
+</div>
+
+<h3>📌 Datos útiles</h3>
+<ul>
+<li><b>Camboya:</b> el Cambodia e-Arrival es obligatorio para los viajeros y actualmente puede presentarse dentro de los 7 días anteriores a la llegada o el mismo día; es gratuito.</li>
+<li><b>Angkor:</b> las entradas deben comprarse a través de Angkor Enterprise; el sitio oficial es la referencia para tickets y horarios.</li>
+<li><b>Tailandia:</b> los viajeros extranjeros deben completar la Thailand Digital Arrival Card (TDAC) dentro de los 3 días previos a la llegada.</li>
+<li><b>Templos:</b> llevar ropa que cubra hombros y rodillas cuando sea necesario.</li>
+<li><b>Islas:</b> llevar una pequeña bolsa estanca para móvil/documentos y protección solar.</li>
+</ul>
+</section>
+
+<section id="checklist">
+<h2>✅ Checklist antes de viajar</h2>
+<div class="card">
+<ul class="checklist">
+<li>☐ Pasaporte con validez suficiente para todo el viaje.</li>
+<li>☐ Seguro de viaje.</li>
+<li>☐ Billetes de vuelos guardados offline.</li>
+<li>☐ Cambodia e-Arrival dentro de la ventana permitida.</li>
+<li>☐ Visado de Camboya si corresponde a tu nacionalidad.</li>
+<li>☐ TDAC de Tailandia dentro de los 3 días previos a la entrada.</li>
+<li>☐ Copia digital de pasaporte y documentos importantes.</li>
+<li>☐ eSIM / roaming preparado.</li>
+<li>☐ Algo de efectivo y tarjetas.</li>
+<li>☐ Mochila pequeña para excursiones.</li>
+<li>☐ Calzado cómodo para templos.</li>
+<li>☐ Ropa tropical + algo adecuado para templos.</li>
+<li>☐ Repelente de mosquitos.</li>
+<li>☐ Protección solar.</li>
+<li>☐ ¡Y ganas de celebrar 40 vueltas al sol!</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>💡 Ideas que podemos añadir más adelante</h3>
+<ul>
+<li>Mapa interactivo de toda la ruta.</li>
+<li>Mapa con los hoteles y aeropuertos.</li>
+<li>Lista de restaurantes recomendados por ciudad.</li>
+<li>Presupuesto aproximado por día.</li>
+<li>Quién comparte habitación.</li>
+<li>Lista de teléfonos / WhatsApp de coordinación.</li>
+<li>Lista de actividades opcionales con precios aproximados.</li>
+<li>Playlist oficial de las 40 vueltas al sol 🎶.</li>
+<li>Galería de fotos que se vaya desbloqueando durante el viaje.</li>
+<li>QR con la ubicación exacta del punto de encuentro del cumpleaños, cuando llegue el momento.</li>
+</ul>
+</div>
+</section>
+
+<footer>
+<p>✨ Itinerario en construcción · versión 4.0</p>
+<p>Última actualización: septiembre de 2026</p>
+<p>Los horarios de vuelos y transportes deben reconfirmarse con cada compañía antes de la salida.</p>
+</footer>
+</main>
+
+<script>
+const target = new Date("2026-12-08T19:00:00+01:00").getTime();
+function countdown(){
+  const now = Date.now(), d = target-now;
+  const el = document.getElementById("countdown");
+  if(d<=0){el.textContent="🎂 ¡Hoy celebramos las 40 vueltas al sol!";return;}
+  const days=Math.floor(d/86400000), hrs=Math.floor((d%86400000)/3600000),
+        min=Math.floor((d%3600000)/60000);
+  el.textContent=`🎂 Faltan ${days} días · ${hrs} h · ${min} min`;
+}
+countdown(); setInterval(countdown,60000);
+</script>
+</body>
+</html>
